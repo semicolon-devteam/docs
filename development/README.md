@@ -413,4 +413,4 @@ console.log({
 
 ---
 
-다음 단계: [API 문서](../api/README.md) →
+다음 단계: [API 문서](../api/) →

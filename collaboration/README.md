@@ -572,4 +572,4 @@ gh alias set my-issues 'project item-list 1 --owner semicolon-devteam --limit 20
 
 ---
 
-다음 단계: [개발 가이드](../development/README.md) →
+다음 단계: [개발 가이드](../development/) →

@@ -504,4 +504,4 @@ ufw enable
 
 ---
 
-다음 단계: [팀 리소스](../resources/README.md) →
+다음 단계: [팀 리소스](../resources/) →

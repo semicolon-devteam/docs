@@ -405,4 +405,4 @@ semicolon plugin install monitoring-plugin@1.5.3
 
 ---
 
-다음 단계: [배포 가이드](../deployment/README.md) →
+다음 단계: [배포 가이드](../deployment/) →

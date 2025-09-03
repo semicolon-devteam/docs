@@ -15,37 +15,37 @@
 
 ## 🗂️ 문서 구조
 
-### [🚀 시작하기](./getting-started/README.md)
+### [🚀 시작하기](./getting-started/)
 프로젝트 환경 설정, 개발 환경 구축, 첫 기여 가이드
 
-### [🤝 협업 가이드](./collaboration/README.md)
+### [🤝 협업 가이드](./collaboration/)
 - GitHub Projects 활용법
 - 이슈 및 PR 템플릿
 - 스프린트 운영
 - 코드 리뷰 프로세스
 
-### [⚙️ Command Center](./command-center/README.md)
+### [⚙️ Command Center](./command-center/)
 핵심 명령 처리 시스템의 아키텍처, 사용법, 플러그인 개발 가이드
 
-### [💻 개발 가이드](./development/README.md)
+### [💻 개발 가이드](./development/)
 - 코딩 표준 및 스타일 가이드
 - Git 워크플로우
 - 테스트 전략
 - CI/CD 파이프라인
 
-### [📡 API 문서](./api/README.md)
+### [📡 API 문서](./api/)
 - RESTful API 엔드포인트
 - 인증 및 권한
 - SDK 사용법
 - Webhook 통합
 
-### [🚢 배포 가이드](./deployment/README.md)
+### [🚢 배포 가이드](./deployment/)
 - Docker & Kubernetes 배포
 - 환경별 설정
 - 모니터링 및 로깅
 - 무중단 배포 전략
 
-### [📦 팀 리소스](./resources/README.md)
+### [📦 팀 리소스](./resources/)
 - 개발 도구 및 유틸리티
 - 팀 컨벤션
 - FAQ 및 트러블슈팅
@@ -105,8 +105,7 @@ title: 문서 제목
 상세한 설명과 예시
 
 ## 관련 문서
-- [관련 링크1](./link1.md)
-- [관련 링크2](./link2.md)
+- [관련 문서](./)
 ```
 
 ## 🛠️ 기술 스택

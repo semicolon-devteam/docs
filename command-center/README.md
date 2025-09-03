@@ -222,11 +222,11 @@ try {
 
 ## 관련 문서
 
-- [플러그인 개발 가이드](./plugin-development.md)
-- [API 상세 문서](../api/command-center.md)
-- [설정 가이드](./configuration.md)
-- [트러블슈팅](./troubleshooting.md)
+- [플러그인 개발 가이드](#플러그인-개발)
+- [API 상세 문서](../api/)
+- [설정 가이드](#설정)
+- [트러블슈팅](#모니터링)
 
 ---
 
-다음 단계: [개발 가이드](../development/README.md) →
+다음 단계: [개발 가이드](../development/) →

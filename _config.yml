@@ -2,6 +2,8 @@
 title: Semicolon DevTeam Wiki
 description: 팀 내부 개발 문서 및 가이드
 theme: jekyll-theme-minimal
+baseurl: /docs
+url: https://semicolon-devteam.github.io
 
 # Navigation
 navigation:
@@ -23,6 +25,7 @@ navigation:
 # Build settings
 markdown: kramdown
 highlighter: rouge
+permalink: pretty
 
 # Exclude files from build
 exclude:
