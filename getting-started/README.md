@@ -108,10 +108,10 @@ npm outdated
 
 ## 도움말 및 지원
 
-- [FAQ](../resources/)
-- [트러블슈팅 가이드](../resources/)
+- [FAQ](/docs/resources/)
+- [트러블슈팅 가이드](/docs/resources/)
 - [Slack 채널](https://semicolon-team.slack.com)
 
 ---
 
-다음 단계: [Command Center 문서](../command-center/) →
+다음 단계: [Command Center 문서](/docs/command-center/) →
