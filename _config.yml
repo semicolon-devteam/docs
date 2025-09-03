@@ -1,0 +1,46 @@
+# Jekyll configuration for GitHub Pages
+title: Semicolon DevTeam Wiki
+description: 팀 내부 개발 문서 및 가이드
+theme: jekyll-theme-minimal
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: Getting Started
+    url: /getting-started/
+  - title: Command Center
+    url: /command-center/
+  - title: Development
+    url: /development/
+  - title: API Documentation
+    url: /api/
+  - title: Deployment
+    url: /deployment/
+  - title: Team Resources
+    url: /resources/
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Exclude files from build
+exclude:
+  - README.md
+  - .gitignore
+  - Gemfile
+  - Gemfile.lock
+
+# Plugins
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Default values
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
