@@ -16,6 +16,12 @@ title: Semicolon DevTeam Wiki
 
 ## 📋 주요 섹션
 
+### [협업 가이드](./collaboration/README.md)
+GitHub Projects를 활용한 효과적인 팀 협업
+- 프로젝트 보드 관리
+- 이슈 및 PR 템플릿
+- 스프린트 운영 방법
+
 ### [Command Center](./command-center/README.md)
 팀의 핵심 명령 센터 시스템 문서
 - 아키텍처 개요

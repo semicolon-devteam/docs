@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discussions
+    url: https://github.com/semicolon-devteam/command-center/discussions
+    about: 일반적인 질문이나 토론
+  - name: 📚 Documentation
+    url: https://semicolon-devteam.github.io/docs
+    about: 문서를 먼저 확인하세요
+  - name: 💬 Slack
+    url: https://semicolon-team.slack.com
+    about: 실시간 도움이 필요한 경우
