@@ -13,11 +13,15 @@ navigation:
     url: /getting-started/
   - title: Development
     url: /development/
+  - title: Collaboration
+    url: /collaboration/
+  - title: Infrastructure
+    url: /infrastructure/
   - title: API Documentation
     url: /api/
   - title: Deployment
     url: /deployment/
-  - title: Team Resources
+  - title: Resources
     url: /resources/
 
 # Build settings
