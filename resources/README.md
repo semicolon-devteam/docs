@@ -8,7 +8,7 @@ title: 팀 리소스
 ## 유용한 링크
 
 ### 내부 도구
-- [Command Center GitHub](https://github.com/semicolon-devteam/command-center)
+- [Command Center](https://command.semicolon.team) - 팀 리더를 위한 지휘통제실 (경영진 이슈 공유용)
 - [팀 Wiki](https://wiki.semicolon.team)
 - [CI/CD 대시보드](https://ci.semicolon.team)
 - [모니터링 대시보드](https://grafana.semicolon.team)
@@ -179,7 +179,7 @@ A: 다음 사항을 확인하세요:
 A: 롤백 절차:
 ```bash
 # Kubernetes 롤백
-kubectl rollout undo deployment/command-center
+kubectl rollout undo deployment/[deployment-name]
 
 # Docker 롤백
 docker-compose down

@@ -345,7 +345,7 @@ assignees: ''
 blank_issues_enabled: false
 contact_links:
   - name: 💬 Discussions
-    url: https://github.com/semicolon-devteam/command-center/discussions
+    url: https://github.com/semicolon-devteam/docs/discussions
     about: 일반적인 질문이나 토론
   - name: 📚 Documentation
     url: https://semicolon-devteam.github.io/docs

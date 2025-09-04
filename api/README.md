@@ -7,7 +7,9 @@ title: API 문서
 
 ## 개요
 
-Semicolon Command Center API는 RESTful 원칙을 따르며, JSON 형식의 요청과 응답을 사용합니다.
+Semicolon DevTeam API는 RESTful 원칙을 따르며, JSON 형식의 요청과 응답을 사용합니다.
+
+> **Command Center**는 팀 리더(경영진)들을 위한 지휘통제실로, 이슈 공유 및 팀 관리를 위해 별도로 운영됩니다.
 
 ## 기본 정보
 
@@ -334,9 +336,9 @@ POST /webhooks
 ### JavaScript/TypeScript
 
 ```javascript
-const { CommandCenter } = require('@semicolon/command-center-sdk');
+const { ApiClient } = require('@semicolon/api-sdk');
 
-const client = new CommandCenter({
+const client = new ApiClient({
   apiKey: 'YOUR_API_KEY',
   baseURL: 'https://api.semicolon.team/v1'
 });
@@ -375,7 +377,7 @@ status = client.commands.get_status(result['id'])
 
 ```bash
 # 설치
-npm install -g @semicolon/command-center-cli
+npm install -g @semicolon/api-cli
 
 # 설정
 semicolon config set apiKey YOUR_API_KEY

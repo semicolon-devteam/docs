@@ -143,22 +143,22 @@ docker-compose down
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: command-center
+  name: app-name
   labels:
-    app: command-center
+    app: app-name
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: command-center
+      app: app-name
   template:
     metadata:
       labels:
-        app: command-center
+        app: app-name
     spec:
       containers:
-      - name: command-center
-        image: semicolon/command-center:latest
+      - name: app-name
+        image: semicolon/app-name:latest
         ports:
         - containerPort: 3000
         env:
@@ -198,10 +198,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: command-center-service
+  name: app-service
 spec:
   selector:
-    app: command-center
+    app: app-name
   ports:
     - protocol: TCP
       port: 80
@@ -228,10 +228,10 @@ kubectl get pods -n production
 kubectl get services -n production
 
 # 로그 확인
-kubectl logs -f deployment/command-center -n production
+kubectl logs -f deployment/app-name -n production
 
 # 스케일링
-kubectl scale deployment command-center --replicas=5 -n production
+kubectl scale deployment app-name --replicas=5 -n production
 ```
 
 ## CI/CD with GitHub Actions
@@ -280,10 +280,10 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/command-center:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/command-center:$IMAGE_TAG
-          docker tag $ECR_REGISTRY/command-center:$IMAGE_TAG $ECR_REGISTRY/command-center:latest
-          docker push $ECR_REGISTRY/command-center:latest
+          docker build -t $ECR_REGISTRY/app-name:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/app-name:$IMAGE_TAG
+          docker tag $ECR_REGISTRY/app-name:$IMAGE_TAG $ECR_REGISTRY/app-name:latest
+          docker push $ECR_REGISTRY/app-name:latest
 
   deploy:
     needs: build-and-push
@@ -293,7 +293,7 @@ jobs:
         run: |
           aws ecs update-service \
             --cluster production-cluster \
-            --service command-center-service \
+            --service app-service \
             --force-new-deployment
 ```
 
@@ -308,7 +308,7 @@ global:
   scrape_interval: 15s
 
 scrape_configs:
-  - job_name: 'command-center'
+  - job_name: 'app-name'
     static_configs:
       - targets: ['app:3000']
     metrics_path: '/metrics'
@@ -388,10 +388,10 @@ kubectl apply -f k8s/deployment-green.yaml
 kubectl wait --for=condition=ready pod -l version=green
 
 # 트래픽 전환
-kubectl patch service command-center-service -p '{"spec":{"selector":{"version":"green"}}}'
+kubectl patch service app-service -p '{"spec":{"selector":{"version":"green"}}}'
 
 # 이전 버전 제거 (Blue)
-kubectl delete deployment command-center-blue
+kubectl delete deployment app-blue
 ```
 
 ### Rolling Update
@@ -463,7 +463,7 @@ server {
 // ecosystem.config.js
 module.exports = {
   apps: [{
-    name: 'command-center',
+    name: 'app-name',
     script: './src/index.js',
     instances: 'max',
     exec_mode: 'cluster',
