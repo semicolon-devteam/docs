@@ -24,8 +24,6 @@
 - 스프린트 운영
 - 코드 리뷰 프로세스
 
-### [⚙️ Command Center](/docs/command-center/)
-핵심 명령 처리 시스템의 아키텍처, 사용법, 플러그인 개발 가이드
 
 ### [💻 개발 가이드](/docs/development/)
 - 코딩 표준 및 스타일 가이드
@@ -122,7 +120,6 @@ title: 문서 제목
 |-----|--------|--------------|
 | 시작하기 | ✅ 100% | 2024-09-04 |
 | 협업 가이드 | ✅ 100% | 2024-09-04 |
-| Command Center | ✅ 100% | 2024-09-04 |
 | 개발 가이드 | ✅ 100% | 2024-09-04 |
 | API 문서 | ✅ 100% | 2024-09-04 |
 | 배포 가이드 | ✅ 100% | 2024-09-04 |
@@ -130,7 +127,6 @@ title: 문서 제목
 
 ## 💡 유용한 링크
 
-- [Command Center Repository](https://github.com/semicolon-devteam/command-center)
 - [Team Slack Channel](https://semicolon-team.slack.com)
 - [CI/CD Dashboard](https://ci.semicolon.team)
 - [Issue Tracker](https://github.com/semicolon-devteam/docs/issues)

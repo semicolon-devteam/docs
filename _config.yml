@@ -11,8 +11,6 @@ navigation:
     url: /
   - title: Getting Started
     url: /getting-started/
-  - title: Command Center
-    url: /command-center/
   - title: Development
     url: /development/
   - title: API Documentation
