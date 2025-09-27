@@ -7,6 +7,14 @@ title: 협업 가이드
 
 효과적인 팀 협업을 위한 GitHub Projects 활용법과 프로세스 가이드입니다.
 
+## 📚 가이드 목록
+
+- [🎯 Gitmoji 커밋 컨벤션](./github/gitmoji) - 일관된 커밋 메시지 작성을 위한 Gitmoji 규칙
+- [📝 코드 리뷰 가이드](./code-review) - 효과적인 코드 리뷰 프로세스
+- [🏃 스프린트 운영 가이드](./sprint) - 애자일 스프린트 운영 방법
+- [📋 이슈 템플릿](./github/issue-templates) - GitHub 이슈 템플릿 활용법
+- [📊 프로젝트 보드](./github/project-boards) - GitHub Projects 활용법
+
 ## 📊 GitHub Projects 활용
 
 ### 이슈관리 프로젝트 보드 (#1)

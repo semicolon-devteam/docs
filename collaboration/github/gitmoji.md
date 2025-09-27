@@ -1,3 +1,10 @@
+---
+layout: page
+title: Gitmoji 커밋 컨벤션
+parent: GitHub
+grand_parent: Collaboration
+---
+
 # 🎯 Gitmoji 커밋 컨벤션
 
 > 심플하고 명확한 팀 협업을 위한 Gitmoji 규칙
