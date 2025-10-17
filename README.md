@@ -113,7 +113,7 @@ git push origin master
 - **PO 관련**: NO-Y-R
 - **PSM 관련**: reus-jeon, garden92
 - **기술 문의**: reus-jeon, garden92, kyago
-- **프로세스 개선 제안**: [GitHub Issues](https://github.com/semicolon-devteam/docs/issues)
+- **프로세스 개선 제안**: [GitHub Discussions](https://github.com/semicolon-devteam/docs/discussions)
 
 ---
 
