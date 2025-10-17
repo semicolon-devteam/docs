@@ -4,6 +4,11 @@ _site
 .jekyll-metadata
 vendor
 Gemfile.lock
-.DS_Storewiki/
+.DS_Store
+
+# Wiki는 별도 Git 레포지토리로 관리
+wiki/
+
+# Claude 및 BMAD 설정
 .bmad-core
 .claude
