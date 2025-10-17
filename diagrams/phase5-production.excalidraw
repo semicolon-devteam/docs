@@ -1,0 +1,41 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "type": "rectangle",
+      "id": "rect5",
+      "x": 100,
+      "y": 100,
+      "width": 200,
+      "height": 80,
+      "backgroundColor": "#e7ffe7",
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "fillStyle": "solid",
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "roundness": { "type": 3 }
+    },
+    {
+      "type": "text",
+      "id": "text5",
+      "x": 120,
+      "y": 125,
+      "width": 160,
+      "height": 30,
+      "fontSize": 20,
+      "fontFamily": 1,
+      "text": "Phase 5: 프로덕션 배포 💰\n\nexcalidraw.com에서\n편집하세요",
+      "textAlign": "center",
+      "verticalAlign": "middle"
+    }
+  ],
+  "appState": {
+    "gridSize": 20,
+    "viewBackgroundColor": "#ffffff"
+  },
+  "files": {}
+}
