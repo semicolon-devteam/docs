@@ -296,7 +296,7 @@ graph LR
 
 ### 👥 PSM (Product Scrum Master)
 
-**담당자**: ladley, garden92
+**담당자**: reus-jeon, garden92
 
 **주요 역할:**
 - Epic 검토 및 Task 생성
@@ -504,7 +504,7 @@ stateDiagram-v2
 ## 📞 문의 및 지원
 
 - **PO 관련**: NO-Y-R
-- **PSM 관련**: ladley, garden92
+- **PSM 관련**: reus-jeon, garden92
 - **기술 문의**: Tech Lead
 - **프로세스 개선 제안**: GitHub Issues
 

@@ -182,7 +182,7 @@
 ## 📞 문의 및 지원
 
 - **PO 관련**: NO-Y-R
-- **PSM 관련**: ladley, garden92
+- **PSM 관련**: reus-jeon, garden92
 - **기술 문의**: Tech Lead
 - **프로세스 개선 제안**: [GitHub Issues](https://github.com/semicolon-devteam/docs/issues)
 
