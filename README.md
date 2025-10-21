@@ -11,11 +11,22 @@
 
 - 커뮤니케이션 규칙 (Slack 응답 시간, 멘션 규칙)
 - Git & 커밋 컨벤션 (브랜치 전략, 커밋 메시지)
-- 코드 컨벤션 (네이밍, React/Python 규칙)
+- 필수 코드 품질 규칙 (ESLint, 디버깅 코드 제거)
 - 작업 프로세스 (이슈 관리, PR 규칙)
 - 일정 & 가용성 (작업 시간, 데드라인)
 - 책임과 의무 (역할별 필수 의무)
 - 위반 시 처리 (경고 및 보수 관련)
+
+### 🏗️ [개발 철학 (Development Philosophy)](https://github.com/semicolon-devteam/docs/wiki/Development-Philosophy)
+**기술적 의사결정 원칙 및 설계 철학 - 엔지니어 필독**
+
+- Semicolon 에코시스템 아키텍처 (Supabase, Spring Boot, community-core-package, Next.js)
+- AI 협업 철학 (AI-cooperation, AI slut 방지)
+- 코드 컨벤션 상세 (React, Java/Spring Boot)
+- Next.js 애플리케이션 아키텍처 (Atomic Design, 레이어 구조)
+- 테스트 전략 (Vitest 기반 레이어별 테스트)
+- 설계 원칙 (SOLID, DRY, KISS, YAGNI)
+- 기술 스택 선택 철학
 
 ### 🤝 [협업 프로세스 (Collaboration Process)](https://github.com/semicolon-devteam/docs/wiki/Collaboration-Process)
 **Epic → Task → Dev → Staging → Production 전체 워크플로우**
@@ -44,11 +55,13 @@
 ### 신규 팀원
 1. ⭐ **[팀 코덱스](https://github.com/semicolon-devteam/docs/wiki/Team-Codex) 전체 읽기 (30분)** - 필수!
 2. [협업 프로세스](https://github.com/semicolon-devteam/docs/wiki/Collaboration-Process) 전체 읽기 (30분)
-3. 본인 역할별 세부 가이드 확인 (10분)
-4. [작업량 평가 가이드](https://github.com/semicolon-devteam/docs/wiki/Estimation-Guide) 숙지 (10분)
+3. 🏗️ **[개발 철학](https://github.com/semicolon-devteam/docs/wiki/Development-Philosophy) 읽기 (45분)** - 엔지니어 필독!
+4. 본인 역할별 세부 가이드 확인 (10분)
+5. [작업량 평가 가이드](https://github.com/semicolon-devteam/docs/wiki/Estimation-Guide) 숙지 (10분)
 
 ### 기존 팀원
 - **팀 규칙 준수**: [팀 코덱스](https://github.com/semicolon-devteam/docs/wiki/Team-Codex) 수시 확인
+- **기술 의사결정**: [개발 철학](https://github.com/semicolon-devteam/docs/wiki/Development-Philosophy) 참조
 - 프로세스 변경사항: [협업 프로세스](https://github.com/semicolon-devteam/docs/wiki/Collaboration-Process) 참고
 - 이터레이션 시작 전 체크리스트 확인
 
@@ -58,15 +71,17 @@
 
 ```
 docs/
-├── README.md           # 이 파일 (Wiki 링크 제공)
-├── wiki/               # GitHub Wiki 레포지토리 (별도 Git)
+├── README.md                    # 이 파일 (Wiki 링크 제공)
+├── wiki/                        # GitHub Wiki 레포지토리 (별도 Git)
 │   ├── Home.md
-│   ├── Team-Codex.md
+│   ├── Team-Codex.md            # 협업 규칙 (모든 팀원)
+│   ├── Development-Philosophy.md # 개발 철학 (엔지니어)
 │   ├── Collaboration-Process.md
 │   ├── Estimation-Guide.md
+│   ├── Epic-Creation-Agent.md
 │   └── Team-Announcement.md
-├── .legacy-backup/     # 레거시 Jekyll 문서
-└── .github/            # Issue 템플릿 등
+├── .legacy-backup/              # 레거시 Jekyll 문서
+└── .github/                     # Issue 템플릿 등
 ```
 
 ### 📝 Wiki 로컬 편집 방법
@@ -123,6 +138,6 @@ Jekyll 기반 기존 문서는 [.legacy-backup](./.legacy-backup/) 디렉토리�
 
 ---
 
-**🔗 바로가기**: [Wiki 홈](https://github.com/semicolon-devteam/docs/wiki) | [팀 코덱스](https://github.com/semicolon-devteam/docs/wiki/Team-Codex) | [협업 프로세스](https://github.com/semicolon-devteam/docs/wiki/Collaboration-Process)
+**🔗 바로가기**: [Wiki 홈](https://github.com/semicolon-devteam/docs/wiki) | [팀 코덱스](https://github.com/semicolon-devteam/docs/wiki/Team-Codex) | [개발 철학](https://github.com/semicolon-devteam/docs/wiki/Development-Philosophy) | [협업 프로세스](https://github.com/semicolon-devteam/docs/wiki/Collaboration-Process)
 
-_Last Updated: 2025-10-17_
+_Last Updated: 2025-10-21_
