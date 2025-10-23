@@ -1,0 +1,130 @@
+title: "[회의록] YYYY-MM-DD - 회의 주제"
+labels: ["회의록"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 회의록 작성
+        팀 회의 내용을 기록합니다. 안건, 논의 내용, 결정사항을 명확히 작성해주세요.
+
+  - type: input
+    id: meeting-date
+    attributes:
+      label: 📅 회의 일시
+      description: 회의 날짜와 시간
+      placeholder: "2025-10-23 14:00-15:00"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: meeting-type
+    attributes:
+      label: 🏷️ 회의 유형
+      description: 회의 종류를 선택하세요
+      options:
+        - 정기 회의
+        - 긴급 회의
+        - 워크샵
+        - 기획 회의
+        - 기술 리뷰
+        - 회고
+    validations:
+      required: true
+
+  - type: textarea
+    id: attendees
+    attributes:
+      label: 👥 참석자
+      description: 참석한 팀원을 @멘션으로 작성
+      placeholder: "@reus-jeon @garden92 @kyago"
+    validations:
+      required: true
+
+  - type: textarea
+    id: agenda
+    attributes:
+      label: 📝 회의 안건
+      description: 회의에서 다룬 안건 목록 (체크리스트 형식)
+      placeholder: |
+        - [ ] Epic #123 검토
+        - [ ] 배포 일정 논의
+        - [ ] 기술 스택 결정
+      value: |
+        - [ ]
+    validations:
+      required: true
+
+  - type: textarea
+    id: discussion
+    attributes:
+      label: 💬 논의 내용
+      description: 안건별 논의 내용 요약
+      placeholder: |
+        ### Epic #123 검토
+        - PO가 사용자 스토리 설명
+        - 기술적 난이도에 대한 논의
+        - 예상 작업량: 13점
+
+        ### 배포 일정 논의
+        - stg 배포: 10월 26일
+        - prod 배포: 11월 2일
+    validations:
+      required: true
+
+  - type: textarea
+    id: decisions
+    attributes:
+      label: ✅ 결정사항
+      description: 회의에서 내린 결정 (체크리스트 형식)
+      placeholder: |
+        - [x] Epic #123 승인 → Task 생성 진행
+        - [x] Next.js App Router 사용 결정
+        - [x] 다음 회의: 10월 30일 14:00
+      value: |
+        - [x]
+    validations:
+      required: true
+
+  - type: textarea
+    id: action-items
+    attributes:
+      label: 📌 Action Items
+      description: 후속 조치 (담당자, 기한 포함)
+      placeholder: |
+        | 작업 | 담당자 | 기한 |
+        |------|--------|------|
+        | Epic to Tasks 실행 | @reus-jeon | 10/24 |
+        | UI 와이어프레임 작성 | @garden92 | 10/27 |
+      value: |
+        | 작업 | 담당자 | 기한 |
+        |------|--------|------|
+        | | | |
+    validations:
+      required: false
+
+  - type: input
+    id: clova-note-link
+    attributes:
+      label: 🎙️ Clova Note 링크
+      description: Clova Note 녹음 링크
+      placeholder: "https://clovanote.naver.com/..."
+    validations:
+      required: false
+
+  - type: input
+    id: stt-link
+    attributes:
+      label: 📝 STT 원본 링크
+      description: STT(음성-텍스트 변환) 원본 링크
+      placeholder: "https://..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: 📎 추가 메모
+      description: 기타 참고사항
+      placeholder: "특이사항이나 추가로 기록할 내용"
+    validations:
+      required: false
