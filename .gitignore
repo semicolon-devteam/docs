@@ -11,4 +11,4 @@ wiki/
 
 # Claude 및 BMAD 설정
 .bmad-core
-.claude
+.claude/settings.local.json
