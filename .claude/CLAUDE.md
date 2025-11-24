@@ -4,10 +4,29 @@
 
 ## Package Info
 
-- **Package**: SAX-PO v1.0.0
+- **Package**: SAX-PO v1.1.0
 - **Target**: docs repository
 - **Audience**: PO, 기획자
-- **Extends**: SAX-Core (command-center)
+- **Extends**: SAX-Core (docs)
+
+## SAX란?
+
+**SAX** = **S**emicolon **A**I Transformation
+
+Semicolon 팀의 AI 기반 개발 워크플로우 자동화 프레임워크입니다.
+
+## Source of Truth
+
+**SAX의 모든 표준과 최신 버전은 `semicolon-devteam/docs` 레포지토리에서 관리됩니다.**
+
+### 버전 확인 방법
+
+SAX 버전 질문 시 다음을 비교하여 안내:
+
+1. 현재 레포지토리의 SAX 버전
+2. docs 레포지토리의 최신 SAX 버전
+
+최신 버전이 아닐 경우 업데이트를 권장합니다.
 
 ## 설치 대상
 
@@ -23,7 +42,7 @@
 - Modularity (모듈성)
 - Hierarchy (계층구조)
 
-**참조**: [SAX Core Principles](https://github.com/semicolon-devteam/command-center/.claude/sax-core/PRINCIPLES.md)
+**참조**: [SAX Core Principles](https://github.com/semicolon-devteam/docs/.claude/sax-core/PRINCIPLES.md)
 
 ## Agent Routing
 
@@ -118,8 +137,34 @@ cd semicolon-devteam/docs
 cp -r {source}/.claude/sax-po/* .claude/
 ```
 
+## Versioning Rules
+
+SAX 패키지 변경 시 반드시 버저닝을 수행합니다.
+
+### Semantic Versioning
+
+- **MAJOR** (x.0.0): 호환성 깨지는 변경, 구조 대폭 변경
+- **MINOR** (0.x.0): 기능 추가, 설정 변경, 새 Agent/Skill 추가
+- **PATCH** (0.0.x): 버그 수정, 오타 수정, 문서 보완
+
+### 버저닝 필수 상황
+
+다음 변경 시 반드시 Package Info의 버전을 업데이트:
+
+1. CLAUDE.md 내용 변경
+2. Agent/Skill 추가 또는 수정
+3. 워크플로우 변경
+4. 설정값 변경
+
+### Changelog
+
+| 버전 | 날짜 | 변경 내용 |
+|------|------|-----------|
+| v1.1.0 | 2025-11-24 | SAX 약어 정의 추가, Source of Truth를 docs로 변경, 버저닝 룰 추가 |
+| v1.0.0 | - | 초기 버전 |
+
 ## References
 
-- [SAX Core - Principles](https://github.com/semicolon-devteam/command-center/.claude/sax-core/PRINCIPLES.md)
-- [SAX Core - Packaging](https://github.com/semicolon-devteam/command-center/.claude/sax-core/PACKAGING.md)
-- [SAX Core - Message Rules](https://github.com/semicolon-devteam/command-center/.claude/sax-core/MESSAGE_RULES.md)
+- [SAX Core - Principles](https://github.com/semicolon-devteam/docs/.claude/sax-core/PRINCIPLES.md)
+- [SAX Core - Packaging](https://github.com/semicolon-devteam/docs/.claude/sax-core/PACKAGING.md)
+- [SAX Core - Message Rules](https://github.com/semicolon-devteam/docs/.claude/sax-core/MESSAGE_RULES.md)
