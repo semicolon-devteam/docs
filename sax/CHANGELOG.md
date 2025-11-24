@@ -1,0 +1,45 @@
+# SAX Changelog
+
+All notable changes to SAX (Semicolon Agent eXperience) packages will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.0.0] - 2024-11-24
+
+### Added
+
+#### SAX-Core
+
+- `PRINCIPLES.md`: 기본 원칙 (투명성, 일관성, 모듈성, 계층구조)
+- `PACKAGING.md`: 패키지 분리 및 확장 규칙
+- `MESSAGE_RULES.md`: SAX 메시지 포맷 및 출력 규칙
+
+#### SAX-PO (PO/기획자용)
+
+- `epic-master` agent: Epic 생성 전문가
+- `spec-writer` agent: Spec 초안 작성
+- `create-epic` skill: docs 레포에 Epic 이슈 생성
+- `sync-tasks` skill: tasks.md → GitHub Issues 동기화
+- `epic-template`: 간소화된 Epic 템플릿 (What만, How 제외)
+
+#### SAX-Next (Next.js 개발자용)
+
+- `orchestrator` agent: 요청 라우팅
+- `spec-master` agent: SDD Phase 1-3
+- `implementation-master` agent: ADD Phase 4
+- `quality-master` agent: Phase 5 검증
+- `spike-master` agent: 기술 탐색
+- `migration-master` agent: 마이그레이션
+- `teacher` agent: 학습 안내
+- `advisor` agent: 조언 제공
+- `sax-architect` agent: SAX 시스템 관리
+- 다수의 skills (spec, implement, verify, etc.)
+
+### Notes
+
+- SAX 패키지 계층 구조 확립:
+  - SAX-Core (command-center) → 기본 원칙
+  - SAX-PO (docs) → PO/기획자용
+  - SAX-Next (cm-\*) → Next.js 개발자용
+  - SAX-Spring (core-\*) → Spring 개발자용 (예정)
