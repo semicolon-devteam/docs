@@ -5,7 +5,7 @@
 ## Package Info
 
 - **Package**: SAX-PO
-- **Version**: 📌 [sax/VERSION](../sax/VERSION) 참조
+- **Version**: 📌 [sax/VERSION](https://github.com/semicolon-devteam/docs/blob/main/sax/VERSION) 참조
 - **Target**: docs repository
 - **Audience**: PO, 기획자
 - **Extends**: SAX-Core (docs)
@@ -120,7 +120,7 @@ gh api repos/semicolon-devteam/docs/contents/sax/core/TEAM_RULES.md \
 
 ## Workflow Overview
 
-```
+```text
 PO 요청
   ↓
 orchestrator (의도 분석)
@@ -260,7 +260,7 @@ SAX의 버전과 변경 기록은 **단 두 개의 파일**에서만 관리됩�
 
 ### Changelog
 
-📋 **[sax/CHANGELOG.md](../sax/CHANGELOG.md) 참조**
+📋 **[sax/CHANGELOG.md](https://github.com/semicolon-devteam/docs/blob/main/sax/CHANGELOG.md) 참조**
 
 ## References
 
