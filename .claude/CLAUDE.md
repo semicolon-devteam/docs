@@ -86,6 +86,10 @@ gh api repos/semicolon-devteam/docs/contents/sax/core/PRINCIPLES.md \
 # PACKAGING.md 참조 (패키지 규칙)
 gh api repos/semicolon-devteam/docs/contents/sax/core/PACKAGING.md \
   --jq '.content' | base64 -d
+
+# TEAM_RULES.md 참조 (팀 규칙)
+gh api repos/semicolon-devteam/docs/contents/sax/core/TEAM_RULES.md \
+  --jq '.content' | base64 -d
 ```
 
 ### 핵심 메시지 규칙 (Quick Reference)
@@ -263,4 +267,5 @@ SAX의 버전과 변경 기록은 **단 두 개의 파일**에서만 관리됩�
 - [SAX Core - Principles](https://github.com/semicolon-devteam/docs/blob/main/sax/core/PRINCIPLES.md)
 - [SAX Core - Packaging](https://github.com/semicolon-devteam/docs/blob/main/sax/core/PACKAGING.md)
 - [SAX Core - Message Rules](https://github.com/semicolon-devteam/docs/blob/main/sax/core/MESSAGE_RULES.md)
+- [SAX Core - Team Rules](https://github.com/semicolon-devteam/docs/blob/main/sax/core/TEAM_RULES.md)
 - [SAX Changelog](https://github.com/semicolon-devteam/docs/blob/main/sax/CHANGELOG.md)
