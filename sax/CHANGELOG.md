@@ -5,6 +5,18 @@ All notable changes to SAX (Semicolon AI Transformation) packages will be docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2025-11-24
+
+### Changed
+
+- **SAX-Next CLAUDE.md 정규화**: 버전 참조, SAX Core 참조를 docs 레포 기준으로 통일
+- **SAX 정의 추가**: SAX-Next에 "Semicolon AI Transformation" 정의 추가
+
+### Fixed
+
+- SAX-Next References 링크: command-center → docs 레포로 수정
+- SAX Core Principles 참조 경로 수정
+
 ## [1.3.0] - 2025-11-24
 
 ### Changed

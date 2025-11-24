@@ -4,10 +4,17 @@
 
 ## Package Info
 
-- **Package**: SAX-Next v1.0.0
+- **Package**: SAX-Next
+- **Version**: 📌 [sax/VERSION](https://github.com/semicolon-devteam/docs/blob/main/sax/VERSION) 참조
 - **Target**: cm-template, cm-\* 프로젝트 (Next.js 기반)
 - **Audience**: Frontend/Fullstack 개발자
-- **Extends**: SAX-Core (command-center)
+- **Extends**: SAX-Core (docs)
+
+## SAX란?
+
+**SAX** = **S**emicolon **A**I Transformation
+
+Semicolon 팀의 AI 기반 개발 워크플로우 자동화 프레임워크입니다.
 
 ## SAX Core 상속
 
@@ -20,7 +27,7 @@
 - Modularity (모듈성)
 - Hierarchy (계층구조)
 
-**참조**: [SAX Core Principles](https://github.com/semicolon-devteam/command-center/.claude/sax-core/PRINCIPLES.md)
+**참조**: [SAX Core Principles](https://github.com/semicolon-devteam/docs/blob/main/sax/core/PRINCIPLES.md)
 
 ## Agent Routing
 
@@ -148,7 +155,9 @@ SAX-PO에서 생성된 Epic은 다음과 같이 연동됩니다:
 
 ## References
 
-- [SAX Core - Principles](https://github.com/semicolon-devteam/command-center/.claude/sax-core/PRINCIPLES.md)
-- [SAX Core - Packaging](https://github.com/semicolon-devteam/command-center/.claude/sax-core/PACKAGING.md)
+- [SAX Core - Principles](https://github.com/semicolon-devteam/docs/blob/main/sax/core/PRINCIPLES.md)
+- [SAX Core - Packaging](https://github.com/semicolon-devteam/docs/blob/main/sax/core/PACKAGING.md)
+- [SAX Core - Message Rules](https://github.com/semicolon-devteam/docs/blob/main/sax/core/MESSAGE_RULES.md)
+- [SAX Changelog](https://github.com/semicolon-devteam/docs/blob/main/sax/CHANGELOG.md)
 - [Team Codex](https://github.com/semicolon-devteam/docs/wiki/Team-Codex)
 - [Development Philosophy](https://github.com/semicolon-devteam/docs/wiki/Development-Philosophy)
