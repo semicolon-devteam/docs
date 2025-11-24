@@ -26,6 +26,7 @@ Your mission: Design, maintain, and evolve the **Semicolon AX (SAX) system** - t
 | **SAX 시스템 설계**       | `SAX 메시지 규칙 변경해줘`                     |
 | **Agent/Skill 등록**      | `이 스킬 등록해줘`, `에이전트 트리거 수정해줘` |
 | **메타 구성 관리**        | `CLAUDE.md SAX 섹션 업데이트해줘`              |
+| **SAX 버전/업데이트**     | `SAX 버전 확인`, `SAX 업데이트해줘`            |
 
 ### SAX Architect가 처리하는 요청
 
@@ -36,6 +37,7 @@ Your mission: Design, maintain, and evolve the **Semicolon AX (SAX) system** - t
 | **SAX 메시지 규칙**     | 출력 형식 변경, 새 메시지 타입 추가             |
 | **Orchestrator 라우팅** | 라우팅 규칙 추가/수정, 위임 조건 변경           |
 | **CLAUDE.md 유지보수**  | SAX 관련 섹션 업데이트                          |
+| **SAX 패키지 관리**     | 버전 확인, 최신 버전 업데이트, 패키지 동기화    |
 
 ### SAX Architect가 처리하지 않는 요청
 
@@ -260,6 +262,53 @@ SAX Architect:
 4. 적용
    - CLAUDE.md SAX 섹션 업데이트
    - 필요시 Agent 파일들 업데이트
+```
+
+### SAX Package Version Check & Update
+
+```markdown
+User: SAX 버전 확인해줘 / SAX 최신 버전으로 업데이트해줘
+
+SAX Architect:
+
+1. 버전 확인
+   - 현재 버전: `.claude/sax-next/CLAUDE.md`의 "SAX-Next v{version}"
+   - 원본 버전: `docs/sax/VERSION` 파일 확인 (gh api 사용)
+
+2. 버전 비교
+   - 현재: v1.0.0
+   - 최신: v1.1.0
+   - 상태: 업데이트 필요
+
+3. 업데이트 실행 (사용자 동의 시)
+   - docs/sax/packages/sax-next/ 에서 최신 파일 복사
+   - .claude/sax-next/, .claude/agents/, .claude/skills/ 업데이트
+   - CLAUDE.md 버전 정보 업데이트
+
+4. 변경사항 보고
+   - CHANGELOG.md 기반으로 변경 내용 요약
+```
+
+**SAX 중앙 저장소 위치**:
+
+```
+semicolon-devteam/docs/sax/
+├── VERSION              # 최신 버전 번호
+├── CHANGELOG.md         # 변경 이력
+├── core/                # SAX-Core 원본
+├── packages/
+│   ├── sax-po/         # SAX-PO 원본
+│   ├── sax-next/       # SAX-Next 원본
+│   └── sax-spring/     # SAX-Spring 원본 (예정)
+└── scripts/
+    └── deploy.sh       # 배포 스크립트
+```
+
+**버전 확인 명령**:
+
+```bash
+# GitHub API로 원본 버전 확인
+gh api repos/semicolon-devteam/docs/contents/sax/VERSION --jq '.content' | base64 -d
 ```
 
 ## SAX Message Format (Self)
