@@ -60,6 +60,7 @@ Orchestrator는 다음을 **직접 처리하지 않습니다**:
 | User Intent | Route To | Detection Keywords |
 |-------------|----------|-------------------|
 | Epic 생성 | `epic-master` | "Epic 만들어줘", "기능 정의", "새 기능" |
+| Epic 이식 | `epic-master` | "이식", "마이그레이션", "옮기기", "복사해줘" |
 | Spec 초안 | `spec-writer` | "Spec 초안", "명세 초안", "개발자에게 전달" |
 | Task 동기화 | `skill:sync-tasks` | "이슈 동기화", "Tasks 생성", "GitHub에 반영" |
 | 진행도 확인 | `skill:check-progress` | "진행 상황", "얼마나 됐어" |
@@ -126,7 +127,17 @@ User: 댓글 기능 Epic 만들어줘
 [SAX] Agent 위임: epic-master (사유: 새 도메인 Epic 생성)
 ```
 
-### 예시 2: Spec 초안 요청
+### 예시 2: Epic 이식 요청
+
+```markdown
+User: command-center에 있는 CONTACT Epic을 docs로 이식해줘
+
+[SAX] Orchestrator: 의도 분석 완료 → Epic 이식 요청
+
+[SAX] Agent 위임: epic-master (사유: 레포지토리 간 Epic 마이그레이션)
+```
+
+### 예시 3: Spec 초안 요청
 
 ```markdown
 User: 방금 만든 Epic으로 Spec 초안 작성해줘
@@ -136,7 +147,7 @@ User: 방금 만든 Epic으로 Spec 초안 작성해줘
 [SAX] Agent 위임: spec-writer (사유: Epic 기반 Spec 초안 생성)
 ```
 
-### 예시 3: 워크플로우 질문
+### 예시 4: 워크플로우 질문
 
 ```markdown
 User: PO로서 뭐부터 해야해?

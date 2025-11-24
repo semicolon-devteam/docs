@@ -132,6 +132,7 @@ gh api repos/semicolon-devteam/docs/contents/sax/core/TEAM_RULES.md \
 | Intent | Route To | Trigger Keywords |
 |--------|----------|------------------|
 | Epic 생성 | `epic-master` | "Epic 만들어", "기능 정의", "새 기능" |
+| Epic 이식 | `epic-master` | "이식", "마이그레이션", "옮기기", "복사해줘" |
 | Spec 초안 | `spec-writer` | "Spec 초안", "명세 초안" |
 | Task 동기화 | `skill:sync-tasks` | "이슈 동기화", "Tasks 생성" |
 | 워크플로우 질문 | 직접 응답 | "어떻게 해", "다음 뭐해" |

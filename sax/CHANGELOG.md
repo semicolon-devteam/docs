@@ -5,6 +5,27 @@ All notable changes to SAX (Semicolon AI Transformation) packages will be docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2025-11-24
+
+### Added
+
+- **Epic 이식 라우팅**: Routing Table에 Epic 이식/마이그레이션 키워드 추가
+  - "이식", "마이그레이션", "옮기기", "복사해줘" 키워드로 epic-master 라우팅
+  - SAX-PO CLAUDE.md, orchestrator.md에 반영
+  - Epic 이식 예시 추가
+
+### Changed
+
+- **Routing Table 확장**: 기존 Epic 생성 외에 Epic 이식 Intent 분리 정의
+
+### 참조 방법
+
+```bash
+# Routing Table 확인
+gh api repos/semicolon-devteam/docs/contents/sax/packages/sax-po/CLAUDE.md \
+  --jq '.content' | base64 -d | grep -A 10 "Routing Table"
+```
+
 ## [2.2.0] - 2025-11-24
 
 ### Added
