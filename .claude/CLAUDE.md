@@ -29,6 +29,19 @@ SAX 버전 질문 시 다음을 비교하여 안내:
 
 최신 버전이 아닐 경우 업데이트를 권장합니다.
 
+### 업데이트 시 CHANGELOG 확인 (필수)
+
+> ⚠️ **중요**: SAX 업데이트 진행 시, **반드시** CHANGELOG.md를 확인하고 변경사항을 **즉시 반영**해야 합니다.
+
+```bash
+# CHANGELOG.md 확인
+gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG.md \
+  --jq '.content' | base64 -d
+```
+
+**확인 시점**: 업데이트 작업 시작 직후
+**반영 범위**: 현재 버전 이후의 모든 변경사항
+
 ## 설치 대상
 
 이 패키지는 `semicolon-devteam/docs` 레포지토리의 `.claude/` 디렉토리에 설치됩니다.

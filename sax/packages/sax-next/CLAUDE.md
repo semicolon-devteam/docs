@@ -16,6 +16,19 @@
 
 Semicolon 팀의 AI 기반 개발 워크플로우 자동화 프레임워크입니다.
 
+### 업데이트 시 CHANGELOG 확인 (필수)
+
+> ⚠️ **중요**: SAX 업데이트 진행 시, **반드시** CHANGELOG.md를 확인하고 변경사항을 **즉시 반영**해야 합니다.
+
+```bash
+# CHANGELOG.md 확인
+gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG.md \
+  --jq '.content' | base64 -d
+```
+
+**확인 시점**: 업데이트 작업 시작 직후
+**반영 범위**: 현재 버전 이후의 모든 변경사항
+
 ## SAX Core 상속
 
 이 패키지는 SAX Core의 기본 원칙을 상속합니다.
