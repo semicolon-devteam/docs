@@ -5,6 +5,18 @@ All notable changes to SAX (Semicolon AI Transformation) packages will be docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2025-11-24
+
+### Added
+
+- **docs 레포 한정 동기화 규칙**: SAX-PO 개선 시 `.claude/`와 `sax/packages/sax-po/` 동시 업데이트 규칙 추가
+
+### Changed
+
+- **SAX-PO 패키지 소스 동기화**: `sax/packages/sax-po/CLAUDE.md`를 최신 상태로 업데이트
+- **SAX-PO References 링크**: command-center → docs 레포로 수정
+- **SAX Core 참조 경로**: docs/sax/core 경로로 통일
+
 ## [1.4.0] - 2025-11-24
 
 ### Changed

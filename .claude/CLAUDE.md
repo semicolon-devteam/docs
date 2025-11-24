@@ -33,6 +33,17 @@ SAX 버전 질문 시 다음을 비교하여 안내:
 
 이 패키지는 `semicolon-devteam/docs` 레포지토리의 `.claude/` 디렉토리에 설치됩니다.
 
+### docs 레포 한정 동기화 규칙
+
+> ⚠️ **중요**: docs 레포지토리에서 SAX-PO 개선 작업 시, 다음 두 위치를 **동시에** 업데이트해야 합니다:
+
+| 위치 | 역할 |
+|------|------|
+| `.claude/` | SAX-PO 실제 사용 (설치된 상태) |
+| `sax/packages/sax-po/` | SAX-PO 패키지 소스 (배포용) |
+
+**동기화 대상**: CLAUDE.md, agents/, skills/, templates/, commands/
+
 ## SAX Core 상속
 
 이 패키지는 SAX Core의 기본 원칙을 상속합니다.
