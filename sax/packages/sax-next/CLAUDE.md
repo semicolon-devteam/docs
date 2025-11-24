@@ -79,16 +79,19 @@ gh api repos/semicolon-devteam/docs/contents/sax/core/PACKAGING.md \
 
 ### Routing Table
 
-| Intent       | Route To                | Trigger Keywords                |
-| ------------ | ----------------------- | ------------------------------- |
-| 명세 작성    | `spec-master`           | "spec 작성", "명세", "/speckit" |
-| 구현         | `implementation-master` | "구현해줘", "개발", "코딩"      |
-| 검증         | `quality-master`        | "검증", "확인", "PR 전"         |
-| 기술 탐색    | `spike-master`          | "스파이크", "기술 검토", "POC"  |
-| 마이그레이션 | `migration-master`      | "마이그레이션", "이식"          |
-| 학습         | `teacher`               | "알려줘", "설명해줘", "왜"      |
-| 조언         | `advisor`               | "어떻게 해야", "추천", "조언"   |
-| SAX 설정     | `sax-architect`         | "Semicolon AX", "에이전트 설정" |
+| Intent       | Route To                | Trigger Keywords                     |
+| ------------ | ----------------------- | ------------------------------------ |
+| 명세 작성    | `spec-master`           | "spec 작성", "명세", "/speckit"      |
+| 구현         | `implementation-master` | "구현해줘", "개발", "코딩"           |
+| 검증         | `quality-master`        | "검증", "확인", "PR 전"              |
+| 기술 탐색    | `spike-master`          | "스파이크", "기술 검토", "POC"       |
+| 마이그레이션 | `migration-master`      | "마이그레이션", "이식"               |
+| 학습         | `teacher`               | "알려줘", "설명해줘", "왜"           |
+| 조언         | `advisor`               | "어떻게 해야", "추천", "조언"        |
+| 코드 리뷰    | `semicolon-reviewer`    | "리뷰", "코드 검토", "PR 리뷰"       |
+| DDD 설계     | `ddd-architect`         | "DDD", "아키텍처", "도메인 설계"     |
+| DB 작업      | `database-specialist`   | "DB", "데이터베이스", "스키마"       |
+| Supabase     | `supabase-architect`    | "Supabase", "RPC", "supabase 연동"   |
 
 ## Workflow: SDD + ADD
 
@@ -133,17 +136,20 @@ src/app/{domain}/
 
 ### Agents
 
-| Agent                 | 역할            | 파일                                 |
-| --------------------- | --------------- | ------------------------------------ |
-| orchestrator          | 요청 라우팅     | `../agents/orchestrator.md`          |
-| spec-master           | SDD Phase 1-3   | `../agents/spec-master.md`           |
-| implementation-master | ADD Phase 4     | `../agents/implementation-master.md` |
-| quality-master        | Phase 5 검증    | `../agents/quality-master.md`        |
-| spike-master          | 기술 탐색       | `../agents/spike-master.md`          |
-| migration-master      | 마이그레이션    | `../agents/migration-master.md`      |
-| teacher               | 학습 안내       | `../agents/teacher.md`               |
-| advisor               | 조언 제공       | `../agents/advisor.md`               |
-| sax-architect         | SAX 시스템 관리 | `../agents/sax-architect.md`         |
+| Agent                 | 역할             | 파일                                    |
+| --------------------- | ---------------- | --------------------------------------- |
+| orchestrator          | 요청 라우팅      | `agents/orchestrator.md`                |
+| spec-master           | SDD Phase 1-3    | `agents/spec-master.md`                 |
+| implementation-master | ADD Phase 4      | `agents/implementation-master.md`       |
+| quality-master        | Phase 5 검증     | `agents/quality-master.md`              |
+| spike-master          | 기술 탐색        | `agents/spike-master.md`                |
+| migration-master      | 마이그레이션     | `agents/migration-master.md`            |
+| teacher               | 학습 안내        | `agents/teacher.md`                     |
+| advisor               | 조언 제공        | `agents/advisor.md`                     |
+| semicolon-reviewer    | 코드 리뷰        | `agents/semicolon-reviewer.md`          |
+| ddd-architect         | DDD 아키텍처     | `agents/ddd-architect.md`               |
+| database-specialist   | DB 전문가        | `agents/database-specialist.md`         |
+| supabase-architect    | Supabase 통합    | `agents/supabase-architect.md`          |
 
 ### Skills
 

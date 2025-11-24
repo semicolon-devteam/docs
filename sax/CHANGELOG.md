@@ -5,6 +5,24 @@ All notable changes to SAX (Semicolon AI Transformation) packages will be docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.9.0] - 2025-11-24
+
+### Changed
+
+- **SAX-Next 에이전트 정리**: sax-architect 제거 (SAX 메타작업은 docs 레포 전용)
+- **SAX-Next Routing Table 정규화**: v1.3.0에서 이식된 4개 에이전트 등록
+
+### Added (SAX-Next Routing Table)
+
+- `semicolon-reviewer`: 코드 리뷰 ("리뷰", "코드 검토", "PR 리뷰")
+- `ddd-architect`: DDD 아키텍처 ("DDD", "아키텍처", "도메인 설계")
+- `database-specialist`: DB 전문가 ("DB", "데이터베이스", "스키마")
+- `supabase-architect`: Supabase 통합 ("Supabase", "RPC", "supabase 연동")
+
+### Removed (SAX-Next)
+
+- `sax-architect` agent: SAX 메타작업은 docs 레포(SAX-PO)에서만 수행
+
 ## [1.8.0] - 2025-11-24
 
 ### Added
