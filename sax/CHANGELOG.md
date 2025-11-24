@@ -5,6 +5,22 @@ All notable changes to SAX (Semicolon AI Transformation) packages will be docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2025-11-24
+
+### Fixed
+
+- **SAX-PO 에이전트 실제 삭제**: v1.3.0에서 기록만 되고 실제 삭제되지 않았던 개발자용 에이전트 4개 제거
+  - `database-specialist.md`
+  - `ddd-architect.md`
+  - `semicolon-reviewer.md`
+  - `supabase-architect.md`
+
+### SAX-PO 최종 에이전트 구성
+
+- `orchestrator`: 요청 라우팅
+- `epic-master`: Epic 생성 전문가
+- `spec-writer`: Spec 초안 작성
+
 ## [2.0.0] - 2025-11-24
 
 ### Added
