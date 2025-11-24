@@ -5,6 +5,25 @@ All notable changes to SAX (Semicolon AI Transformation) packages will be docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0] - 2025-11-24
+
+### Added
+
+- **SAX Core gh api 참조 규칙**: SAX-Next, SAX-PO, .claude/ 모든 패키지에 gh api를 통한 SAX Core 참조 방법 추가
+- **핵심 메시지 규칙 Quick Reference**: 각 패키지 CLAUDE.md에 메시지 포맷 빠른 참조 추가
+
+### Changed
+
+- **Source of Truth 강화**: SAX Core 문서를 `sax/core/`에서 gh api로 직접 참조하도록 변경
+- **References 링크 정규화**: 모든 SAX Core 참조를 `docs/blob/main/sax/core/` 경로로 통일
+
+### 참조 방법
+
+```bash
+gh api repos/semicolon-devteam/docs/contents/sax/core/MESSAGE_RULES.md \
+  --jq '.content' | base64 -d
+```
+
 ## [1.6.0] - 2025-11-24
 
 ### Added

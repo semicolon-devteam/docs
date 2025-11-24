@@ -27,7 +27,36 @@ Semicolon 팀의 AI 기반 개발 워크플로우 자동화 프레임워크입�
 - Modularity (모듈성)
 - Hierarchy (계층구조)
 
-**참조**: [SAX Core Principles](https://github.com/semicolon-devteam/docs/blob/main/sax/core/PRINCIPLES.md)
+### SAX Core 참조 방법 (필수)
+
+> ⚠️ **Source of Truth**: SAX Core 문서는 `semicolon-devteam/docs` 레포의 `sax/core/`가 유일한 원본입니다.
+
+SAX 관련 작업 시 **반드시** 다음 명령으로 최신 Core 규칙을 참조하세요:
+
+```bash
+# MESSAGE_RULES.md 참조 (메시지 포맷)
+gh api repos/semicolon-devteam/docs/contents/sax/core/MESSAGE_RULES.md \
+  --jq '.content' | base64 -d
+
+# PRINCIPLES.md 참조 (기본 원칙)
+gh api repos/semicolon-devteam/docs/contents/sax/core/PRINCIPLES.md \
+  --jq '.content' | base64 -d
+
+# PACKAGING.md 참조 (패키지 규칙)
+gh api repos/semicolon-devteam/docs/contents/sax/core/PACKAGING.md \
+  --jq '.content' | base64 -d
+```
+
+### 핵심 메시지 규칙 (Quick Reference)
+
+```markdown
+[SAX] {Type}: {name} {action}
+```
+
+- **Type**: `Orchestrator`, `Agent`, `Skill`, `Reference`
+- **필수**: 각 메시지 별도 줄, 메시지 간 빈 줄 삽입
+
+**상세 규칙**: `gh api`로 MESSAGE_RULES.md 참조
 
 ## Agent Routing
 
