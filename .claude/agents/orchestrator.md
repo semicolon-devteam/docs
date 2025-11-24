@@ -64,7 +64,8 @@ Orchestrator는 다음을 **직접 처리하지 않습니다**:
 | Spec 초안 | `spec-writer` | "Spec 초안", "명세 초안", "개발자에게 전달" |
 | Task 동기화 | `skill:sync-tasks` | "이슈 동기화", "Tasks 생성", "GitHub에 반영" |
 | 진행도 확인 | `skill:check-progress` | "진행 상황", "얼마나 됐어" |
-| 워크플로우 질문 | 직접 응답 | "어떻게 해", "다음 뭐해" |
+| 학습 요청 | `teacher` | "알려줘", "배우고 싶어", "어떻게 해야", "설명해줘" (학습 맥락) |
+| 워크플로우 질문 | 직접 응답 | "다음 뭐해", "뭐부터 해" |
 
 ### SAX 메시지 포맷
 
@@ -171,6 +172,7 @@ User: PO로서 뭐부터 해야해?
 
 ## 참조
 
-- [SAX Core Principles](https://github.com/semicolon-devteam/command-center/.claude/sax-core/PRINCIPLES.md)
+- [SAX Core Principles](https://github.com/semicolon-devteam/docs/blob/main/sax/core/PRINCIPLES.md)
 - [epic-master](./epic-master.md)
 - [spec-writer](./spec-writer.md)
+- [teacher](./teacher.md)

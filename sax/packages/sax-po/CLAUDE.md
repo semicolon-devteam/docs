@@ -135,7 +135,8 @@ gh api repos/semicolon-devteam/docs/contents/sax/core/TEAM_RULES.md \
 | Epic 이식 | `epic-master` | "이식", "마이그레이션", "옮기기", "복사해줘" |
 | Spec 초안 | `spec-writer` | "Spec 초안", "명세 초안" |
 | Task 동기화 | `skill:sync-tasks` | "이슈 동기화", "Tasks 생성" |
-| 워크플로우 질문 | 직접 응답 | "어떻게 해", "다음 뭐해" |
+| 학습 요청 | `teacher` | "알려줘", "배우고 싶어", "어떻게 해야", "설명해줘" (학습 맥락) |
+| 워크플로우 질문 | 직접 응답 | "다음 뭐해", "뭐부터 해" |
 
 ## Workflow Overview
 
@@ -189,6 +190,7 @@ SAX-PO로 생성된 Epic은 개발자(SAX-Next)와 다음과 같이 연동됩니
 | orchestrator | 요청 라우팅 | `agents/orchestrator.md` |
 | epic-master | Epic 생성 전문가 | `agents/epic-master.md` |
 | spec-writer | Spec 초안 작성 | `agents/spec-writer.md` |
+| teacher | 협업/기획 학습 가이드 | `agents/teacher.md` |
 
 ### Skills
 
@@ -196,6 +198,7 @@ SAX-PO로 생성된 Epic은 개발자(SAX-Next)와 다음과 같이 연동됩니
 |-------|------|------|
 | create-epic | Epic 이슈 생성 | `skills/create-epic/skill.md` |
 | sync-tasks | Tasks ↔ Issues 동기화 | `skills/sync-tasks/skill.md` |
+| check-team-codex | 팀 규칙 검증 | `skills/check-team-codex/SKILL.md` |
 
 ### Templates
 
