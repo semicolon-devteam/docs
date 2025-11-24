@@ -1,13 +1,38 @@
 # SAX Changelog
 
-All notable changes to SAX (Semicolon Agent eXperience) packages will be documented in this file.
+All notable changes to SAX (Semicolon AI Transformation) packages will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2024-11-24
+## [1.2.0] - 2025-11-24
+
+### Changed
+
+- **Single Source of Truth 확립**: 버전/변경기록을 `sax/VERSION`, `sax/CHANGELOG.md`로 일원화
+- **CLAUDE.md 간소화**: 버전 정보를 직접 기재하지 않고 참조 링크로 변경
+- **버저닝 체크리스트 단순화**: 갱신 대상 파일을 2개로 축소
+
+### Removed
+
+- CLAUDE.md 내 중복 버전 정보 및 Changelog 테이블 제거
+
+## [1.1.0] - 2025-11-24
+
+### Changed
+
+- **SAX 정의 변경**: Semicolon Agent eXperience → **Semicolon AI Transformation**
+- **Source of Truth 변경**: command-center → **docs** 레포지토리
+- **References 링크**: 모든 SAX Core 참조를 docs 레포로 변경
 
 ### Added
+
+- **Versioning Rules**: 버저닝 필수 상황 및 Semantic Versioning 규칙 정의
+- **sax/VERSION 갱신 규칙**: 버전 변경 시 반드시 sax/VERSION 파일 동기화
+
+## [1.0.0] - 2024-11-24
+
+### Added (Initial Release)
 
 #### SAX-Core
 

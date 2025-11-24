@@ -4,7 +4,8 @@
 
 ## Package Info
 
-- **Package**: SAX-PO v1.1.0
+- **Package**: SAX-PO
+- **Version**: 📌 [sax/VERSION](../sax/VERSION) 참조
 - **Target**: docs repository
 - **Audience**: PO, 기획자
 - **Extends**: SAX-Core (docs)
@@ -149,19 +150,34 @@ SAX 패키지 변경 시 반드시 버저닝을 수행합니다.
 
 ### 버저닝 필수 상황
 
-다음 변경 시 반드시 Package Info의 버전을 업데이트:
+다음 변경 시 반드시 버전을 업데이트:
 
 1. CLAUDE.md 내용 변경
 2. Agent/Skill 추가 또는 수정
 3. 워크플로우 변경
 4. 설정값 변경
 
+### Single Source of Truth
+
+SAX의 버전과 변경 기록은 **단 두 개의 파일**에서만 관리됩니다:
+
+| 파일 | 역할 | 설명 |
+|------|------|------|
+| 📌 `sax/VERSION` | 버전 번호 | 현재 버전 (예: `1.1.0`) |
+| 📋 `sax/CHANGELOG.md` | 변경 기록 | Keep a Changelog 형식 |
+
+> ⚠️ **중요**: 다른 모든 파일은 위 두 파일을 **참조**해야 합니다. 버전 정보를 직접 하드코딩하지 마세요.
+
+### 버저닝 체크리스트
+
+버전 변경 시 **오직** 다음 파일만 갱신:
+
+1. ✅ `sax/VERSION` - 버전 번호 업데이트
+2. ✅ `sax/CHANGELOG.md` - 변경 내용 기록
+
 ### Changelog
 
-| 버전 | 날짜 | 변경 내용 |
-|------|------|-----------|
-| v1.1.0 | 2025-11-24 | SAX 약어 정의 추가, Source of Truth를 docs로 변경, 버저닝 룰 추가 |
-| v1.0.0 | - | 초기 버전 |
+📋 **[sax/CHANGELOG.md](../sax/CHANGELOG.md) 참조**
 
 ## References
 
