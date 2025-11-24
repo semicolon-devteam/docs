@@ -75,6 +75,24 @@ gh api repos/semicolon-devteam/docs/contents/sax/core/TEAM_RULES.md \
 
 **상세 규칙**: `gh api`로 MESSAGE_RULES.md 참조
 
+## Orchestrator-First Policy (필수)
+
+> ⚠️ **핵심 규칙**: SAX-Next가 설치된 환경에서는 **모든 요청이 Orchestrator를 먼저 거쳐야 합니다.**
+
+**동작 방식**:
+
+1. 사용자 요청 수신
+2. `[SAX] Orchestrator: 의도 분석 완료 → {category}` 출력
+3. 적절한 Agent 위임 또는 직접 응답
+
+**예외 사항** (Orchestrator 생략 가능):
+
+- 단순 질문: "이게 뭐야?", "설명해줘"
+- 일반 대화: 인사, 감사 표현
+- 명시적 직접 요청: "Orchestrator 없이 바로 해줘"
+
+**상세 규칙**: `gh api`로 SAX Core PRINCIPLES.md의 "3.0 Orchestrator-First Policy" 참조
+
 ## Agent Routing
 
 ### Primary Router

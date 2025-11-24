@@ -103,6 +103,24 @@ gh api repos/semicolon-devteam/docs/contents/sax/core/TEAM_RULES.md \
 
 **상세 규칙**: `gh api`로 MESSAGE_RULES.md 참조
 
+## Orchestrator-First Policy (필수)
+
+> ⚠️ **핵심 규칙**: SAX-PO가 설치된 이 환경에서는 **모든 요청이 Orchestrator를 먼저 거쳐야 합니다.**
+
+**동작 방식**:
+
+1. 사용자 요청 수신
+2. `[SAX] Orchestrator: 의도 분석 완료 → {category}` 출력
+3. 적절한 Agent 위임 또는 직접 응답
+
+**예외 사항** (Orchestrator 생략 가능):
+
+- 단순 질문: "이게 뭐야?", "설명해줘"
+- 일반 대화: 인사, 감사 표현
+- 명시적 직접 요청: "Orchestrator 없이 바로 해줘"
+
+**상세 규칙**: `gh api`로 SAX Core PRINCIPLES.md의 "3.0 Orchestrator-First Policy" 참조
+
 ## Agent Routing
 
 ### Primary Router
@@ -226,12 +244,23 @@ SAX 패키지 변경 시 반드시 버저닝을 수행합니다.
 
 ### 버저닝 필수 상황
 
-다음 변경 시 반드시 버전을 업데이트:
+> ⚠️ **필수**: 다음 변경 시 **반드시** 버전을 업데이트해야 합니다.
 
-1. CLAUDE.md 내용 변경
-2. Agent/Skill 추가 또는 수정
-3. 워크플로우 변경
-4. 설정값 변경
+| 변경 유형 | 버전 | 설명 |
+|----------|------|------|
+| **추가** | MINOR | Agent, Skill, 설정, 워크플로우 추가 |
+| **수정** | MINOR/PATCH | 기능 변경(MINOR), 버그 수정(PATCH) |
+| **삭제** | MINOR | Agent, Skill, 설정, 워크플로우 삭제 |
+| **구조 변경** | MINOR | 디렉토리, 파일 구조 변경 |
+
+**버저닝 체크포인트**:
+
+1. CLAUDE.md 내용 변경 → 버저닝 필요
+2. Agent/Skill **추가, 수정, 또는 삭제** → 버저닝 필요
+3. 워크플로우 변경 → 버저닝 필요
+4. 설정값 변경 → 버저닝 필요
+
+**상세 규칙**: `gh api`로 SAX Core PRINCIPLES.md의 "7.2 버저닝 필수 상황" 참조
 
 ### Single Source of Truth
 
