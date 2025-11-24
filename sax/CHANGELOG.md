@@ -5,6 +5,19 @@ All notable changes to SAX (Semicolon AI Transformation) packages will be docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] - 2025-11-24
+
+### Added
+
+- **업데이트 후 커밋 규칙**: 서비스 레포에서 SAX 동기화 완료 후 커밋 필수 규칙 추가
+- **Installation & Update 섹션**: SAX-Next, SAX-PO에 설치 및 업데이트 가이드 추가
+
+### 커밋 메시지 형식 (서비스 레포용)
+
+```text
+📝 [SAX] Sync to vX.X.X
+```
+
 ## [1.5.0] - 2025-11-24
 
 ### Added

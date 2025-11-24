@@ -141,6 +141,39 @@ src/app/{domain}/
 [SAX] Reference: {source} 참조
 ```
 
+## Installation & Update
+
+### 설치 방법
+
+```bash
+# 대상 레포로 이동 (예: cm-land)
+cd semicolon-devteam/cm-land
+
+# .claude 디렉토리 생성 (없으면)
+mkdir -p .claude/agents .claude/skills
+
+# SAX-Next 패키지 복사
+cp docs/sax/packages/sax-next/CLAUDE.md .claude/
+cp -r docs/sax/packages/sax-next/agents/* .claude/agents/
+cp -r docs/sax/packages/sax-next/skills/* .claude/skills/
+```
+
+### 업데이트 후 커밋 규칙
+
+> ⚠️ **중요**: SAX 패키지 동기화(업데이트) 완료 후 **반드시 커밋**을 수행합니다.
+
+**커밋 메시지 형식**:
+
+```text
+📝 [SAX] Sync to vX.X.X
+```
+
+**예시**:
+
+```text
+📝 [SAX] Sync to v1.5.0
+```
+
 ## PO 연동 (SAX-PO)
 
 SAX-PO에서 생성된 Epic은 다음과 같이 연동됩니다:

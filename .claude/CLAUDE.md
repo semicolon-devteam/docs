@@ -137,7 +137,9 @@ SAX-PO로 생성된 Epic은 개발자(SAX-Next)와 다음과 같이 연동됩니
 |----------|------|------|
 | epic-template | Epic 이슈 본문 | `templates/epic-template.md` |
 
-## Installation
+## Installation & Update
+
+### 설치 방법
 
 docs 레포지토리에 설치:
 
@@ -146,7 +148,23 @@ docs 레포지토리에 설치:
 cd semicolon-devteam/docs
 
 # SAX-PO 패키지 복사
-cp -r {source}/.claude/sax-po/* .claude/
+cp -r sax/packages/sax-po/* .claude/
+```
+
+### 업데이트 후 커밋 규칙
+
+> ⚠️ **중요**: SAX 패키지 동기화(업데이트) 완료 후 **반드시 커밋**을 수행합니다.
+
+**커밋 메시지 형식**:
+
+```text
+📝 [SAX] Sync to vX.X.X
+```
+
+**예시**:
+
+```text
+📝 [SAX] Sync to v1.5.0
 ```
 
 ## Versioning Rules
