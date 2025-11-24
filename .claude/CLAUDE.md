@@ -68,6 +68,34 @@ gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG.md \
 - Modularity (모듈성)
 - Hierarchy (계층구조)
 
+### SAX Core 컨텍스트 우선 조회 (필수)
+
+> ⚠️ **최우선 규칙**: SAX 관련 작업 시작 전, SAX Core 문서를 **먼저 조회**하여 컨텍스트를 확보해야 합니다.
+
+**조회가 필요한 상황**:
+
+1. **SAX 메시지 규칙** 관련 작업 (Agent/Skill/Reference 메시지 출력)
+2. **Orchestrator 라우팅** 관련 질문 또는 개선
+3. **패키지 구조 변경** (Agent/Skill 추가, 삭제, 수정)
+4. **버저닝** 관련 작업
+5. **SAX 규칙 충돌** 발생 시
+
+**조회 절차**:
+
+```bash
+# 1. 현재 상황에 맞는 SAX Core 문서 조회
+gh api repos/semicolon-devteam/docs/contents/sax/core/PRINCIPLES.md \
+  --jq '.content' | base64 -d  # 기본 원칙
+
+gh api repos/semicolon-devteam/docs/contents/sax/core/MESSAGE_RULES.md \
+  --jq '.content' | base64 -d  # 메시지 규칙
+
+# 2. 조회 결과를 컨텍스트로 보유
+# 3. 이후 작업 진행
+```
+
+**중요**: SAX Core 컨텍스트 없이 SAX 관련 작업을 진행하지 마세요. 잘못된 메시지 포맷이나 규칙 위반이 발생할 수 있습니다.
+
 ### SAX Core 참조 방법 (필수)
 
 > ⚠️ **Source of Truth**: SAX Core 문서는 `semicolon-devteam/docs` 레포의 `sax/core/`가 유일한 원본입니다.
@@ -94,14 +122,19 @@ gh api repos/semicolon-devteam/docs/contents/sax/core/TEAM_RULES.md \
 
 ### 핵심 메시지 규칙 (Quick Reference)
 
+**기본 포맷**:
+
 ```markdown
 [SAX] {Type}: {name} {action}
 ```
 
-- **Type**: `Orchestrator`, `Agent`, `Skill`, `Reference`
-- **필수**: 각 메시지 별도 줄, 메시지 간 빈 줄 삽입
+**필수 요소**:
 
-**상세 규칙**: `gh api`로 MESSAGE_RULES.md 참조
+- `Type`: `Orchestrator`, `Agent`, `Skill`, `Reference`
+- 각 메시지 별도 줄 출력
+- 메시지 간 빈 줄 삽입
+
+📖 **상세**: [SAX Core MESSAGE_RULES.md](https://github.com/semicolon-devteam/docs/blob/main/sax/core/MESSAGE_RULES.md)
 
 ## Orchestrator-First Policy (필수)
 
@@ -113,11 +146,23 @@ gh api repos/semicolon-devteam/docs/contents/sax/core/TEAM_RULES.md \
 2. `[SAX] Orchestrator: 의도 분석 완료 → {category}` 출력
 3. 적절한 Agent 위임 또는 직접 응답
 
-**예외 사항** (Orchestrator 생략 가능):
+**중요**: Orchestrator 메시지는 **항상 출력**됩니다. 예외 사항은 "Agent 위임을 생략"하는 것이지, "Orchestrator 메시지 출력을 생략"하는 것이 아닙니다.
 
-- 단순 질문: "이게 뭐야?", "설명해줘"
-- 일반 대화: 인사, 감사 표현
+**예외 사항** (Agent 위임 생략, 직접 응답):
+
+- 단순 정보 질문: "이게 뭐야?", "이 함수 설명해줘"
+- 일반 대화: 인사, 감사 표현, 확인
 - 명시적 직접 요청: "Orchestrator 없이 바로 해줘"
+
+**올바른 예시**:
+
+```markdown
+User: "SAX 패키지가 뭐야?"
+
+[SAX] Orchestrator: 의도 분석 완료 → 단순 정보 요청 (직접 응답)
+
+[응답 내용...]
+```
 
 **상세 규칙**: `gh api`로 SAX Core PRINCIPLES.md의 "3.0 Orchestrator-First Policy" 참조
 
