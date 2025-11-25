@@ -84,8 +84,34 @@ When user types `/spec [feature-description]`, extract:
 - Marks parallelizable tasks with [P]
 - Defines test requirements per task
 - Creates `specs/N-short-name/tasks.md`
+- **Includes "## GitHub Issues" section** for sync-tasks integration
 
 **Wait for**: tasks.md creation confirmation
+
+**Post-tasks Automation** (spec-master responsibility):
+
+After `/speckit.tasks` completes, spec-master must:
+
+1. Check if tasks.md includes "## GitHub Issues" section
+2. If missing, append the section:
+
+```markdown
+## GitHub Issues
+
+<!-- sync-tasks will populate this section -->
+<!-- Format: - [x] #123 Task description [link](url) -->
+```
+
+1. Inform user about sync-tasks availability:
+
+```markdown
+✅ tasks.md created successfully
+
+**Next Step**: Run `sync-tasks` skill to create GitHub Issues:
+- Converts tasks.md → GitHub Issues
+- Updates this section with links
+- Ready for team tracking
+```
 
 ### Step 5: Verify Completeness
 
@@ -121,13 +147,15 @@ Provide summary to user:
 
 1. Review spec.md for completeness
 2. If clarifications needed: `/speckit.clarify`
-3. Ready to implement: `/implement [domain]:[feature]`
-4. Or run individual spec-kit commands for targeted updates
+3. Create GitHub Issues: Use `sync-tasks` skill (converts tasks.md → GitHub Issues)
+4. Ready to implement: `/implement [domain]:[feature]`
+5. Or run individual spec-kit commands for targeted updates
 
 **Quick Commands**:
 
 - `/speckit.clarify` - Resolve spec ambiguities
 - `/speckit.analyze` - Cross-artifact consistency check
+- `sync-tasks` - Create GitHub Issues from tasks.md
 - `/implement` - Start ADD implementation phases
 ```
 

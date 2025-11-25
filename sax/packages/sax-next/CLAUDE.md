@@ -197,36 +197,39 @@ src/app/{domain}/
 
 ### Agents
 
-| Agent                 | 역할             | 파일                                    |
-| --------------------- | ---------------- | --------------------------------------- |
-| orchestrator          | 요청 라우팅      | `agents/orchestrator.md`                |
-| spec-master           | SDD Phase 1-3    | `agents/spec-master.md`                 |
-| implementation-master | ADD Phase 4      | `agents/implementation-master.md`       |
-| quality-master        | Phase 5 검증     | `agents/quality-master.md`              |
-| spike-master          | 기술 탐색        | `agents/spike-master.md`                |
-| migration-master      | 마이그레이션     | `agents/migration-master.md`            |
-| teacher               | 학습 안내        | `agents/teacher.md`                     |
-| advisor               | 조언 제공        | `agents/advisor.md`                     |
-| semicolon-reviewer    | 코드 리뷰        | `agents/semicolon-reviewer.md`          |
-| ddd-architect         | DDD 아키텍처     | `agents/ddd-architect.md`               |
-| database-specialist   | DB 전문가        | `agents/database-specialist.md`         |
-| supabase-architect    | Supabase 통합    | `agents/supabase-architect.md`          |
+| Agent                 | 역할                  | 파일                                    |
+| --------------------- | --------------------- | --------------------------------------- |
+| orchestrator          | 요청 라우팅           | `agents/orchestrator.md`                |
+| onboarding-master     | 신규 개발자 온보딩    | `agents/onboarding-master.md`           |
+| spec-master           | SDD Phase 1-3         | `agents/spec-master.md`                 |
+| implementation-master | ADD Phase 4           | `agents/implementation-master.md`       |
+| quality-master        | Phase 5 검증          | `agents/quality-master.md`              |
+| spike-master          | 기술 탐색             | `agents/spike-master.md`                |
+| migration-master      | 마이그레이션          | `agents/migration-master.md`            |
+| teacher               | 학습 안내             | `agents/teacher.md`                     |
+| advisor               | 조언 제공             | `agents/advisor.md`                     |
+| semicolon-reviewer    | 코드 리뷰             | `agents/semicolon-reviewer.md`          |
+| ddd-architect         | DDD 아키텍처          | `agents/ddd-architect.md`               |
+| database-specialist   | DB 전문가             | `agents/database-specialist.md`         |
+| supabase-architect    | Supabase 통합         | `agents/supabase-architect.md`          |
 
 ### Skills
 
-| Skill                  | 역할                   |
-| ---------------------- | ---------------------- |
-| spec                   | SDD 명세 워크플로우    |
-| implement              | ADD 구현 워크플로우    |
-| verify                 | Phase 5 종합 검증      |
-| check-team-codex       | 팀 코덱스 검증         |
-| validate-architecture  | DDD 아키텍처 검증      |
-| scaffold-domain        | 도메인 구조 생성       |
-| fetch-supabase-example | Supabase 패턴 참조     |
-| fetch-api-spec         | API 스펙 참조          |
-| git-workflow           | Git 워크플로우 자동화  |
-| create-issues          | GitHub Issues 생성     |
-| project-context        | 프로젝트 컨텍스트 제공 |
+| Skill                  | 역할                      |
+| ---------------------- | ------------------------- |
+| health-check           | 개발 환경 검증            |
+| task-progress          | 워크플로우 진행도 확인    |
+| spec                   | SDD 명세 워크플로우       |
+| implement              | ADD 구현 워크플로우       |
+| verify                 | Phase 5 종합 검증         |
+| check-team-codex       | 팀 코덱스 검증            |
+| validate-architecture  | DDD 아키텍처 검증         |
+| scaffold-domain        | 도메인 구조 생성          |
+| fetch-supabase-example | Supabase 패턴 참조        |
+| fetch-api-spec         | API 스펙 참조             |
+| git-workflow           | Git 워크플로우 자동화     |
+| create-issues          | GitHub Issues 생성        |
+| project-context        | 프로젝트 컨텍스트 제공    |
 
 ## SAX Message Rules
 

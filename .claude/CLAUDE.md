@@ -205,6 +205,7 @@ SAX-PO로 생성된 Epic은 개발자(SAX-Next)와 다음과 같이 연동됩니
 | Agent | 역할 | 파일 |
 |-------|------|------|
 | orchestrator | 요청 라우팅 | `agents/orchestrator.md` |
+| onboarding-master | 신규 PO/기획자 온보딩 | `agents/onboarding-master.md` |
 | epic-master | Epic 생성 전문가 | `agents/epic-master.md` |
 | spec-writer | Spec 초안 작성 | `agents/spec-writer.md` |
 | teacher | 협업/기획 학습 가이드 | `agents/teacher.md` |
@@ -213,6 +214,7 @@ SAX-PO로 생성된 Epic은 개발자(SAX-Next)와 다음과 같이 연동됩니
 
 | Skill | 역할 | 파일 |
 |-------|------|------|
+| health-check | 개발 환경 검증 | `skills/health-check/skill.md` |
 | create-epic | Epic 이슈 생성 | `skills/create-epic/skill.md` |
 | sync-tasks | Tasks ↔ Issues 동기화 | `skills/sync-tasks/skill.md` |
 | check-team-codex | 팀 규칙 검증 | `skills/check-team-codex/SKILL.md` |
