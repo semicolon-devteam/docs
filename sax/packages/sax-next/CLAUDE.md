@@ -54,17 +54,27 @@ gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG.md \
 
 **조회 절차**:
 
-```bash
-# 1. 현재 상황에 맞는 SAX Core 문서 조회
-gh api repos/semicolon-devteam/docs/contents/sax/core/PRINCIPLES.md \
-  --jq '.content' | base64 -d  # 기본 원칙
+1. **Reference 메시지 출력**:
 
-gh api repos/semicolon-devteam/docs/contents/sax/core/MESSAGE_RULES.md \
-  --jq '.content' | base64 -d  # 메시지 규칙
+   ```markdown
+   [SAX] Reference: sax/core/{문서명} 참조
+   ```
 
-# 2. 조회 결과를 컨텍스트로 보유
-# 3. 이후 작업 진행
-```
+2. **SAX Core 문서 조회**:
+
+   ```bash
+   # 기본 원칙
+   gh api repos/semicolon-devteam/docs/contents/sax/core/PRINCIPLES.md \
+     --jq '.content' | base64 -d
+
+   # 메시지 규칙
+   gh api repos/semicolon-devteam/docs/contents/sax/core/MESSAGE_RULES.md \
+     --jq '.content' | base64 -d
+   ```
+
+3. **조회 결과를 컨텍스트로 보유**
+
+4. **이후 작업 진행**
 
 **중요**: SAX Core 컨텍스트 없이 SAX 관련 작업을 진행하지 마세요. 잘못된 메시지 포맷이나 규칙 위반이 발생할 수 있습니다.
 
@@ -140,31 +150,15 @@ User: "DDD가 뭐야?"
 
 ## Agent Routing
 
-### Primary Router
-
 이 패키지의 모든 요청은 `orchestrator`를 통해 라우팅됩니다.
 
-### Routing Table
-
-| Intent       | Route To                | Trigger Keywords                     |
-| ------------ | ----------------------- | ------------------------------------ |
-| 명세 작성    | `spec-master`           | "spec 작성", "명세", "/speckit"      |
-| 구현         | `implementation-master` | "구현해줘", "개발", "코딩"           |
-| 검증         | `quality-master`        | "검증", "확인", "PR 전"              |
-| 기술 탐색    | `spike-master`          | "스파이크", "기술 검토", "POC"       |
-| 마이그레이션 | `migration-master`      | "마이그레이션", "이식"               |
-| 학습         | `teacher`               | "알려줘", "설명해줘", "왜"           |
-| 조언         | `advisor`               | "어떻게 해야", "추천", "조언"        |
-| 코드 리뷰    | `semicolon-reviewer`    | "리뷰", "코드 검토", "PR 리뷰"       |
-| DDD 설계     | `ddd-architect`         | "DDD", "아키텍처", "도메인 설계"     |
-| DB 작업      | `database-specialist`   | "DB", "데이터베이스", "스키마"       |
-| Supabase     | `supabase-architect`    | "Supabase", "RPC", "supabase 연동"   |
+**라우팅 상세**: orchestrator 에이전트 참조
 
 ## Workflow: SDD + ADD
 
 ### SDD (Spec-Driven Development) - Phase 1-3
 
-```
+```text
 /speckit.specify → specs/{domain}/spec.md
 /speckit.plan → specs/{domain}/plan.md
 /speckit.tasks → specs/{domain}/tasks.md
@@ -172,7 +166,7 @@ User: "DDD가 뭐야?"
 
 ### ADD (Agent-Driven Development) - Phase 4
 
-```
+```text
 v0.0.x CONFIG → 환경 설정
 v0.1.x PROJECT → 도메인 구조 생성
 v0.2.x TESTS → TDD 테스트 작성
@@ -182,7 +176,7 @@ v0.4.x CODE → 구현 코드 작성
 
 ### Verification - Phase 5
 
-```
+```text
 skill:verify → 종합 검증
 skill:check-team-codex → 팀 코덱스 준수 확인
 skill:validate-architecture → DDD 아키텍처 검증
@@ -190,7 +184,7 @@ skill:validate-architecture → DDD 아키텍처 검증
 
 ## Architecture: DDD 4-Layer
 
-```
+```text
 src/app/{domain}/
 ├── _repositories/     # 서버사이드 데이터 접근 (Layer 1)
 ├── _api-clients/      # 브라우저 HTTP 통신 (Layer 2)
@@ -238,23 +232,7 @@ src/app/{domain}/
 
 이 패키지의 모든 Agent/Skill은 SAX 메시지 규칙을 준수합니다.
 
-### Agent 활성화
-
-```markdown
-[SAX] Agent: {name} 호출 (트리거: {trigger_reason})
-```
-
-### Skill 사용
-
-```markdown
-[SAX] Skill: {name} 사용
-```
-
-### Reference 참조
-
-```markdown
-[SAX] Reference: {source} 참조
-```
+📖 **상세**: [SAX Core MESSAGE_RULES.md](https://github.com/semicolon-devteam/docs/blob/main/sax/core/MESSAGE_RULES.md)
 
 ## Installation & Update
 

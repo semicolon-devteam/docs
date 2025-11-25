@@ -82,17 +82,27 @@ gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG.md \
 
 **조회 절차**:
 
-```bash
-# 1. 현재 상황에 맞는 SAX Core 문서 조회
-gh api repos/semicolon-devteam/docs/contents/sax/core/PRINCIPLES.md \
-  --jq '.content' | base64 -d  # 기본 원칙
+1. **Reference 메시지 출력**:
 
-gh api repos/semicolon-devteam/docs/contents/sax/core/MESSAGE_RULES.md \
-  --jq '.content' | base64 -d  # 메시지 규칙
+   ```markdown
+   [SAX] Reference: sax/core/{문서명} 참조
+   ```
 
-# 2. 조회 결과를 컨텍스트로 보유
-# 3. 이후 작업 진행
-```
+2. **SAX Core 문서 조회**:
+
+   ```bash
+   # 기본 원칙
+   gh api repos/semicolon-devteam/docs/contents/sax/core/PRINCIPLES.md \
+     --jq '.content' | base64 -d
+
+   # 메시지 규칙
+   gh api repos/semicolon-devteam/docs/contents/sax/core/MESSAGE_RULES.md \
+     --jq '.content' | base64 -d
+   ```
+
+3. **조회 결과를 컨텍스트로 보유**
+
+4. **이후 작업 진행**
 
 **중요**: SAX Core 컨텍스트 없이 SAX 관련 작업을 진행하지 마세요. 잘못된 메시지 포맷이나 규칙 위반이 발생할 수 있습니다.
 
@@ -168,31 +178,9 @@ User: "SAX 패키지가 뭐야?"
 
 ## Agent Routing
 
-### Primary Router
-
 이 패키지의 모든 요청은 `orchestrator`를 통해 라우팅됩니다.
 
-### Routing Table
-
-| Intent | Route To | Trigger Keywords |
-|--------|----------|------------------|
-| Epic 생성 | `epic-master` | "Epic 만들어", "기능 정의", "새 기능" |
-| Epic 이식 | `epic-master` | "이식", "마이그레이션", "옮기기", "복사해줘" |
-| Spec 초안 | `spec-writer` | "Spec 초안", "명세 초안" |
-| Task 동기화 | `skill:sync-tasks` | "이슈 동기화", "Tasks 생성" |
-| 학습 요청 | `teacher` | "알려줘", "배우고 싶어", "어떻게 해야", "설명해줘" (학습 맥락) |
-| 워크플로우 질문 | 직접 응답 | "다음 뭐해", "뭐부터 해" |
-
-## Workflow Overview
-
-```text
-PO 요청
-  ↓
-orchestrator (의도 분석)
-  ├─ epic-master → skill:create-epic → docs 레포에 Epic 이슈 생성
-  ├─ spec-writer → specs/{epic}/spec.md 초안 생성
-  └─ skill:sync-tasks → tasks.md → GitHub Issues 동기화
-```
+**라우팅 상세**: [orchestrator 에이전트](.claude/agents/orchestrator.md) 참조
 
 ## 개발자 연동
 
@@ -208,23 +196,7 @@ SAX-PO로 생성된 Epic은 개발자(SAX-Next)와 다음과 같이 연동됩니
 
 이 패키지의 모든 Agent/Skill은 SAX 메시지 규칙을 준수합니다.
 
-### Agent 활성화
-
-```markdown
-[SAX] Agent: {name} 호출 (트리거: {trigger_reason})
-```
-
-### Skill 사용
-
-```markdown
-[SAX] Skill: {name} 사용
-```
-
-### Reference 참조
-
-```markdown
-[SAX] Reference: {source} 참조
-```
+📖 **상세**: [SAX Core MESSAGE_RULES.md](https://github.com/semicolon-devteam/docs/blob/main/sax/core/MESSAGE_RULES.md)
 
 ## Package Components
 
