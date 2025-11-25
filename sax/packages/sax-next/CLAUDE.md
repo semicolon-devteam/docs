@@ -231,6 +231,15 @@ src/app/{domain}/
 | create-issues          | GitHub Issues 생성        |
 | project-context        | 프로젝트 컨텍스트 제공    |
 
+### Commands
+
+| Command            | 역할                         | 파일                       |
+| ------------------ | ---------------------------- | -------------------------- |
+| /SAX:onboarding    | 신규 개발자 온보딩           | `commands/onboarding.md`   |
+| /SAX:health-check  | 개발 환경 검증               | `commands/health-check.md` |
+| /SAX:task-progress | 워크플로우 진행도 확인       | `commands/task-progress.md`|
+| /SAX:help          | 대화형 도우미                | `commands/help.md`         |
+
 ## SAX Message Rules
 
 이 패키지의 모든 Agent/Skill은 SAX 메시지 규칙을 준수합니다.

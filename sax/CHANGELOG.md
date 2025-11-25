@@ -5,6 +5,32 @@ All notable changes to SAX (Semicolon AI Transformation) packages will be docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.9.0] - 2025-11-25
+
+### Added
+
+- **/SAX:help Command** (SAX-Next, SAX-PO)
+  - 대화형 도우미: 사용자가 길을 잃었을 때 안내
+  - 6가지 질문 유형 지원: 현재 작업 상태, 다음 단계, 프로세스 학습, 개념 학습, 도구 사용법, 기타
+  - skill:task-progress, teacher Agent 통합
+  - PO용 맞춤 응답 (Epic 생성, Spec 초안, 개발팀 협업)
+
+### Changed
+
+- **health-check Skill 개선** (SAX-Next, SAX-PO)
+  - ~/.claude.json 메타데이터 현황 체크 추가
+  - SAX.role, SAX.position, SAX.boarded, SAX.healthCheckPassed 확인
+  - 플랫폼별 경로 검증 (macOS, Linux, Windows)
+  - jq 기반 메타데이터 존재 여부 검증
+
+- **orchestrator 라우팅 테이블 확장** (SAX-Next, SAX-PO)
+  - 도움 요청 → 대화형 응답 (직접 처리)
+  - "/SAX:help", "도움말", "뭘 해야 하지" 키워드
+
+- **CLAUDE.md 업데이트** (SAX-Next, SAX-PO)
+  - Package Components에 Commands 섹션 추가
+  - /SAX:help Command 포함
+
 ## [2.8.0] - 2025-11-25
 
 ### Added

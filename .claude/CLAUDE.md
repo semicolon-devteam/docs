@@ -219,6 +219,14 @@ SAX-PO로 생성된 Epic은 개발자(SAX-Next)와 다음과 같이 연동됩니
 | sync-tasks | Tasks ↔ Issues 동기화 | `skills/sync-tasks/skill.md` |
 | check-team-codex | 팀 규칙 검증 | `skills/check-team-codex/SKILL.md` |
 
+### Commands
+
+| Command           | 역할                    | 파일                      |
+| ----------------- | ----------------------- | ------------------------- |
+| /SAX:onboarding   | 신규 PO/기획자 온보딩   | `commands/onboarding.md`  |
+| /SAX:health-check | 개발 환경 검증          | `commands/health-check.md`|
+| /SAX:help         | 대화형 도우미 (PO/기획자)| `commands/help.md`        |
+
 ### Templates
 
 | Template | 역할 | 파일 |

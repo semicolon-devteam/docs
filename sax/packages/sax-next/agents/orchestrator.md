@@ -99,19 +99,20 @@ You are the entry point for ALL requests. You decide which agent handles each re
 
 ### Routing Decision Table
 
-| User Intent         | Route To                | Detection Keywords                            |
-| ------------------- | ----------------------- | --------------------------------------------- |
-| **SAX 시스템 설계** | `sax-architect`         | "Semicolon AX", Agent/Skill 등록, 트리거 수정 |
-| 온보딩 요청         | `onboarding-master`     | "/SAX:onboarding", "처음", "신규", "온보딩"   |
-| 환경 검증           | `skill:health-check`    | "/SAX:health-check", "환경 확인", "도구 확인" |
-| 진행도 확인         | `skill:task-progress`   | "/SAX:task-progress", "어디까지", "현황"      |
-| 업무 시작           | 복합 로직 (자동화)      | 이슈 URL (cm-office#32), "할당받았다"        |
-| 기술/지식 학습      | `teacher`               | 특정 기술 개념 질문, 팀 철학/프로세스 학습    |
-| 전략적 조언         | `advisor`               | `~하면 좋을까?`, 자동화/개선 제안             |
-| 기능 명세           | `spec-master`           | `기능 추가해줘`, 새 기능 요청 (명세 없음)     |
-| 코드 구현           | `implementation-master` | `구현해줘`, `코드 작성해줘` (명세 있음)       |
-| 품질 검증           | `quality-master`        | `검증해줘`, `PR 전에 확인해줘`                |
-| 기술 선택           | `spike-master`          | `A vs B 뭐가 좋아?`, 기술 불확실성            |
+| User Intent         | Route To                | Detection Keywords                             |
+| ------------------- | ----------------------- | ---------------------------------------------- |
+| **SAX 시스템 설계** | `sax-architect`         | "Semicolon AX", Agent/Skill 등록, 트리거 수정  |
+| 도움 요청           | 대화형 응답 (직접 처리) | "/SAX:help", "도움말", "뭘 해야 하지"          |
+| 온보딩 요청         | `onboarding-master`     | "/SAX:onboarding", "처음", "신규", "온보딩"    |
+| 환경 검증           | `skill:health-check`    | "/SAX:health-check", "환경 확인", "도구 확인"  |
+| 진행도 확인         | `skill:task-progress`   | "/SAX:task-progress", "어디까지", "현황"       |
+| 업무 시작           | 복합 로직 (자동화)      | 이슈 URL (cm-office#32), "할당받았다"         |
+| 기술/지식 학습      | `teacher`               | 특정 기술 개념 질문, 팀 철학/프로세스 학습     |
+| 전략적 조언         | `advisor`               | `~하면 좋을까?`, 자동화/개선 제안              |
+| 기능 명세           | `spec-master`           | `기능 추가해줘`, 새 기능 요청 (명세 없음)      |
+| 코드 구현           | `implementation-master` | `구현해줘`, `코드 작성해줘` (명세 있음)        |
+| 품질 검증           | `quality-master`        | `검증해줘`, `PR 전에 확인해줘`                 |
+| 기술 선택           | `spike-master`          | `A vs B 뭐가 좋아?`, 기술 불확실성             |
 
 ### Teacher 위임 조건 (제한적)
 
