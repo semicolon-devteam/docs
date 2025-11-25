@@ -5,6 +5,24 @@ All notable changes to SAX (Semicolon AI Transformation) packages will be docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.0] - 2025-11-25
+
+### Added
+
+- **SAX 메타 작업 필수 절차 정의** (PRINCIPLES.md 3.0.1)
+  - "Semicolon AX" 키워드 트리거 시 7단계 필수 절차 명시
+  - Orchestrator + sax-architect Agent 메시지 필수 출력
+  - 버저닝(VERSION + CHANGELOG + commit) 필수 포함
+  - 작업 완료 판단 기준 명확화
+  - 버저닝 기준: CLAUDE.md 변경 → MINOR, Agent/Skill 추가/삭제/수정 → MINOR, 버그 수정 → PATCH
+
+### Changed
+
+- **SAX 작업 응답 정책**
+  - 감정 표현 배제 (변명, 사과, 공감 제거)
+  - 원인 분석 및 결과 보고 중심
+  - 해결 방안 제시 중심
+
 ## [2.5.0] - 2025-11-25
 
 ### Changed

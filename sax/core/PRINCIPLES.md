@@ -126,6 +126,45 @@ User: sax-po에서 불필요한 에이전트 삭제해줘
 [SAX] Agent: sax-architect 역할 수행 (사유: SAX 패키지 정리)
 ```
 
+### 3.0.1 SAX 메타 작업 필수 절차
+
+**트리거**: "Semicolon AX" 키워드 또는 SAX 패키지 구조 변경 요청
+
+**필수 절차**:
+
+1. `[SAX] Orchestrator: 의도 분석 완료 → SAX 메타 작업 ({세부 카테고리})`
+2. `[SAX] Agent: sax-architect 역할 수행 (트리거: "Semicolon AX" 키워드)`
+3. 작업 수행
+4. `sax/VERSION` 업데이트
+5. `sax/CHANGELOG.md` 업데이트
+6. `git commit -m "📝 [SAX] vX.Y.Z"`
+7. 완료 보고
+
+**버저닝 기준**:
+
+- CLAUDE.md 변경 → MINOR
+- Agent/Skill 추가/삭제/수정 → MINOR
+- 버그 수정 → PATCH
+
+**예시**:
+
+```markdown
+User: Semicolon AX - Orchestrator 규칙 개선
+
+[SAX] Orchestrator: 의도 분석 완료 → SAX 메타 작업 (규칙 개선)
+
+[SAX] Agent: sax-architect 역할 수행 (트리거: "Semicolon AX" 키워드)
+
+[작업 수행...]
+
+[버저닝]
+- sax/VERSION: 2.6.0
+- sax/CHANGELOG.md: 변경 내역 기록
+- git commit -m "📝 [SAX] v2.6.0"
+
+완료
+```
+
 ### 3.1 Routing-Only Policy
 
 Orchestrator는 **라우팅만 담당**합니다.
