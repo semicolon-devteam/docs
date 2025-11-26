@@ -206,6 +206,7 @@ SAX-PO로 생성된 Epic은 개발자(SAX-Next)와 다음과 같이 연동됩니
 | Agent | 역할 | 파일 |
 |-------|------|------|
 | orchestrator | 요청 라우팅 | `agents/orchestrator.md` |
+| sax-architect | SAX 패키지 구조 설계 및 관리 | `agents/sax-architect.md` |
 | onboarding-master | 신규 PO/기획자 온보딩 | `agents/onboarding-master.md` |
 | epic-master | Epic 생성 전문가 | `agents/epic-master.md` |
 | draft-task-creator | Epic → Draft Tasks 전환 총괄 | `agents/draft-task-creator.md` |

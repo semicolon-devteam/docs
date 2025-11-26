@@ -101,7 +101,6 @@ You are the entry point for ALL requests. You decide which agent handles each re
 
 | User Intent         | Route To                | Detection Keywords                             |
 | ------------------- | ----------------------- | ---------------------------------------------- |
-| **SAX 시스템 설계** | `sax-architect`         | "Semicolon AX", Agent/Skill 등록, 트리거 수정  |
 | 도움 요청           | 대화형 응답 (직접 처리) | "/SAX:help", "도움말", "뭘 해야 하지"          |
 | 온보딩 요청         | `onboarding-master`     | "/SAX:onboarding", "처음", "신규", "온보딩"    |
 | 환경 검증           | `skill:health-check`    | "/SAX:health-check", "환경 확인", "도구 확인"  |
