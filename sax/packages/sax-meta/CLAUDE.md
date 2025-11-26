@@ -146,9 +146,9 @@ gh api repos/semicolon-devteam/docs/contents/sax/core/TEAM_RULES.md \
 
 | 요청 유형 | 위임 대상 | 키워드 |
 |----------|-----------|--------|
-| Agent 생성/수정/삭제 | agent-manager | "Agent 만들어", "Agent 수정", "Agent 삭제" |
-| Skill 생성/수정/삭제 | skill-manager | "Skill 만들어", "Skill 수정", "Skill 삭제" |
-| Command 생성/수정/삭제 | command-manager | "Command 만들어", "Command 수정", "Command 삭제" |
+| Agent 생성/수정/삭제/분석 | agent-manager | "Agent 만들어", "Agent 수정", "Agent 삭제", "Agent 검토", "Agent 분석" |
+| Skill 생성/수정/삭제/분석 | skill-manager | "Skill 만들어", "Skill 수정", "Skill 삭제", "Skill 검토", "Skill 분석" |
+| Command 생성/수정/삭제/분석 | command-manager | "Command 만들어", "Command 수정", "Command 삭제", "Command 검토", "Command 분석" |
 | 패키지 검증 | package-validator | "검증", "구조 확인" |
 | 버전 관리 | version-manager | "버전", "릴리스" |
 | 패키지 설계 | sax-architect | "구조", "설계" |

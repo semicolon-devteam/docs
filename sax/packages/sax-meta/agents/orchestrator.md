@@ -60,9 +60,9 @@ Orchestrator는 다음을 **직접 처리하지 않습니다**:
 
 | User Intent | Route To | Detection Keywords |
 |-------------|----------|-------------------|
-| Agent 생성/수정/삭제 | `agent-manager` | "Agent 만들어", "새 Agent", "Agent 추가", "Agent 수정", "Agent 변경", "Agent 삭제", "Agent 제거" |
-| Skill 생성/수정/삭제 | `skill-manager` | "Skill 만들어", "새 Skill", "Skill 추가", "Skill 수정", "Skill 변경", "Skill 삭제", "Skill 제거" |
-| Command 생성/수정/삭제 | `command-manager` | "Command 만들어", "슬래시 커맨드", "/sc:", "Command 수정", "Command 변경", "Command 삭제", "Command 제거" |
+| Agent 생성/수정/삭제/분석 | `agent-manager` | "Agent 만들어", "새 Agent", "Agent 추가", "Agent 수정", "Agent 변경", "Agent 삭제", "Agent 제거", "Agent 검토", "Agent 분석", "Agent 리스트업" |
+| Skill 생성/수정/삭제/분석 | `skill-manager` | "Skill 만들어", "새 Skill", "Skill 추가", "Skill 수정", "Skill 변경", "Skill 삭제", "Skill 제거", "Skill 검토", "Skill 분석", "Skill 리스트업" |
+| Command 생성/수정/삭제/분석 | `command-manager` | "Command 만들어", "슬래시 커맨드", "/sc:", "Command 수정", "Command 변경", "Command 삭제", "Command 제거", "Command 검토", "Command 분석" |
 | 패키지 검증 | `skill:package-validator` | "검증", "구조 확인", "패키지 체크" |
 | 버전 관리 | `skill:version-manager` | "버전", "릴리스", "CHANGELOG" |
 | 패키지 설계 | `sax-architect` | "구조", "설계", "아키텍처", "개선" |
@@ -100,16 +100,16 @@ SAX 개발자가 "어떻게 해?" 또는 워크플로우 질문 시 직접 응�
 ```markdown
 ## 📋 SAX 개발 워크플로우
 
-### 1. Agent 생성/수정/삭제
-> "새 Agent 만들어줘", "Agent 수정해줘", "Agent 삭제해줘"
+### 1. Agent 생성/수정/삭제/분석
+> "새 Agent 만들어줘", "Agent 수정해줘", "Agent 삭제해줘", "Agent 검토해줘"
 → agent-manager에 위임
 
-### 2. Skill 생성/수정/삭제
-> "새 Skill 만들어줘", "Skill 수정해줘", "Skill 삭제해줘"
+### 2. Skill 생성/수정/삭제/분석
+> "새 Skill 만들어줘", "Skill 수정해줘", "Skill 삭제해줘", "Skill 분석해줘"
 → skill-manager에 위임
 
-### 3. Command 생성/수정/삭제
-> "슬래시 커맨드 만들어줘", "Command 수정해줘", "Command 삭제해줘"
+### 3. Command 생성/수정/삭제/분석
+> "슬래시 커맨드 만들어줘", "Command 수정해줘", "Command 삭제해줘", "Command 검토해줘"
 → command-manager에 위임
 
 ### 4. 패키지 검증
@@ -153,7 +153,17 @@ User: deprecated-skill 삭제해줘
 [SAX] Agent 위임: skill-manager (사유: SAX Skill 삭제)
 ```
 
-### 예시 4: 패키지 검증 요청
+### 예시 4: Skill 분석 요청
+
+```markdown
+User: SAX Skills 검토해줘. Anthropic 표준 준수하는지 확인하고 패키지별로 리스트업해줘
+
+[SAX] Orchestrator: 의도 분석 완료 → Skill 분석 요청
+
+[SAX] Agent 위임: skill-manager (사유: SAX Skill 품질 분석)
+```
+
+### 예시 5: 패키지 검증 요청
 
 ```markdown
 User: SAX-PO 패키지 구조 검증해줘
@@ -163,7 +173,7 @@ User: SAX-PO 패키지 구조 검증해줘
 [SAX] Skill: package-validator 사용
 ```
 
-### 예시 4: 버전 관리 요청
+### 예시 6: 버전 관리 요청
 
 ```markdown
 User: SAX v3.9.0 릴리스해줘
@@ -173,7 +183,7 @@ User: SAX v3.9.0 릴리스해줘
 [SAX] Skill: version-manager 사용
 ```
 
-### 예시 5: 워크플로우 질문
+### 예시 7: 워크플로우 질문
 
 ```markdown
 User: SAX 개발은 어떻게 해?

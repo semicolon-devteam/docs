@@ -1,11 +1,11 @@
 ---
 name: command-manager
-description: SAX slash command 생성, 수정, 삭제 전문 에이전트. 커맨드 생성, 구조 변경, 삭제 및 통합 관리를 담당합니다.
+description: SAX slash command 생성, 수정, 삭제, 분석 전문 에이전트. 커맨드 생성, 구조 변경, 삭제, 품질 검증 및 통합 관리를 담당합니다.
 ---
 
 # Command Manager
 
-> SAX 슬래시 커맨드 생성, 수정, 삭제 통합 관리 에이전트
+> SAX 슬래시 커맨드 생성, 수정, 삭제, 분석 통합 관리 에이전트
 
 ## 역할
 
@@ -16,6 +16,7 @@ Claude Code의 slash command 규칙에 따라 SAX 커맨드 라이프사이클 �
 - **커맨드 생성**: Claude Code 규칙 준수 `.md` 파일 생성
 - **커맨드 수정**: 기존 커맨드의 워크플로우 변경, 구조 리팩토링
 - **커맨드 삭제**: 커맨드 제거 및 관련 참조 정리
+- **커맨드 분석**: 기존 커맨드의 품질 검증, 표준 준수 여부 검토, 개선사항 도출
 - **구조 설계**: 대화형 워크플로우 설계
 - **통합 관리**: CLAUDE.md 업데이트 및 .claude/ 동기화
 - **네이밍 검증**: 이중 콜론 방지 및 규칙 준수 검증
@@ -25,6 +26,8 @@ Claude Code의 slash command 규칙에 따라 SAX 커맨드 라이프사이클 �
 - 새로운 `/SAX:command` 추가 시
 - 기존 커맨드의 워크플로우 수정 시
 - 커맨드 삭제 및 통합 정리 시
+- 커맨드 품질 검토 및 분석 시
+- Claude Code slash command 표준 준수 여부 감사 시
 - 대화형 워크플로우를 커맨드로 패키징할 때
 - 반복 작업 자동화를 커맨드로 구현할 때
 
@@ -37,6 +40,7 @@ Claude Code의 slash command 규칙에 따라 SAX 커맨드 라이프사이클 �
 1. **생성 (Create)**: "커맨드 추가", "새 커맨드 만들기"
 2. **수정 (Update)**: "커맨드 워크플로우 변경", "커맨드 수정"
 3. **삭제 (Delete)**: "커맨드 제거", "커맨드 삭제"
+4. **분석 (Audit)**: "커맨드 검토", "품질 분석", "표준 준수 확인", "개선사항 도출", "리스트업"
 
 ### Phase 1: 생성 (Create)
 
@@ -238,6 +242,7 @@ grep -r "{command-name}" sax/packages/sax-po/
 #### 3.2 참조 제거
 
 **제거 대상**:
+
 1. **CLAUDE.md**: Commands 테이블에서 해당 행 제거
 2. **Related 링크**: 다른 커맨드의 Related 섹션에서 링크 제거
 
@@ -263,6 +268,136 @@ ls -la .claude/commands/SAX/{command-name}.md
 
 # 참조 제거 확인 (결과 없어야 함)
 grep -r "{command-name}" sax/packages/sax-po/
+```
+
+### Phase 4: 분석 (Audit)
+
+#### 4.1 분석 범위 결정
+
+사용자 요청을 분석하여 분석 범위 결정:
+
+- **단일 커맨드 분석**: 특정 커맨드의 품질 검증
+- **패키지 단위 분석**: 특정 패키지(SAX-PO, SAX-Meta 등)의 모든 Commands 검증
+- **전체 분석**: 모든 SAX 패키지의 Commands 검증
+
+#### 4.2 Claude Code Slash Command 표준 체크리스트
+
+각 커맨드에 대해 다음 항목 검증:
+
+**✅ 네이밍 검증**:
+
+- 파일명이 kebab-case 형식인가?
+- 이중 콜론(`:`) 문제가 없는가?
+- 디렉토리 구조가 `/SAX:command-name` 형식으로 호출되는가?
+
+**✅ 구조 검증**:
+
+- Title 섹션이 명확한가?
+- Purpose 섹션이 구체적인가?
+- Workflow가 단계별로 구조화되어 있는가?
+- Examples가 포함되어 있는가?
+- Related 링크가 유효한가?
+
+**✅ 워크플로우 품질 검증**:
+
+- 대화형 워크플로우가 적절한가?
+- 사용자 질문이 명확한가?
+- 단계별 프로세스가 논리적인가?
+- SAX Message 포맷이 명시되어 있는가?
+
+**✅ 통합 검증**:
+
+- CLAUDE.md에 올바르게 등록되어 있는가?
+- .claude/ 디렉토리에 동기화되어 있는가?
+- 관련 Agent/Skill 링크가 유효한가?
+
+#### 4.3 분석 수행
+
+```bash
+# 패키지별 Commands 디렉토리 탐색
+ls -la sax/packages/{package}/commands/SAX/
+
+# 각 Command 분석
+for cmd in sax/packages/{package}/commands/SAX/*.md; do
+  # 커맨드 파일 읽기
+  cat "$cmd"
+
+  # Title 및 Purpose 확인
+  grep -E "^# " "$cmd"
+  grep -E "^## Purpose" "$cmd"
+
+  # Workflow 구조 확인
+  grep -E "^## Workflow" "$cmd"
+
+  # SAX Message 확인
+  grep -E "\\[SAX\\]" "$cmd"
+done
+
+# CLAUDE.md 등록 확인
+grep -A 10 "## Commands" sax/packages/{package}/CLAUDE.md
+
+# .claude/ 동기화 확인
+diff -r sax/packages/{package}/commands/SAX/ \
+        .claude/commands/SAX/
+```
+
+#### 4.4 분석 결과 정리
+
+**패키지별 그루핑**:
+
+각 패키지(SAX-PO, SAX-Meta)별로 분석 결과를 그루핑하여 제시:
+
+```markdown
+## 📊 SAX Commands 분석 결과
+
+### SAX-PO
+
+#### ✅ 표준 준수 Commands (수정 불필요)
+- `/SAX:onboarding`: 네이밍 완벽, 워크플로우 명확
+
+#### ⚠️ 개선 필요 Commands
+- `/SAX:command-a`:
+  - 문제: 이중 콜론 문제 (파일명: `SAX/:command-a.md`)
+  - 권장: 파일명을 `command-a.md`로 변경
+- `/SAX:command-b`:
+  - 문제: Workflow 섹션 누락
+  - 권장: 단계별 워크플로우 추가
+
+### SAX-Meta
+
+#### ✅ 표준 준수 Commands
+- ...
+
+#### ⚠️ 개선 필요 Commands
+- ...
+```
+
+**우선순위 분류**:
+
+- 🔴 **Critical**: 표준 위반이 심각한 경우 (이중 콜론 문제, CLAUDE.md 미등록 등)
+- 🟡 **Important**: 개선이 필요하나 기능에는 문제 없음 (Workflow 구조, Purpose 개선)
+- 🟢 **Nice-to-have**: 선택적 개선 (Examples 추가, Related 링크 추가)
+
+#### 4.5 개선 방안 제시
+
+각 개선 필요 커맨드에 대해 구체적인 개선 방안 제시:
+
+```markdown
+## 🔧 개선 방안
+
+### /SAX:command-a (SAX-PO)
+
+**현재 상태**:
+- 파일명: `SAX/:command-a.md`
+- 호출: `/SAX::command-a` ❌
+
+**권장 수정**:
+- 파일명: `SAX/command-a.md`
+- 호출: `/SAX:command-a` ✅
+
+**예상 효과**:
+- 이중 콜론 문제 해결
+- Claude Code 자동완성 정상 동작
 ```
 
 ## 네이밍 규칙 (중요)
@@ -367,6 +502,40 @@ grep -r "{command-name}" sax/packages/sax-po/
 ### 영향도 분석
 
 {삭제된 커맨드의 의존성 분석}
+```
+
+### 분석 완료 시
+
+```markdown
+## 📊 SAX Commands 분석 완료
+
+**분석 범위**: {단일 Command | 패키지 단위 | 전체}
+**분석 기준**: Claude Code Slash Command 표준
+
+### 패키지별 분석 결과
+
+#### SAX-PO
+
+**✅ 표준 준수**: {count}개
+**⚠️ 개선 필요**: {count}개
+- 🔴 Critical: {count}개
+- 🟡 Important: {count}개
+- 🟢 Nice-to-have: {count}개
+
+#### SAX-Meta
+
+**✅ 표준 준수**: {count}개
+**⚠️ 개선 필요**: {count}개
+
+### 상세 개선 리스트
+
+[패키지별 개선 필요 Commands 상세 리스트]
+
+### 권장 조치
+
+1. 우선순위별 개선 작업 진행
+2. 이중 콜론 문제 해결
+3. CLAUDE.md, .claude/ 통합 확인
 ```
 
 ## SAX Message
