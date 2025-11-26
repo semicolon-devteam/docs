@@ -60,9 +60,9 @@ Orchestrator는 다음을 **직접 처리하지 않습니다**:
 
 | User Intent | Route To | Detection Keywords |
 |-------------|----------|-------------------|
-| Agent 생성 | `agent-creator` | "Agent 만들어", "새 Agent", "Agent 추가" |
-| Skill 생성 | `skill-creator` | "Skill 만들어", "새 Skill", "Skill 추가" |
-| Command 생성 | `command-creator` | "Command 만들어", "슬래시 커맨드", "/sc:" |
+| Agent 생성/수정/삭제 | `agent-manager` | "Agent 만들어", "새 Agent", "Agent 추가", "Agent 수정", "Agent 변경", "Agent 삭제", "Agent 제거" |
+| Skill 생성/수정/삭제 | `skill-manager` | "Skill 만들어", "새 Skill", "Skill 추가", "Skill 수정", "Skill 변경", "Skill 삭제", "Skill 제거" |
+| Command 생성/수정/삭제 | `command-manager` | "Command 만들어", "슬래시 커맨드", "/sc:", "Command 수정", "Command 변경", "Command 삭제", "Command 제거" |
 | 패키지 검증 | `skill:package-validator` | "검증", "구조 확인", "패키지 체크" |
 | 버전 관리 | `skill:version-manager` | "버전", "릴리스", "CHANGELOG" |
 | 패키지 설계 | `sax-architect` | "구조", "설계", "아키텍처", "개선" |
@@ -100,17 +100,17 @@ SAX 개발자가 "어떻게 해?" 또는 워크플로우 질문 시 직접 응�
 ```markdown
 ## 📋 SAX 개발 워크플로우
 
-### 1. Agent 생성
-> "새 Agent 만들어줘"
-→ agent-creator에 위임
+### 1. Agent 생성/수정/삭제
+> "새 Agent 만들어줘", "Agent 수정해줘", "Agent 삭제해줘"
+→ agent-manager에 위임
 
-### 2. Skill 생성
-> "새 Skill 만들어줘"
-→ skill-creator에 위임
+### 2. Skill 생성/수정/삭제
+> "새 Skill 만들어줘", "Skill 수정해줘", "Skill 삭제해줘"
+→ skill-manager에 위임
 
-### 3. Command 생성
-> "슬래시 커맨드 만들어줘"
-→ command-creator에 위임
+### 3. Command 생성/수정/삭제
+> "슬래시 커맨드 만들어줘", "Command 수정해줘", "Command 삭제해줘"
+→ command-manager에 위임
 
 ### 4. 패키지 검증
 > "패키지 구조 검증해줘"
@@ -130,20 +130,30 @@ User: 새 Agent 만들어줘
 
 [SAX] Orchestrator: 의도 분석 완료 → Agent 생성 요청
 
-[SAX] Agent 위임: agent-creator (사유: 새 SAX Agent 생성)
+[SAX] Agent 위임: agent-manager (사유: SAX Agent 생성)
 ```
 
-### 예시 2: Skill 생성 요청
+### 예시 2: Agent 수정 요청
 
 ```markdown
-User: Skill 만들어줘
+User: epic-master Agent 역할 확장해줘
 
-[SAX] Orchestrator: 의도 분석 완료 → Skill 생성 요청
+[SAX] Orchestrator: 의도 분석 완료 → Agent 수정 요청
 
-[SAX] Agent 위임: skill-creator (사유: 새 SAX Skill 생성)
+[SAX] Agent 위임: agent-manager (사유: SAX Agent 수정)
 ```
 
-### 예시 3: 패키지 검증 요청
+### 예시 3: Skill 삭제 요청
+
+```markdown
+User: deprecated-skill 삭제해줘
+
+[SAX] Orchestrator: 의도 분석 완료 → Skill 삭제 요청
+
+[SAX] Agent 위임: skill-manager (사유: SAX Skill 삭제)
+```
+
+### 예시 4: 패키지 검증 요청
 
 ```markdown
 User: SAX-PO 패키지 구조 검증해줘
@@ -188,7 +198,7 @@ User: SAX 개발은 어떻게 해?
 ## 참조
 
 - [SAX Core Principles](https://github.com/semicolon-devteam/docs/blob/main/sax/core/PRINCIPLES.md)
-- [agent-creator](./agent-creator.md)
-- [skill-creator](./skill-creator.md)
-- [command-creator](./command-creator.md)
+- [agent-manager](./agent-manager.md)
+- [skill-manager](./skill-manager.md)
+- [command-manager](./command-manager.md)
 - [sax-architect](./sax-architect.md)
