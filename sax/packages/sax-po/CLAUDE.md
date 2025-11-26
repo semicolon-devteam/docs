@@ -187,10 +187,11 @@ User: "SAX 패키지가 뭐야?"
 SAX-PO로 생성된 Epic은 개발자(SAX-Next)와 다음과 같이 연동됩니다:
 
 1. **PO**: Epic 생성 → docs 레포에 이슈 생성
-2. **PO**: (선택) Spec 초안 생성
-3. **개발자**: 대상 레포에서 `/speckit.specify` 실행
-4. **개발자**: spec.md 보완 후 `/speckit.plan`, `/speckit.tasks`
-5. **PO/개발자**: `skill:sync-tasks`로 GitHub Issues 동기화
+2. **PO**: Draft Task 생성 → 서비스 레포/core-backend에 Draft Task Issues 생성
+3. **개발자**: 할당된 Draft Task 확인
+4. **개발자**: 대상 레포에서 `/speckit.specify` 실행
+5. **개발자**: spec.md 보완 후 `/speckit.plan`, `/speckit.tasks`
+6. **개발자**: Draft Task Issue 업데이트 (tasks/ 내용 반영, draft 라벨 제거)
 
 ## SAX Message Rules
 
@@ -207,6 +208,7 @@ SAX-PO로 생성된 Epic은 개발자(SAX-Next)와 다음과 같이 연동됩니
 | orchestrator | 요청 라우팅 | `agents/orchestrator.md` |
 | onboarding-master | 신규 PO/기획자 온보딩 | `agents/onboarding-master.md` |
 | epic-master | Epic 생성 전문가 | `agents/epic-master.md` |
+| draft-task-creator | Epic → Draft Tasks 전환 총괄 | `agents/draft-task-creator.md` |
 | spec-writer | Spec 초안 작성 | `agents/spec-writer.md` |
 | teacher | 협업/기획 학습 가이드 | `agents/teacher.md` |
 
@@ -216,7 +218,13 @@ SAX-PO로 생성된 Epic은 개발자(SAX-Next)와 다음과 같이 연동됩니
 |-------|------|------|
 | health-check | 개발 환경 검증 | `skills/health-check/skill.md` |
 | create-epic | Epic 이슈 생성 | `skills/create-epic/skill.md` |
-| sync-tasks | Tasks ↔ Issues 동기화 | `skills/sync-tasks/skill.md` |
+| check-backend-duplication | core-backend 중복 체크 | `skills/check-backend-duplication/SKILL.md` |
+| assign-estimation-point | Estimation Point 할당 | `skills/assign-estimation-point/SKILL.md` |
+| generate-acceptance-criteria | AC 자동 생성 | `skills/generate-acceptance-criteria/SKILL.md` |
+| create-design-task | 디자인 Task 생성 | `skills/create-design-task/SKILL.md` |
+| validate-task-completeness | Draft Task 필수 항목 검증 | `skills/validate-task-completeness/SKILL.md` |
+| auto-label-by-scope | Epic 범위 기반 자동 라벨링 | `skills/auto-label-by-scope/SKILL.md` |
+| estimate-epic-timeline | Epic 전체 일정 예측 | `skills/estimate-epic-timeline/SKILL.md` |
 | check-team-codex | 팀 규칙 검증 | `skills/check-team-codex/SKILL.md` |
 
 ### Commands

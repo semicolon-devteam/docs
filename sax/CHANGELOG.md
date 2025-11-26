@@ -5,6 +5,86 @@ All notable changes to SAX (Semicolon AI Transformation) packages will be docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2025-01-26
+
+### Added
+
+- **draft-task-creator Agent** (SAX-PO)
+  - Epic → Draft Tasks 자동 생성 총괄 에이전트
+  - 서비스 레포 및 core-backend에 Draft Task Issues 자동 생성
+  - Sub-issue 관계로 Epic과 Tasks 연결
+  - 7개 Skills 통합 오케스트레이션
+
+- **check-backend-duplication Skill** (SAX-PO)
+  - core-backend 도메인 + Service 레벨 중복 체크
+  - 중복 발견 시 Task 생성 스킵, Epic에 코멘트 추가
+
+- **assign-estimation-point Skill** (SAX-PO)
+  - Estimation Guide 기반 작업 포인트 측정
+  - Draft Task 본문에 체크리스트 형태로 작성
+  - GitHub Projects '작업량' 필드 자동 업데이트
+
+- **generate-acceptance-criteria Skill** (SAX-PO)
+  - Epic User Stories 분석으로 AC 자동 생성
+  - 테스트 가능한 완료 조건 추출
+
+- **create-design-task Skill** (SAX-PO)
+  - 디자인 작업 필요 시 디자인 Task Issue 생성
+  - Sub-issue로 Epic 연결, design 라벨 부여
+
+- **validate-task-completeness Skill** (SAX-PO)
+  - Draft Task 필수 항목 검증 (AC, Estimation, 브랜치명, draft 라벨, Epic 관계, Projects 필드)
+
+- **auto-label-by-scope Skill** (SAX-PO)
+  - Epic 범위 기반 자동 라벨링 (backend, frontend, design, fullstack)
+
+- **estimate-epic-timeline Skill** (SAX-PO)
+  - 모든 Draft Tasks Point 합산으로 Epic 전체 일정 예측
+  - 병렬/순차 작업 구분, Critical Path 계산
+
+### Changed
+
+- **Epic Template** (SAX-PO)
+  - 디자인 요구사항 섹션 추가 (디자인 작업 필요/불필요 체크박스)
+  - 디자인 상세 필드 추가 (Figma 링크, 디자인 범위, 완료 기한)
+
+- **epic-master Agent** (SAX-PO)
+  - 디자인 필요 여부 확인 단계 추가 (대화형 질문)
+  - 디자인 작업 필요 시 추가 질문 (디자인 범위, Figma 링크, 완료 기한)
+
+- **orchestrator Routing** (SAX-PO)
+  - Draft Task 생성 요청 라우팅 추가
+  - "Draft Task 생성", "Task 카드 만들어", "Epic에서 Task" 키워드
+
+- **CLAUDE.md - Package Components** (SAX-PO)
+  - draft-task-creator Agent 추가
+  - 7개 Skills 추가
+  - sync-tasks Skill 제거
+
+- **CLAUDE.md - 개발자 연동** (SAX-PO)
+  - 워크플로우 변경: Epic 생성 → Draft Task 생성 → 개발자 확인 → speckit 실행 → Draft Task 업데이트
+
+### Removed
+
+- **sync-tasks Skill** (SAX-PO)
+  - draft-task-creator로 대체
+  - Tasks ↔ Issues 동기화 로직은 draft-task-creator에 통합
+
+### Migration Guide
+
+**SAX-PO 사용자**:
+
+1. **기존 워크플로우**: Epic 생성 → speckit.tasks → sync-tasks
+2. **새 워크플로우**: Epic 생성 → draft-task-creator → 개발자가 speckit 실행
+3. **변경 이유**:
+   - PO가 docs 레포에서 작업하므로 서비스 레포에 직접 Task 생성 불가
+   - Draft Task를 서비스 레포/core-backend에 먼저 생성 후 개발자가 speckit으로 보완
+4. **주요 개선**:
+   - core-backend 중복 자동 체크
+   - Estimation Point 자동 할당
+   - AC 자동 생성
+   - Epic 일정 자동 예측
+
 ## [2.9.0] - 2025-11-25
 
 ### Added

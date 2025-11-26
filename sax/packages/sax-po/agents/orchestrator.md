@@ -64,8 +64,8 @@ Orchestrator는 다음을 **직접 처리하지 않습니다**:
 | 환경 검증           | `skill:health-check`    | "/SAX:health-check", "환경 확인", "도구 확인"      |
 | Epic 생성           | `epic-master`           | "Epic 만들어줘", "기능 정의", "새 기능"            |
 | Epic 이식           | `epic-master`           | "이식", "마이그레이션", "옮기기", "복사해줘"       |
+| Draft Task 생성     | `draft-task-creator`    | "Draft Task 생성", "Task 카드 만들어", "Epic에서 Task" |
 | Spec 초안           | `spec-writer`           | "Spec 초안", "명세 초안", "개발자에게 전달"        |
-| Task 동기화         | `skill:sync-tasks`      | "이슈 동기화", "Tasks 생성", "GitHub에 반영"       |
 | 진행도 확인         | `skill:check-progress`  | "진행 상황", "얼마나 됐어"                         |
 | 학습 요청           | `teacher`               | "알려줘", "배우고 싶어", "어떻게 해야", "설명해줘" |
 | 워크플로우 질문     | 직접 응답               | "다음 뭐해", "뭐부터 해"                           |
