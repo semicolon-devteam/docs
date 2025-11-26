@@ -5,6 +5,40 @@ All notable changes to SAX (Semicolon AI Transformation) packages will be docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.5.0] - 2025-01-26
+
+### Changed
+
+- **커맨드 구조 개선** (SAX-PO)
+  - SAX 커맨드들을 `commands/SAX/` 하위로 재구성
+  - 파일명 형식 변경: `.md` → `:name.md` (Claude Code slash command 규칙)
+  - 호출 형식 통일: `/SAX:onboarding`, `/SAX:health-check`, `/SAX:help`
+  - CLAUDE.md Commands 섹션 경로 업데이트
+
+### Migration Guide
+
+**커맨드 구조 변경**:
+
+기존 커맨드 파일 경로가 변경되었습니다:
+
+| 기존 | 변경 후 |
+|------|---------|
+| `commands/onboarding.md` | `commands/SAX/:onboarding.md` |
+| `commands/health-check.md` | `commands/SAX/:health-check.md` |
+| `commands/help.md` | `commands/SAX/:help.md` |
+
+**호출 방법**:
+
+커맨드 호출 방법은 동일합니다:
+
+- `/SAX:onboarding` - 신규 PO/기획자 온보딩
+- `/SAX:health-check` - 개발 환경 검증
+- `/SAX:help` - 대화형 도우미
+
+**새 커맨드 추가 시**:
+
+`commands/SAX/` 디렉토리에 `:name.md` 형식으로 파일 생성
+
 ## [3.4.0] - 2025-01-26
 
 ### Changed
