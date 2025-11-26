@@ -215,21 +215,23 @@ src/app/{domain}/
 
 ### Skills
 
-| Skill                  | 역할                      |
-| ---------------------- | ------------------------- |
-| health-check           | 개발 환경 검증            |
-| task-progress          | 워크플로우 진행도 확인    |
-| spec                   | SDD 명세 워크플로우       |
-| implement              | ADD 구현 워크플로우       |
-| verify                 | Phase 5 종합 검증         |
-| check-team-codex       | 팀 코덱스 검증            |
-| validate-architecture  | DDD 아키텍처 검증         |
-| scaffold-domain        | 도메인 구조 생성          |
-| fetch-supabase-example | Supabase 패턴 참조        |
-| fetch-api-spec         | API 스펙 참조             |
-| git-workflow           | Git 워크플로우 자동화     |
-| create-issues          | GitHub Issues 생성        |
-| project-context        | 프로젝트 컨텍스트 제공    |
+| Skill                  | 역할                      | 파일                                      |
+| ---------------------- | ------------------------- | ----------------------------------------- |
+| skill-creator          | SAX Skill 생성 (Anthropic 표준) | `skills/skill-creator/SKILL.md`    |
+| template-skill         | 새 Skill 템플릿           | `skills/template-skill/SKILL.md`          |
+| health-check           | 개발 환경 검증            | `skills/health-check/SKILL.md`            |
+| task-progress          | 워크플로우 진행도 확인    | `skills/task-progress/`                   |
+| spec                   | SDD 명세 워크플로우       | `skills/spec/`                            |
+| implement              | ADD 구현 워크플로우       | `skills/implement/`                       |
+| verify                 | Phase 5 종합 검증         | `skills/verify/`                          |
+| check-team-codex       | 팀 코덱스 검증            | `skills/check-team-codex/SKILL.md`        |
+| validate-architecture  | DDD 아키텍처 검증         | `skills/validate-architecture/`           |
+| scaffold-domain        | 도메인 구조 생성          | `skills/scaffold-domain/`                 |
+| fetch-supabase-example | Supabase 패턴 참조        | `skills/fetch-supabase-example/`          |
+| fetch-api-spec         | API 스펙 참조             | `skills/fetch-api-spec/`                  |
+| git-workflow           | Git 워크플로우 자동화     | `skills/git-workflow/`                    |
+| create-issues          | GitHub Issues 생성        | `skills/create-issues/`                   |
+| project-context        | 프로젝트 컨텍스트 제공    | `skills/project-context/`                 |
 
 ### Commands
 

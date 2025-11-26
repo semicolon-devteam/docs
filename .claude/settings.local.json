@@ -5,11 +5,7 @@
       "Bash(gh project view:*)",
       "Bash(git rm:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(gh api:*)",
-      "Bash(gh issue close:*)",
-      "Bash(gh issue create:*)",
-      "Bash(rsync:*)"
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []
