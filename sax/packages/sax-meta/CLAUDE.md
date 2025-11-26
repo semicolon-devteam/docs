@@ -124,17 +124,38 @@ gh api repos/semicolon-devteam/docs/contents/sax/core/TEAM_RULES.md \
   --jq '.content' | base64 -d
 ```
 
+## Orchestrator-First Policy
+
+> ⚠️ **중요**: 모든 SAX-Meta 요청은 **Orchestrator를 먼저 통과**합니다.
+
+사용자의 모든 요청은 `agents/orchestrator.md`가 분석하여 적절한 Agent 또는 Skill로 위임합니다.
+
+### 라우팅 흐름
+
+```
+사용자 요청
+    ↓
+[Orchestrator] 의도 분석
+    ↓
+[Agent 위임] 또는 [Skill 실행]
+    ↓
+작업 수행
+```
+
+### 주요 라우팅
+
+| 요청 유형 | 위임 대상 | 키워드 |
+|----------|-----------|--------|
+| Agent 생성 | agent-creator | "Agent 만들어" |
+| Skill 생성 | skill-creator | "Skill 만들어" |
+| Command 생성 | command-creator | "Command 만들어" |
+| 패키지 검증 | package-validator | "검증", "구조 확인" |
+| 버전 관리 | version-manager | "버전", "릴리스" |
+| 패키지 설계 | sax-architect | "구조", "설계" |
+
+> 📖 **상세**: [Orchestrator Agent](agents/orchestrator.md) 참조
+
 ## Package Components
-
-### Agents
-
-| Agent | 역할 | 파일 |
-|-------|------|------|
-| orchestrator | SAX-Meta 요청 라우팅 | `agents/orchestrator.md` |
-| sax-architect | SAX 패키지 구조 설계 및 관리 | `agents/sax-architect.md` |
-| skill-creator | SAX Skill 생성 (대화형) | `agents/skill-creator.md` |
-| command-creator | SAX 슬래시 커맨드 생성 | `agents/command-creator.md` |
-| agent-creator | SAX Agent 생성 자동화 | `agents/agent-creator.md` |
 
 ### Skills
 

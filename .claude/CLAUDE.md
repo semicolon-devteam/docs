@@ -77,14 +77,21 @@ Draft Task 만들어줘
    - 조건 충족 → `.claude/sax-meta/CLAUDE.md` 로드
    - 조건 불충족 → `.claude/sax-po/CLAUDE.md` 로드 (기본값)
 
-3. **시스템 메시지 출력**:
+3. **시스템 메시지 출력** (필수):
    ```markdown
    [SAX] System: {선택된 패키지} 패키지 활성화
    ```
 
+   **출력 예시**:
+   - SAX-Meta 선택 시: `[SAX] System: SAX-Meta 패키지 활성화`
+   - SAX-PO 선택 시: `[SAX] System: SAX-PO 패키지 활성화`
+
+   > ⚠️ **중요**: 이 메시지는 **반드시 출력**해야 합니다. 사용자에게 어떤 패키지 컨텍스트로 동작하는지 명확히 알려야 합니다.
+
 4. **컨텍스트 전환**:
    - 선택된 패키지의 CLAUDE.md를 프로젝트 컨텍스트로 적용
    - 해당 패키지의 agents/, skills/ 등 활성화
+   - Orchestrator가 모든 요청을 라우팅
 
 ## 동기화 규칙
 

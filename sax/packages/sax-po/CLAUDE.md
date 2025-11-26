@@ -216,18 +216,39 @@ SAX-PO로 생성된 Epic은 개발자(SAX-Next)와 다음과 같이 연동됩니
 
 📖 **상세**: [SAX Core MESSAGE_RULES.md](https://github.com/semicolon-devteam/docs/blob/main/sax/core/MESSAGE_RULES.md)
 
+## Orchestrator-First Policy
+
+> ⚠️ **중요**: 모든 SAX-PO 요청은 **Orchestrator를 먼저 통과**합니다.
+
+사용자의 모든 요청은 `agents/orchestrator.md`가 분석하여 적절한 Agent 또는 Skill로 위임합니다.
+
+### 라우팅 흐름
+
+```text
+PO/기획자 요청
+    ↓
+[Orchestrator] 의도 분석
+    ↓
+[Agent 위임] 또는 [Skill 실행]
+    ↓
+작업 수행
+```
+
+### 주요 라우팅
+
+| 요청 유형 | 위임 대상 | 키워드 |
+|----------|-----------|--------|
+| Epic 생성 | epic-master | "Epic 만들어", "기능 정의" |
+| Epic 이식 | epic-master | "이식", "마이그레이션" |
+| Draft Task | draft-task-creator | "Draft Task", "Task 카드" |
+| Spec 초안 | spec-writer | "Spec 초안", "명세 초안" |
+| 온보딩 | onboarding-master | "온보딩", "처음", "신규" |
+| 학습 요청 | teacher | "알려줘", "설명해줘" |
+| 환경 검증 | health-check | "환경 확인", "도구 확인" |
+
+> 📖 **상세**: [Orchestrator Agent](agents/orchestrator.md) 참조
+
 ## Package Components
-
-### Agents
-
-| Agent | 역할 | 파일 |
-|-------|------|------|
-| orchestrator | 요청 라우팅 | `agents/orchestrator.md` |
-| onboarding-master | 신규 PO/기획자 온보딩 | `agents/onboarding-master.md` |
-| epic-master | Epic 생성 전문가 | `agents/epic-master.md` |
-| draft-task-creator | Epic → Draft Tasks 전환 총괄 | `agents/draft-task-creator.md` |
-| spec-writer | Spec 초안 작성 | `agents/spec-writer.md` |
-| teacher | 협업/기획 학습 가이드 | `agents/teacher.md` |
 
 ### Skills
 
