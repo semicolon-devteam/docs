@@ -217,8 +217,6 @@ src/app/{domain}/
 
 | Skill                  | 역할                      | 파일                                      |
 | ---------------------- | ------------------------- | ----------------------------------------- |
-| skill-creator          | SAX Skill 생성 (Anthropic 표준) | `skills/skill-creator/SKILL.md`    |
-| template-skill         | 새 Skill 템플릿           | `skills/template-skill/SKILL.md`          |
 | health-check           | 개발 환경 검증            | `skills/health-check/SKILL.md`            |
 | task-progress          | 워크플로우 진행도 확인    | `skills/task-progress/`                   |
 | spec                   | SDD 명세 워크플로우       | `skills/spec/`                            |
