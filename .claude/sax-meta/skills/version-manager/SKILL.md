@@ -1,3 +1,9 @@
+---
+name: version-manager
+description: Automate SAX package semantic versioning management. Use when (1) releasing new version after Agent/Skill/Command changes, (2) updating VERSION file and CHANGELOG, (3) managing version history with Keep a Changelog format.
+tools: [Bash, Read, Write, Edit]
+---
+
 # version-manager Skill
 
 > SAX 패키지 버저닝 자동화 Skill

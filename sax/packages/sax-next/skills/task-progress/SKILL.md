@@ -1,3 +1,9 @@
+---
+name: task-progress
+description: Track developer task progress with automated checklist and workflow support. Use when (1) developer is assigned an issue, (2) checking current progress status, (3) tracking development workflow from assignment to review, (4) automating workflow steps.
+tools: [Bash, Read, Grep, GitHub CLI]
+---
+
 # task-progress Skill
 
 > 개발자 업무 진행도를 체크리스트 형태로 표시하고 자동 진행 지원

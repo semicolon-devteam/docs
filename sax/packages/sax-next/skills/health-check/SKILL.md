@@ -1,3 +1,9 @@
+---
+name: health-check
+description: Automatically verify development environment and authentication status for SAX-Next. Use when (1) onboarding new team members, (2) checking tool installation status, (3) validating GitHub/Supabase authentication, (4) orchestrator starts workflow.
+tools: [Bash, Read, Grep]
+---
+
 # health-check Skill
 
 > 개발 환경 및 인증 상태 자동 검증
