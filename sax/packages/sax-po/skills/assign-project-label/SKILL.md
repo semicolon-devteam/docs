@@ -1,10 +1,11 @@
-# assign-project-label Skill
+---
+name: assign-project-label
+description: Assign project labels to Epics and connect to GitHub Projects #1 ('이슈관리'). Use when (1) creating new Epic, (2) migrating Epic from another repository, (3) Epic needs project categorization (오피스/랜드/정치판/코인톡), (4) Epic needs GitHub Projects connection.
+---
 
-> Epic에 프로젝트 라벨 부여 및 GitHub Projects 연결
+# Assign Project Label
 
-## Purpose
-
-Epic 생성/이식 시 프로젝트 라벨을 자동 할당하고 GitHub Projects 보드에 연결합니다.
+Assign project labels and connect Epics to GitHub Projects.
 
 ## Process
 

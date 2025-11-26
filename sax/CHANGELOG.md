@@ -5,6 +5,94 @@ All notable changes to SAX (Semicolon AI Transformation) packages will be docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.3.0] - 2025-01-26
+
+### Added
+
+- **skill-creator Skill** (SAX-PO)
+  - SAX Skill 생성 전문 스킬
+  - Anthropic Agent Skills Spec 기반 구조
+  - Progressive Disclosure 패턴 적용 (SKILL.md + references/)
+  - Frontmatter 생성 (name, description with triggers)
+  - "Concise is Key" 원칙 준수 가이드
+  - 복잡도 기반 디렉토리 구조 자동 결정
+
+- **template-skill** (SAX-PO)
+  - 새 Skill 생성 시 템플릿
+  - Anthropic 표준 frontmatter 구조
+  - Progressive Disclosure 디렉토리 예시 (references/, scripts/, assets/)
+
+### Changed
+
+- **All Skills SKILL.md Frontmatter** (SAX-PO)
+  - 10개 Skills에 Anthropic 표준 frontmatter 추가
+  - `description` 필드에 "what" + "when to use" 포함
+  - 트리거 조건 명시 (condition 1, 2, 3)
+  - 업데이트된 Skills:
+    - assign-project-label
+    - detect-project-from-epic
+    - check-backend-duplication
+    - generate-acceptance-criteria
+    - assign-estimation-point
+    - create-design-task
+    - validate-task-completeness
+    - auto-label-by-scope
+    - estimate-epic-timeline
+    - create-epic
+
+- **epic-master Agent 리팩토링** (SAX-PO)
+  - Monolithic 274-line 파일 → 50-line SKILL.md + 2 references
+  - Progressive Disclosure 패턴 적용
+  - [Workflow A: Epic Creation](references/workflow-creation.md) - ~100 lines
+  - [Workflow B: Epic Migration](references/workflow-migration.md) - ~80 lines
+  - 컨텍스트 로드 ~65% 감소 (274 → 50 initial lines)
+
+- **draft-task-creator Agent 리팩토링** (SAX-PO)
+  - Monolithic 368-line 파일 → 80-line SKILL.md + 4 references
+  - Phase별 분리로 모듈성 개선
+  - [Backend Workflow](references/backend-workflow.md) - Backend task creation + duplication check
+  - [Frontend Workflow](references/frontend-workflow.md) - Frontend task creation
+  - [Design Workflow](references/design-workflow.md) - Design task creation
+  - [Finalization](references/finalization.md) - Projects update, labels, validation
+  - 컨텍스트 로드 ~78% 감소 (368 → 80 initial lines)
+
+### Improved
+
+- **Documentation Clarity**
+  - Anthropic "Concise is Key" 원칙 적용
+  - 불필요한 설명 제거 (Claude가 이미 아는 일반 지식)
+  - SAX-specific 컨텍스트에 집중
+
+- **Context Efficiency**
+  - Progressive Disclosure로 초기 로드 최소화
+  - 필요 시에만 references/ 로드
+  - 평균 초기 컨텍스트 70% 감소
+
+### Migration Guide
+
+**SAX Skill 개발 시**:
+
+1. **기존**: 직접 SKILL.md 작성 → 구조 일관성 부족 → 장황한 문서
+2. **새 방법**: skill-creator Skill 사용 → Anthropic 표준 준수 → Progressive Disclosure
+3. **변경 이유**:
+   - Anthropic Agent Skills Spec 공식 표준 준수
+   - Progressive Disclosure로 컨텍스트 효율성 개선
+   - "Concise is Key" 원칙으로 문서 간결화
+   - 트리거 조건 명시로 자동 호출 정확도 향상
+4. **주요 개선**:
+   - SKILL.md frontmatter 표준화 (name + description)
+   - 복잡한 Skill은 references/ 분리
+   - 초기 컨텍스트 로드 60-78% 감소
+   - Skill 생성 프로세스 체계화
+
+**기존 Skill 마이그레이션**:
+
+모든 기존 Skills는 자동으로 마이그레이션되었습니다:
+
+- ✅ Frontmatter 추가 완료
+- ✅ epic-master, draft-task-creator 리팩토링 완료
+- ✅ .claude/ 디렉토리 동기화 완료
+
 ## [3.2.0] - 2025-01-26
 
 ### Added

@@ -1,3 +1,8 @@
+---
+name: assign-estimation-point
+description: Measure and assign estimation points based on Wiki Estimation Guide. Use when (1) draft-task-creator creates Draft Tasks, (2) need to calculate work effort for each task, (3) updating GitHub Projects '작업량' field with point values. Analyzes Epic/Task content and matches with Guide items.
+---
+
 # assign-estimation-point Skill
 
 > Estimation Guide 기반 Point 측정 및 할당

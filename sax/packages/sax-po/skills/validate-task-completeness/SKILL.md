@@ -1,3 +1,8 @@
+---
+name: validate-task-completeness
+description: Validate Draft Task has all required items. Use when (1) draft-task-creator finishes creating tasks, (2) need to verify task completeness (Epic link, AC, Estimation, Branch name, draft label, Projects field), (3) final validation before completing task creation workflow.
+---
+
 # validate-task-completeness Skill
 
 > Draft Task 필수 항목 검증

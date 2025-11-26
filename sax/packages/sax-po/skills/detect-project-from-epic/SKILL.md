@@ -1,3 +1,8 @@
+---
+name: detect-project-from-epic
+description: Detect project labels from source Epic during migration. Use when (1) migrating Epic from another repository (command-center → docs), (2) need to preserve project categorization (오피스/랜드/정치판/코인톡), (3) auto-detect project before assign-project-label skill.
+---
+
 # detect-project-from-epic Skill
 
 > 이식할 Epic의 프로젝트 라벨 감지

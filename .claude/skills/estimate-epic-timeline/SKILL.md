@@ -1,3 +1,8 @@
+---
+name: estimate-epic-timeline
+description: Estimate Epic timeline by summing all Draft Tasks points. Use when (1) all Draft Tasks are created with estimation, (2) need to calculate total Epic duration, (3) identifying parallel/sequential tasks and critical path. Posts timeline prediction as Epic comment.
+---
+
 # estimate-epic-timeline Skill
 
 > Epic 전체 일정 예측

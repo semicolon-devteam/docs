@@ -1,3 +1,8 @@
+---
+name: create-epic
+description: Create Epic issue in docs repository. Use when (1) epic-master needs to create new Epic from PO/기획자 requirements, (2) migrating Epic from another repository, (3) converting requirements into GitHub Issue with epic-template. Connects to GitHub Projects and applies epic label.
+---
+
 # create-epic Skill
 
 > Epic 이슈를 docs 레포지토리에 생성하는 스킬

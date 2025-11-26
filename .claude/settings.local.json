@@ -8,7 +8,8 @@
       "Bash(git commit:*)",
       "Bash(gh api:*)",
       "Bash(gh issue close:*)",
-      "Bash(gh issue create:*)"
+      "Bash(gh issue create:*)",
+      "Bash(rsync:*)"
     ],
     "deny": [],
     "ask": []

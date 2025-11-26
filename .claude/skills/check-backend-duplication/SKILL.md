@@ -1,3 +1,8 @@
+---
+name: check-backend-duplication
+description: Check for duplicate backend implementation in core-backend. Use when (1) Epic analysis detects backend work (API, server, database keywords), (2) draft-task-creator creates backend tasks, (3) need to verify if similar functionality already exists in core-backend domain services.
+---
+
 # check-backend-duplication Skill
 
 > core-backend 중복 구현 체크

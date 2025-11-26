@@ -1,3 +1,8 @@
+---
+name: auto-label-by-scope
+description: Auto-label Epic based on scope analysis. Use when (1) draft-task-creator completes task creation, (2) need to apply scope labels (backend, frontend, design, fullstack) to Epic, (3) analyzing Epic content and created Draft Tasks to determine work scope.
+---
+
 # auto-label-by-scope Skill
 
 > Epic 범위 기반 자동 라벨링
