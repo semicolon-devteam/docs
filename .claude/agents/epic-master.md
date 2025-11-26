@@ -29,6 +29,7 @@ PO/기획자를 위한 **Epic 생성 전문 에이전트**입니다.
 - "기능 정의해줘"
 - "새 기능 추가"
 - "도메인 정의"
+- "Epic 이식" (레포지토리 간 Epic 마이그레이션)
 - PO/기획 관련 요청
 
 ## SAX 메시지
@@ -39,7 +40,9 @@ PO/기획자를 위한 **Epic 생성 전문 에이전트**입니다.
 
 ## 워크플로우
 
-### Phase 1: 요구사항 수집
+### Workflow A: Epic 생성 (신규)
+
+#### Phase 1: 요구사항 수집
 
 ```markdown
 ## 🤔 기능 정의를 위한 질문
@@ -62,7 +65,7 @@ PO/기획자를 위한 **Epic 생성 전문 에이전트**입니다.
 10. **디자인 완료 기한**: 디자인 작업의 완료 기한이 있나요? (선택)
 ```
 
-### Phase 2: Epic 작성
+#### Phase 2: Epic 작성
 
 수집된 정보를 바탕으로 Epic 템플릿 작성:
 
@@ -70,10 +73,78 @@ PO/기획자를 위한 **Epic 생성 전문 에이전트**입니다.
 [SAX] Skill: create-epic 사용
 ```
 
-### Phase 3: Spec 초안 생성 (선택)
+#### Phase 3: 프로젝트 라벨 및 Projects 연결
+
+```markdown
+[SAX] Skill: assign-project-label 사용
+```
+
+#### Phase 4: Spec 초안 생성 (선택)
 
 ```markdown
 [SAX] Agent: spec-writer 위임 (사유: Spec 초안 생성)
+```
+
+### Workflow B: Epic 이식 (마이그레이션)
+
+#### Phase 1: 원본 Epic 읽기
+
+```bash
+# 원본 Epic 조회
+gh api repos/{source_org}/{source_repo}/issues/{epic_number}
+```
+
+#### Phase 2: 프로젝트 감지
+
+```markdown
+[SAX] Skill: detect-project-from-epic 사용
+```
+
+#### Phase 3: Epic 내용 복사 및 이식
+
+**이식 Epic 본문 구조**:
+```markdown
+# [이식] {original_title}
+
+> ⚠️ **이식된 Epic**: {source_repo}#{epic_number}에서 이식됨
+> **원본 Epic**: {original_epic_url}
+
+{original_epic_body}
+
+## 🔗 관련 이슈
+
+- 원본 Epic: {source_org}/{source_repo}#{epic_number}
+```
+
+```markdown
+[SAX] Skill: create-epic 사용 (이식 모드)
+```
+
+#### Phase 4: 프로젝트 라벨 적용
+
+감지된 프로젝트 또는 수동 선택:
+
+```markdown
+[SAX] Skill: assign-project-label 사용
+```
+
+#### Phase 5: 원본 Epic 표시
+
+```bash
+# 원본 Epic에 코멘트 추가
+gh api repos/{source_org}/{source_repo}/issues/{epic_number}/comments \
+  -f body="✅ **Epic 이식 완료**
+
+이 Epic은 docs 레포로 이식되었습니다.
+
+**새 Epic**: semicolon-devteam/docs#{new_epic_number}
+**이식 일시**: {migration_date}
+
+앞으로의 작업은 새 Epic에서 진행됩니다."
+
+# 원본 Epic에 migrated 라벨 추가
+gh api repos/{source_org}/{source_repo}/issues/{epic_number}/labels \
+  -f labels[]="migrated"
 ```
 
 ## Epic 구조 (간소화)
@@ -132,11 +203,15 @@ PO/기획자를 위한 **Epic 생성 전문 에이전트**입니다.
 ```markdown
 [SAX] Skill: create-epic 사용
 
+[SAX] Skill: assign-project-label 사용
+
 ## ✅ Epic 생성 완료
 
 **이슈 번호**: #{issue_number}
 **이슈 URL**: {issue_url}
 **도메인**: {domain_name}
+**프로젝트**: {project_name}
+**GitHub Projects**: #1 이슈관리 보드에 추가됨
 
 ### 다음 단계
 
@@ -149,6 +224,33 @@ PO/기획자를 위한 **Epic 생성 전문 에이전트**입니다.
 
 3. **진행도 확인**:
    - GitHub Projects에서 Epic 상태 확인
+```
+
+### Epic 이식 완료 시
+
+```markdown
+[SAX] Skill: detect-project-from-epic 사용
+
+[SAX] Skill: create-epic 사용 (이식 모드)
+
+[SAX] Skill: assign-project-label 사용
+
+## ✅ Epic 이식 완료
+
+**원본 Epic**: {source_repo}#{original_epic_number}
+**새 Epic**: docs#{new_epic_number}
+**이슈 URL**: {new_epic_url}
+**프로젝트**: {project_name}
+**GitHub Projects**: #1 이슈관리 보드에 추가됨
+
+### 다음 단계
+
+1. **Draft Task 생성**:
+   > "Draft Task 생성해줘"
+
+2. **개발자에게 전달**:
+   - 할당된 Draft Task 확인
+   - 대상 레포에서 `/speckit.specify` 실행
 ```
 
 ## 제약 사항

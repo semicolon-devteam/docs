@@ -5,6 +5,49 @@ All notable changes to SAX (Semicolon AI Transformation) packages will be docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.2.0] - 2025-01-26
+
+### Added
+
+- **assign-project-label Skill** (SAX-PO)
+  - Epic에 프로젝트 라벨 자동 부여 (오피스/랜드/정치판/코인톡)
+  - GitHub Projects #1 ('이슈관리') 자동 연결
+  - 프로젝트 선택 대화형 인터페이스
+  - Epic 생성 및 이식 시 자동 호출
+
+- **detect-project-from-epic Skill** (SAX-PO)
+  - Epic 이식 시 원본 Epic의 프로젝트 라벨 자동 감지
+  - 프로젝트 라벨 추출 및 검증
+  - 감지 실패 시 수동 선택으로 폴백
+
+### Changed
+
+- **epic-master Agent** (SAX-PO)
+  - Epic 생성 워크플로우에 프로젝트 라벨 단계 추가
+  - Epic 이식 워크플로우 추가 (Workflow B)
+  - 원본 Epic 마킹 기능 (migrated 라벨 + 코멘트)
+  - assign-project-label, detect-project-from-epic Skill 통합
+
+- **CLAUDE.md - Package Components** (SAX-PO)
+  - assign-project-label Skill 추가
+  - detect-project-from-epic Skill 추가
+
+### Migration Guide
+
+**Epic 생성/이식 시**:
+
+1. **기존**: Epic 생성 → 수동 라벨 부여 → 수동 Projects 추가
+2. **새 방법**: Epic 생성 → epic-master가 자동으로 프로젝트 라벨 + Projects 연결
+3. **변경 이유**:
+   - 프로젝트 라벨 누락 방지
+   - GitHub Projects 연결 자동화
+   - Epic 이식 시 프로젝트 정보 보존
+4. **주요 개선**:
+   - Epic 생성 시 프로젝트 선택 대화형 UI
+   - Epic 이식 시 원본 프로젝트 자동 감지
+   - GitHub Projects #1 자동 연결
+   - 원본 Epic 이식 추적 (migrated 라벨)
+
 ## [3.1.0] - 2025-01-26
 
 ### Added

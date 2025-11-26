@@ -219,6 +219,8 @@ SAX-PO로 생성된 Epic은 개발자(SAX-Next)와 다음과 같이 연동됩니
 |-------|------|------|
 | health-check | 개발 환경 검증 | `skills/health-check/skill.md` |
 | create-epic | Epic 이슈 생성 | `skills/create-epic/skill.md` |
+| assign-project-label | 프로젝트 라벨 및 Projects 연결 | `skills/assign-project-label/SKILL.md` |
+| detect-project-from-epic | Epic 프로젝트 라벨 감지 | `skills/detect-project-from-epic/SKILL.md` |
 | check-backend-duplication | core-backend 중복 체크 | `skills/check-backend-duplication/SKILL.md` |
 | assign-estimation-point | Estimation Point 할당 | `skills/assign-estimation-point/SKILL.md` |
 | generate-acceptance-criteria | AC 자동 생성 | `skills/generate-acceptance-criteria/SKILL.md` |
