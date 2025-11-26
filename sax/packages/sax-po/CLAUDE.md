@@ -207,6 +207,7 @@ SAX-PO로 생성된 Epic은 개발자(SAX-Next)와 다음과 같이 연동됩니
 |-------|------|------|
 | orchestrator | 요청 라우팅 | `agents/orchestrator.md` |
 | sax-architect | SAX 패키지 구조 설계 및 관리 | `agents/sax-architect.md` |
+| command-creator | SAX 슬래시 커맨드 생성 전문가 | `agents/command-creator.md` |
 | onboarding-master | 신규 PO/기획자 온보딩 | `agents/onboarding-master.md` |
 | epic-master | Epic 생성 전문가 | `agents/epic-master.md` |
 | draft-task-creator | Epic → Draft Tasks 전환 총괄 | `agents/draft-task-creator.md` |
@@ -218,6 +219,7 @@ SAX-PO로 생성된 Epic은 개발자(SAX-Next)와 다음과 같이 연동됩니
 | Skill | 역할 | 파일 |
 |-------|------|------|
 | health-check | 개발 환경 검증 | `skills/health-check/skill.md` |
+| create-command | SAX 슬래시 커맨드 생성 | `skills/create-command/SKILL.md` |
 | create-epic | Epic 이슈 생성 | `skills/create-epic/skill.md` |
 | assign-project-label | 프로젝트 라벨 및 Projects 연결 | `skills/assign-project-label/SKILL.md` |
 | detect-project-from-epic | Epic 프로젝트 라벨 감지 | `skills/detect-project-from-epic/SKILL.md` |

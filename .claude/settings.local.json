@@ -18,7 +18,11 @@
       "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/sax/packages/sax-po/commands/SAX/ )",
       "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/.claude/commands/SAX/)",
       "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/sax/packages/sax-po/CLAUDE.md )",
-      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/.claude/CLAUDE.md)"
+      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/.claude/CLAUDE.md)",
+      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/sax/packages/sax-po/agents/command-creator.md )",
+      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/.claude/agents/command-creator.md)",
+      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/sax/packages/sax-po/skills/create-command/ )",
+      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/.claude/skills/create-command/)"
     ],
     "deny": [],
     "ask": []
