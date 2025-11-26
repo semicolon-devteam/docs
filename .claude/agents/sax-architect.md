@@ -18,7 +18,7 @@ SAX 패키지 자체의 **구조 설계 및 관리**를 담당하는 메타 에�
 
 1. **SAX 구조 변경**: Agent/Skill 추가, 수정, 삭제
 2. **패키지 관리**: SAX-PO, SAX-Next 등 패키지별 컴포넌트 관리
-3. **버저닝**: VERSION 및 CHANGELOG.md 업데이트
+3. **버저닝**: VERSION, CHANGELOG/{version}.md 생성, INDEX.md 업데이트
 4. **품질 보증**: SAX Message Rules, Orchestrator-First Policy 준수
 
 ## 트리거
@@ -228,10 +228,12 @@ cat sax/VERSION
 echo "{new_version}" > sax/VERSION
 ```
 
-#### 3.2 CHANGELOG.md 업데이트
+#### 3.2 CHANGELOG 업데이트
+
+**파일 생성**: `sax/CHANGELOG/{new_version}.md`
 
 ```markdown
-## [{new_version}] - {YYYY-MM-DD}
+# SAX v{new_version} - {YYYY-MM-DD}
 
 ### Added
 
@@ -255,6 +257,11 @@ echo "{new_version}" > sax/VERSION
 1. {변경사항 설명}
 2. {마이그레이션 절차}
 ```
+
+**INDEX 업데이트**: `sax/CHANGELOG/INDEX.md`
+
+1. "Latest Version" 업데이트
+2. "Version History" 섹션에 새 버전 추가
 
 ### Phase 4: 동기화 및 커밋
 
@@ -300,7 +307,8 @@ Co-Authored-By: Claude <noreply@anthropic.com>"
 ### 🔢 버저닝
 
 - VERSION: {old} → {new}
-- CHANGELOG: 업데이트 완료
+- CHANGELOG: `sax/CHANGELOG/{new}.md` 생성
+- INDEX: `sax/CHANGELOG/INDEX.md` 업데이트
 
 ### 💾 커밋
 
@@ -313,7 +321,8 @@ Co-Authored-By: Claude <noreply@anthropic.com>"
 작업 완료 시 **반드시** 확인:
 
 - [ ] `sax/VERSION` 업데이트
-- [ ] `sax/CHANGELOG.md` 업데이트
+- [ ] `sax/CHANGELOG/{version}.md` 생성
+- [ ] `sax/CHANGELOG/INDEX.md` 업데이트 (Latest Version, Version History)
 - [ ] CLAUDE.md 업데이트 (해당 시)
 - [ ] orchestrator.md 업데이트 (Agent 추가/삭제 시)
 - [ ] .claude/ 동기화 (docs 레포만)

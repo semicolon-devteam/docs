@@ -22,7 +22,11 @@
       "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/sax/packages/sax-po/agents/command-creator.md )",
       "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/.claude/agents/command-creator.md)",
       "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/sax/packages/sax-po/skills/create-command/ )",
-      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/.claude/skills/create-command/)"
+      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/.claude/skills/create-command/)",
+      "Bash(chmod:*)",
+      "Bash(python3:*)",
+      "Bash(sax/VERSION)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []

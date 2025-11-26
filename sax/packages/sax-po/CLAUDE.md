@@ -31,11 +31,19 @@ SAX 버전 질문 시 다음을 비교하여 안내:
 
 ### 업데이트 시 CHANGELOG 확인 (필수)
 
-> ⚠️ **중요**: SAX 업데이트 진행 시, **반드시** CHANGELOG.md를 확인하고 변경사항을 **즉시 반영**해야 합니다.
+> ⚠️ **중요**: SAX 업데이트 진행 시, **반드시** CHANGELOG를 확인하고 변경사항을 **즉시 반영**해야 합니다.
 
 ```bash
-# CHANGELOG.md 확인
-gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG.md \
+# CHANGELOG INDEX 확인 (버전 목록)
+gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/INDEX.md \
+  --jq '.content' | base64 -d
+
+# 최신 버전 CHANGELOG 확인 (예: 3.6.0)
+gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/3.6.0.md \
+  --jq '.content' | base64 -d
+
+# 특정 버전 CHANGELOG 확인
+gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/2.8.0.md \
   --jq '.content' | base64 -d
 ```
 
@@ -312,28 +320,32 @@ SAX의 버전과 변경 기록은 **단 두 개의 파일**에서만 관리됩�
 
 | 파일 | 역할 | 설명 |
 |------|------|------|
-| 📌 `sax/VERSION` | 버전 번호 | 현재 버전 (예: `1.1.0`) |
-| 📋 `sax/CHANGELOG.md` | 변경 기록 | Keep a Changelog 형식 |
+| 📌 `sax/VERSION` | 버전 번호 | 현재 버전 (예: `3.6.0`) |
+| 📋 `sax/CHANGELOG/` | 변경 기록 | 버전별 CHANGELOG 파일 디렉토리 |
+| 📋 `sax/CHANGELOG/INDEX.md` | CHANGELOG 인덱스 | 버전 목록 및 참조 방법 |
 
-> ⚠️ **중요**: 다른 모든 파일은 위 두 파일을 **참조**해야 합니다. 버전 정보를 직접 하드코딩하지 마세요.
+> ⚠️ **중요**: 다른 모든 파일은 위 파일들을 **참조**해야 합니다. 버전 정보를 직접 하드코딩하지 마세요.
 
 ### 버저닝 체크리스트
 
 버전 변경 시 **반드시** 다음 순서로 수행:
 
 1. ✅ `sax/VERSION` - 버전 번호 업데이트
-2. ✅ `sax/CHANGELOG.md` - 변경 내용 기록
-3. ✅ **커밋 수행** - 형식: `:pencil: [SAX] vX.X.X`
+2. ✅ `sax/CHANGELOG/{version}.md` - 새 버전 CHANGELOG 작성
+3. ✅ `sax/CHANGELOG/INDEX.md` - Latest Version 및 Version History 업데이트
+4. ✅ **커밋 수행** - 형식: `📝 [SAX] vX.X.X`
 
 **커밋 메시지 예시**:
 
 ```text
-📝 [SAX] v1.3.0
+📝 [SAX] v3.7.0
 ```
 
 ### Changelog
 
-📋 **[sax/CHANGELOG.md](https://github.com/semicolon-devteam/docs/blob/main/sax/CHANGELOG.md) 참조**
+📋 **[sax/CHANGELOG/INDEX.md](https://github.com/semicolon-devteam/docs/blob/main/sax/CHANGELOG/INDEX.md) 참조**
+
+각 버전의 상세 변경사항은 `sax/CHANGELOG/{version}.md` 파일에서 확인할 수 있습니다.
 
 ## References
 
@@ -341,4 +353,4 @@ SAX의 버전과 변경 기록은 **단 두 개의 파일**에서만 관리됩�
 - [SAX Core - Packaging](https://github.com/semicolon-devteam/docs/blob/main/sax/core/PACKAGING.md)
 - [SAX Core - Message Rules](https://github.com/semicolon-devteam/docs/blob/main/sax/core/MESSAGE_RULES.md)
 - [SAX Core - Team Rules](https://github.com/semicolon-devteam/docs/blob/main/sax/core/TEAM_RULES.md)
-- [SAX Changelog](https://github.com/semicolon-devteam/docs/blob/main/sax/CHANGELOG.md)
+- [SAX Changelog Index](https://github.com/semicolon-devteam/docs/blob/main/sax/CHANGELOG/INDEX.md)
