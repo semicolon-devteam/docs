@@ -5,7 +5,13 @@
       "Bash(gh project view:*)",
       "Bash(git rm:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/sax/packages/sax-po/skills/check-team-codex/ )",
+      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/.claude/skills/check-team-codex/)",
+      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/sax/packages/sax-po/skills/health-check/ )",
+      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/.claude/skills/health-check/)",
+      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/sax/packages/sax-po/skills/skill-creator/ )",
+      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/.claude/skills/skill-creator/)"
     ],
     "deny": [],
     "ask": []

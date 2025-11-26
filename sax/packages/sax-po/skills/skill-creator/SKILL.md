@@ -86,20 +86,122 @@ Expected output structure
 
 ### 3. Apply Progressive Disclosure
 
+> ⚠️ **중요**: Progressive Disclosure는 초기 컨텍스트 로드를 최소화하여 Claude의 토큰 효율성을 높이는 핵심 패턴입니다.
+
+#### Line Count Thresholds
+
+| Total Lines | Action | SKILL.md Target | Reduction |
+|-------------|--------|-----------------|-----------|
+| < 100 | 단일 파일 유지 | ~100 lines | N/A |
+| 100-200 | references/ 고려 (선택) | ~60-80 lines | ~30-40% |
+| 200-300 | references/ 권장 | ~50-70 lines | ~60-75% |
+| **> 300** | **references/ 필수** | **~50-80 lines** | **~80-85%** |
+
+#### Complexity-Based Strategy
+
 **Simple Skill** (<100 lines total):
+
 - SKILL.md only
 - All content in main file
+- Quick Start + 간단한 설명
 
-**Medium Skill** (100-300 lines):
-- SKILL.md with core instructions
+**Medium Skill** (100-200 lines):
+
+- SKILL.md with core instructions (~60-80 lines)
 - Optional: 1-2 reference files for detailed workflows
+- 예: assign-project-label (181 lines → references/ 선택)
 
-**Complex Skill** (>300 lines):
-- SKILL.md with Quick Start + overview
-- references/ directory with:
-  - `workflow.md` - Detailed process
-  - `examples.md` - Usage examples
-  - `api.md` - API/command reference
+**Complex Skill** (200-300 lines):
+
+- SKILL.md with Quick Start + overview (~50-70 lines)
+- references/ directory with 2-3 files
+- 예: health-check (291 lines → 65 lines, 77.7% reduction)
+
+**Very Complex Skill** (>300 lines):
+
+- SKILL.md with minimal overview (~50-80 lines)
+- references/ directory with 3-5 files:
+  - `rules.md` or `validation.md` - Core rules and validation logic
+  - `workflow.md` or `execution.md` - Detailed process and flow
+  - `examples.md` or `integration.md` - Usage examples and integrations
+  - `output.md` or `formats.md` - Output formats and templates
+- 예: check-team-codex (462 lines → 62 lines, 86.6% reduction)
+
+#### What to Separate into references/
+
+**✅ Move to references/**:
+
+- Detailed validation rules (>50 lines)
+- Multiple workflow scenarios (>30 lines each)
+- Extensive code examples (>20 lines)
+- Output format templates (>40 lines)
+- Integration examples (Husky, VS Code, CI/CD)
+- Long bash scripts or command sequences
+- Comprehensive checklists (>15 items)
+
+**❌ Keep in SKILL.md**:
+
+- Frontmatter (always)
+- Purpose and role (1-2 sentences)
+- When to use / triggers (bullet list)
+- Quick Start (minimal 3-5 line example)
+- Advanced Usage section (links to references/)
+- SAX Message format
+- Related links
+
+#### Real Examples from SAX-PO
+
+**check-team-codex** (462 → 62 lines, **86.6% reduction**):
+
+```text
+SKILL.md (62 lines):
+
+- Frontmatter
+- Purpose + When to Use
+- Quick Start (3 bash commands)
+- Advanced Usage (4 reference links)
+- SAX Message + Related
+
+references/:
+
+- codex-rules.md (Git/Code/DDD rules)
+- validation-checks.md (6 validation categories)
+- execution-flow.md (Quick/Full/CI-CD workflows)
+- integration.md (Husky/VS Code examples)
+```
+
+**health-check** (291 → 65 lines, **77.7% reduction**):
+
+```text
+SKILL.md (65 lines):
+
+- Frontmatter
+- 역할 + 트리거
+- Quick Start (4 bash one-liners)
+- Advanced Usage (3 reference links)
+- SAX Message + Related
+
+references/:
+
+- validation-items.md (4 validation categories)
+- output-formats.md (Success/Failure examples)
+- workflow.md (Flow diagram + re-validation policy)
+```
+
+**epic-master** (already done, 65% reduction):
+
+```text
+SKILL.md (~50 lines):
+
+- Frontmatter + overview
+- Quick Start
+- 2 reference links
+
+references/:
+
+- workflow-creation.md
+- workflow-migration.md
+```
 
 ### 4. Follow Anthropic Principles
 
@@ -198,21 +300,35 @@ Use [template-skill](../template-skill/SKILL.md) as starting point for new skill
 
 ## Examples
 
-**Example 1: Simple Skill (health-check)**
+**Example 1: Simple Skill (assign-project-label)**
+
 - Single SKILL.md file
-- ~60 lines total
-- No references needed
-
-**Example 2: Medium Skill (assign-project-label)**
-- SKILL.md with core logic
 - ~120 lines total
-- No references (could add if grows)
+- No references needed (could add if grows to 200+)
 
-**Example 3: Complex Skill (epic-master)**
-- SKILL.md ~50 lines (overview + quick start)
-- references/workflow-creation.md ~100 lines
-- references/workflow-migration.md ~80 lines
-- Total: ~230 lines, well organized
+**Example 2: Complex Skill (health-check)**
+
+- SKILL.md: 65 lines (overview + quick start)
+- references/validation-items.md: 4 validation categories
+- references/output-formats.md: Success/failure examples
+- references/workflow.md: Flow + re-validation policy
+- **Result**: 291 → 65 lines (77.7% reduction)
+
+**Example 3: Very Complex Skill (check-team-codex)**
+
+- SKILL.md: 62 lines (minimal overview)
+- references/codex-rules.md: Git/Code/DDD/Test rules
+- references/validation-checks.md: 6 validation categories with bash
+- references/execution-flow.md: Quick/Full/CI-CD workflows + output
+- references/integration.md: Husky/VS Code/Package.json examples
+- **Result**: 462 → 62 lines (86.6% reduction)
+
+**Example 4: Complex Agent (epic-master)**
+
+- SKILL.md: ~50 lines (overview + quick start)
+- references/workflow-creation.md: ~100 lines
+- references/workflow-migration.md: ~80 lines
+- **Result**: Total ~230 lines, well organized (65% reduction)
 
 ## Related
 
