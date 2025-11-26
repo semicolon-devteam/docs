@@ -130,7 +130,9 @@ gh api repos/semicolon-devteam/docs/contents/sax/core/TEAM_RULES.md \
 
 | Agent | 역할 | 파일 |
 |-------|------|------|
+| orchestrator | SAX-Meta 요청 라우팅 | `agents/orchestrator.md` |
 | sax-architect | SAX 패키지 구조 설계 및 관리 | `agents/sax-architect.md` |
+| skill-creator | SAX Skill 생성 (대화형) | `agents/skill-creator.md` |
 | command-creator | SAX 슬래시 커맨드 생성 | `agents/command-creator.md` |
 | agent-creator | SAX Agent 생성 자동화 | `agents/agent-creator.md` |
 
@@ -138,7 +140,6 @@ gh api repos/semicolon-devteam/docs/contents/sax/core/TEAM_RULES.md \
 
 | Skill | 역할 | 파일 |
 |-------|------|------|
-| skill-creator | SAX Skill 생성 자동화 | `skills/skill-creator/SKILL.md` |
 | package-validator | SAX 패키지 구조 검증 | `skills/package-validator/SKILL.md` |
 | version-manager | SAX 버저닝 자동화 | `skills/version-manager/SKILL.md` |
 
