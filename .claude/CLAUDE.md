@@ -234,9 +234,9 @@ SAX-PO로 생성된 Epic은 개발자(SAX-Next)와 다음과 같이 연동됩니
 
 | Command           | 역할                    | 파일                      |
 | ----------------- | ----------------------- | ------------------------- |
-| /SAX:onboarding   | 신규 PO/기획자 온보딩   | `commands/SAX/:onboarding.md`  |
-| /SAX:health-check | 개발 환경 검증          | `commands/SAX/:health-check.md`|
-| /SAX:help         | 대화형 도우미 (PO/기획자)| `commands/SAX/:help.md`        |
+| /SAX:onboarding   | 신규 PO/기획자 온보딩   | `commands/SAX/onboarding.md`  |
+| /SAX:health-check | 개발 환경 검증          | `commands/SAX/health-check.md`|
+| /SAX:help         | 대화형 도우미 (PO/기획자)| `commands/SAX/help.md`        |
 
 ### Templates
 

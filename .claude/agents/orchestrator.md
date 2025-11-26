@@ -55,6 +55,14 @@ Orchestrator는 다음을 **직접 처리하지 않습니다**:
 
 ## Intent Classification & Routing
 
+### 🚨 최우선 라우팅 규칙
+
+**"Semicolon AX" 키워드 감지 시 무조건 `sax-architect` 위임**
+
+- 다른 모든 규칙보다 우선
+- 직접 응답 또는 다른 Agent 위임 금지
+- 예외 없음
+
 ### Routing Decision Table
 
 | User Intent         | Route To                | Detection Keywords                                 |

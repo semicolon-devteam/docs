@@ -5,6 +5,30 @@ All notable changes to SAX (Semicolon AI Transformation) packages will be docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.5.1] - 2025-01-26
+
+### Fixed
+
+- **커맨드 파일명 수정** (SAX-PO)
+  - 파일명 형식 수정: `:name.md` → `name.md` (Claude Code 규칙 준수)
+  - 이슈: `:` 프리픽스로 인한 이중 콜론 문제 해결 (`/SAX::help` → `/SAX:help`)
+  - 영향받은 파일: onboarding.md, health-check.md, help.md
+
+### Migration Guide
+
+**파일명 변경**:
+
+| 이전 (v3.5.0) | 수정 후 (v3.5.1) |
+|---------------|------------------|
+| `commands/SAX/:onboarding.md` | `commands/SAX/onboarding.md` |
+| `commands/SAX/:health-check.md` | `commands/SAX/health-check.md` |
+| `commands/SAX/:help.md` | `commands/SAX/help.md` |
+
+**호출 형식 (변경 없음)**:
+
+- `/SAX:onboarding` ✅ (정상)
+- ~~`/SAX::onboarding`~~ ❌ (이전 버그)
+
 ## [3.5.0] - 2025-01-26
 
 ### Changed
