@@ -59,7 +59,6 @@ Orchestrator는 다음을 **직접 처리하지 않습니다**:
 
 | User Intent         | Route To                | Detection Keywords                                 |
 | ------------------- | ----------------------- | -------------------------------------------------- |
-| **SAX 메타 작업**   | `sax-architect`         | "Semicolon AX", Agent/Skill 추가/삭제, SAX 구조 변경 |
 | 도움 요청           | 대화형 응답 (직접 처리) | "/SAX:help", "도움말", "뭘 해야 하지"              |
 | 온보딩 요청         | `onboarding-master`     | "/SAX:onboarding", "처음", "신규", "온보딩"        |
 | 환경 검증           | `skill:health-check`    | "/SAX:health-check", "환경 확인", "도구 확인"      |

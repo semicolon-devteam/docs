@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Quick Reference
 
-**Latest Version**: [3.8.0](3.8.0.md) - 2025-11-26
+**Latest Version**: [3.9.0](3.9.0.md) - 2025-11-26
 
 ## How to Read Changelog
 
@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ```bash
 # 최신 버전 확인
-cat sax/CHANGELOG/3.8.0.md
+cat sax/CHANGELOG/3.9.0.md
 
 # 특정 버전 확인
 cat sax/CHANGELOG/2.8.0.md
@@ -29,7 +29,7 @@ cat sax/CHANGELOG/2.8.0.md
 
 ```bash
 # 최신 버전 확인
-gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/3.8.0.md \
+gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/3.9.0.md \
   --jq '.content' | base64 -d
 
 # 특정 버전 확인
@@ -45,6 +45,7 @@ gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/INDEX.md \
 
 ### v3.x (2025-11-26)
 
+- [3.9.0](3.9.0.md) - docs 레포 패키지 구조 개선 (루트 CLAUDE.md 패키지 선택)
 - [3.8.0](3.8.0.md) - SAX-Meta 패키지 분리 (Agent/Skill 생성 도구 통합)
 - [3.7.0](3.7.0.md) - CHANGELOG 구조 개선 (단일 파일 → 버전별 파일)
 - [3.6.0](3.6.0.md) - command-creator Agent, create-command Skill 추가

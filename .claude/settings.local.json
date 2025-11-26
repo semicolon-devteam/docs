@@ -5,7 +5,11 @@
       "Bash(gh project view:*)",
       "Bash(git rm:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/sax/packages/sax-po/ )",
+      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/.claude/sax-po/)",
+      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/sax/packages/sax-meta/ )",
+      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/.claude/sax-meta/)"
     ],
     "deny": [],
     "ask": []
