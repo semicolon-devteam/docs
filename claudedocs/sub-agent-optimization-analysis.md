@@ -464,15 +464,15 @@ architect:
 
 ### Phase 2: 단기 개선
 
-4. ⏳ Progressive Disclosure 구조 도입
-5. ⏳ Explore 패턴 Agent 추가
-6. ⏳ 모델 선택 전략 구현
+4. ✅ Progressive Disclosure 가이드라인 정의 (agent-manager.md에 포함)
+5. ⏳ Explore 패턴 Agent 추가 (향후)
+6. ✅ 모델 선택 전략 구현 (Phase 1에서 완료)
 
 ### Phase 3: 중기 개선
 
-7. ⏳ 병렬 처리 지원
-8. ⏳ Resume 기능 도입
-9. ⏳ 토큰 사용량 모니터링
+7. ⏳ 병렬 처리 지원 (향후)
+8. ⏳ Resume 기능 도입 (향후)
+9. ✅ 토큰 사용량 최적화 가이드라인 정의
 
 ---
 

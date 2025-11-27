@@ -750,6 +750,48 @@ model: sonnet  # opus | sonnet | haiku | inherit
 - CLAUDE.md, orchestrator.md 동기화 필수
 - 참조 무결성 검증
 
+### 8. Progressive Disclosure (대형 Agent용)
+
+**200 lines 이상 Agent**는 `references/` 디렉토리로 상세 내용 분리:
+
+```text
+agents/
+└── {agent-name}/
+    ├── {agent-name}.md     # 핵심 프롬프트 (<200 lines)
+    │   ├── YAML frontmatter
+    │   ├── 역할 요약
+    │   ├── 핵심 워크플로우
+    │   └── References 링크
+    └── references/
+        ├── workflow-detail.md   # 상세 워크플로우
+        ├── examples.md          # 예시 모음
+        └── templates.md         # 템플릿 모음
+```
+
+**핵심 Agent 파일 포함 항목**:
+
+- Frontmatter (4개 필수 필드)
+- 시스템 메시지 blockquote
+- 역할/Capabilities (간결하게)
+- 핵심 워크플로우 (Phase 단위)
+- References 링크
+
+**분리 대상** (references/로 이동):
+
+- 상세 예시 코드
+- 긴 템플릿
+- 체크리스트 상세
+- 에러 핸들링 상세
+
+### 9. 토큰 효율성
+
+> "Agent 초기화 토큰을 최소화하면 속도↑, 비용↓, 품질 유지"
+
+- Agent 본문: **200 lines 이하** 목표
+- 불필요한 반복 설명 제거
+- Claude가 이미 아는 내용 (코딩 기초 등) 포함 금지
+- SAX/팀 고유 워크플로우만 포함
+
 ## SAX Message
 
 ```markdown
