@@ -8,13 +8,16 @@
 - **Version**: 📌 [sax/VERSION](https://github.com/semicolon-devteam/docs/blob/main/sax/VERSION) 참조
 - **Target**: docs repository (SAX Source of Truth)
 - **Audience**: SAX 개발자, SAX 패키지 관리자
-- **Extends**: SAX-Core (docs)
+- **Extends**: SAX-Core
 
-## SAX란?
+## SAX Core 상속
 
-**SAX** = **S**emicolon **A**I Transformation
+이 패키지는 SAX Core의 기본 원칙을 상속합니다.
 
-Semicolon 팀의 AI 기반 개발 워크플로우 자동화 프레임워크입니다.
+@sax-core/PRINCIPLES.md
+@sax-core/MESSAGE_RULES.md
+
+> 📖 Core 문서는 `.claude/sax-core/` 디렉토리에서 자동 로드됩니다.
 
 ## Package Purpose
 
@@ -31,40 +34,6 @@ SAX-Meta는 SAX 패키지 자체를 관리하고 개발하기 위한 **메타 �
 - ❌ **Next.js 개발자**: SAX-Next 패키지 사용
 - ❌ **Spring 개발자**: SAX-Spring 패키지 사용
 
-## Source of Truth
-
-**SAX의 모든 표준과 최신 버전은 `semicolon-devteam/docs` 레포지토리에서 관리됩니다.**
-
-### 버전 확인 방법
-
-SAX 버전 질문 시 다음을 비교하여 안내:
-
-1. 현재 레포지토리의 SAX 버전
-2. docs 레포지토리의 최신 SAX 버전
-
-최신 버전이 아닐 경우 업데이트를 권장합니다.
-
-### 업데이트 시 CHANGELOG 확인 (필수)
-
-> ⚠️ **중요**: SAX 업데이트 진행 시, **반드시** CHANGELOG를 확인하고 변경사항을 **즉시 반영**해야 합니다.
-
-```bash
-# CHANGELOG INDEX 확인 (버전 목록)
-gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/INDEX.md \
-  --jq '.content' | base64 -d
-
-# 최신 버전 CHANGELOG 확인
-gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/3.8.0.md \
-  --jq '.content' | base64 -d
-
-# 특정 버전 CHANGELOG 확인
-gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/2.8.0.md \
-  --jq '.content' | base64 -d
-```
-
-**확인 시점**: 업데이트 작업 시작 직후
-**반영 범위**: 현재 버전 이후의 모든 변경사항
-
 ## 설치 대상
 
 이 패키지는 `semicolon-devteam/docs` 레포지토리의 `.claude/` 디렉토리에 설치됩니다.
@@ -78,129 +47,13 @@ gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/2.8.0.md \
 | `.claude/sax-meta/` | SAX-Meta 실제 사용 (설치된 상태) |
 | `sax/packages/sax-meta/` | SAX-Meta 패키지 소스 (배포용) |
 
-**동기화 대상**: CLAUDE.md, agents/, skills/, scripts/, templates/
-
 **동기화 명령**:
 
 ```bash
-# SAX-Meta 소스 → .claude/sax-meta/ 동기화
 rsync -av --delete --exclude='.git' \
   sax/packages/sax-meta/ \
   .claude/sax-meta/
 ```
-
-## SAX Core 상속
-
-이 패키지는 SAX Core의 기본 원칙을 상속합니다.
-
-**상속 원칙**:
-
-- Transparency (투명성)
-- Consistency (일관성)
-- Modularity (모듈성)
-- Hierarchy (계층구조)
-
-### SAX Core 참조 방법 (필수)
-
-> ⚠️ **Source of Truth**: SAX Core 문서는 `semicolon-devteam/docs` 레포의 `sax/core/`가 유일한 원본입니다.
-
-SAX 관련 작업 시 **반드시** 다음 명령으로 최신 Core 규칙을 참조하세요:
-
-```bash
-# MESSAGE_RULES.md 참조 (메시지 포맷)
-gh api repos/semicolon-devteam/docs/contents/sax/core/MESSAGE_RULES.md \
-  --jq '.content' | base64 -d
-
-# PRINCIPLES.md 참조 (기본 원칙)
-gh api repos/semicolon-devteam/docs/contents/sax/core/PRINCIPLES.md \
-  --jq '.content' | base64 -d
-
-# PACKAGING.md 참조 (패키지 규칙)
-gh api repos/semicolon-devteam/docs/contents/sax/core/PACKAGING.md \
-  --jq '.content' | base64 -d
-
-# TEAM_RULES.md 참조 (팀 규칙)
-gh api repos/semicolon-devteam/docs/contents/sax/core/TEAM_RULES.md \
-  --jq '.content' | base64 -d
-```
-
-## Orchestrator-First Policy (필수)
-
-> 🚨 **강제 규칙**: SAX-Meta 환경에서는 **Orchestrator 메시지 없이 그 어떤 응답도 하지 않습니다.**
-
-### 강제 체크 프로세스
-
-**Claude는 SAX-Meta 패키지가 활성화된 상태에서 다음 절차를 반드시 따릅니다:**
-
-1. **요청 수신 즉시** Orchestrator 의도 분석 수행
-2. **`[SAX] Orchestrator:` 메시지를 첫 번째로 출력**
-3. 그 후에만 Agent 위임 또는 직접 응답 진행
-
-### ❌ 절대 금지
-
-- Orchestrator 메시지 없이 바로 응답
-- Orchestrator 메시지 없이 Agent 호출
-- Orchestrator 메시지 없이 Skill 실행
-- Orchestrator 메시지 없이 코드/분석 결과 제공
-
-**위반 발견 시**: 해당 응답은 무효이며, Orchestrator 메시지부터 다시 시작해야 합니다.
-
-### SAX 시스템 메시지 체이닝
-
-모든 SAX 작업은 다음 메시지 체인을 따릅니다:
-
-```markdown
-[SAX] Orchestrator: 의도 분석 완료 → {category}
-
-[SAX] Agent 위임: {agent_name} (사유: {reason})
-
-[SAX] Agent: {agent_name} 호출 - {context}
-
-[SAX] Skill: {skill_name} 사용
-
-[SAX] Reference: {resource_path} 참조
-```
-
-**필수 규칙**:
-
-- 각 메시지는 별도 줄에 출력
-- 메시지 간 빈 줄 삽입
-- **Orchestrator 메시지가 항상 첫 번째**
-
-### 올바른 예시
-
-```markdown
-User: 새 Agent 추가해줘
-
-[SAX] Orchestrator: 의도 분석 완료 → Agent 생성 요청
-
-[SAX] Agent 위임: agent-manager (사유: 신규 Agent 생성)
-
-[SAX] Agent: agent-manager 호출 - 신규 Agent
-
-[이후 작업 내용...]
-```
-
-### 직접 응답 케이스 (Agent 위임 생략)
-
-다음 경우에만 Agent 위임을 생략하고 직접 응답합니다. **단, Orchestrator 메시지는 여전히 필수입니다.**
-
-- 단순 정보 질문: "이게 뭐야?", "설명해줘"
-- 일반 대화: 인사, 감사, 확인
-
-```markdown
-User: SAX-Meta가 뭐야?
-
-[SAX] Orchestrator: 의도 분석 완료 → 단순 정보 질문 (직접 응답)
-
-SAX-Meta는 SAX 패키지 자체를 관리하고 개발하기 위한 메타 패키지입니다...
-```
-
-### Agent Routing
-
-라우팅 판단은 [Orchestrator Agent](agents/orchestrator.md)가 직접 수행합니다.
-
-CLAUDE.md에는 라우팅 테이블을 두지 않으며, Orchestrator가 요청의 의도를 분석하여 적절한 Agent로 위임합니다.
 
 ## Package Components
 
@@ -218,10 +71,10 @@ CLAUDE.md에는 라우팅 테이블을 두지 않으며, Orchestrator가 요청�
 
 | Skill | 역할 | 파일 |
 |-------|------|------|
-| package-validator | SAX 패키지 구조 검증 | `skills/package-validator/SKILL.md` |
-| version-manager | SAX 버저닝 자동화 | `skills/version-manager/SKILL.md` |
-| package-sync | 패키지 소스 → .claude 동기화 | `skills/package-sync/SKILL.md` |
-| package-deploy | 외부 프로젝트 SAX 배포 | `skills/package-deploy/SKILL.md` |
+| package-validator | SAX 패키지 구조 검증 | `skills/package-validator/` |
+| version-manager | SAX 버저닝 자동화 | `skills/version-manager/` |
+| package-sync | 패키지 소스 → .claude 동기화 | `skills/package-sync/` |
+| package-deploy | 외부 프로젝트 SAX 배포 | `skills/package-deploy/` |
 
 ### Scripts
 
@@ -237,87 +90,6 @@ CLAUDE.md에는 라우팅 테이블을 두지 않으며, Orchestrator가 요청�
 | skill-template | Skill 디렉토리 템플릿 | `templates/skill-template/` |
 | package-template | 패키지 구조 템플릿 | `templates/package-template/` |
 
-## SAX Message Rules
-
-이 패키지의 모든 Agent/Skill은 SAX 메시지 규칙을 준수합니다.
-
-📖 **상세**: [SAX Core MESSAGE_RULES.md](https://github.com/semicolon-devteam/docs/blob/main/sax/core/MESSAGE_RULES.md)
-
-### 핵심 메시지 규칙 (Quick Reference)
-
-**기본 포맷**:
-
-```markdown
-[SAX] {Type}: {name} {action}
-```
-
-**필수 요소**:
-
-- `Type`: `Orchestrator`, `Agent`, `Skill`, `Reference`
-- 각 메시지 별도 줄 출력
-- 메시지 간 빈 줄 삽입
-
-## Versioning Rules
-
-SAX 패키지 변경 시 반드시 버저닝을 수행합니다.
-
-### Semantic Versioning
-
-- **MAJOR** (x.0.0): 호환성 깨지는 변경, 구조 대폭 변경
-- **MINOR** (0.x.0): 기능 추가, 설정 변경, 새 Agent/Skill 추가
-- **PATCH** (0.0.x): 버그 수정, 오타 수정, 문서 보완
-
-### 버저닝 필수 상황
-
-> ⚠️ **필수**: 다음 변경 시 **반드시** 버전을 업데이트해야 합니다.
-
-| 변경 유형 | 버전 | 설명 |
-|----------|------|------|
-| **추가** | MINOR | Agent, Skill, 설정, 워크플로우 추가 |
-| **수정** | MINOR/PATCH | 기능 변경(MINOR), 버그 수정(PATCH) |
-| **삭제** | MINOR | Agent, Skill, 설정, 워크플로우 삭제 |
-| **구조 변경** | MINOR | 디렉토리, 파일 구조 변경 |
-
-**버저닝 체크포인트**:
-
-1. CLAUDE.md 내용 변경 → 버저닝 필요
-2. Agent/Skill **추가, 수정, 또는 삭제** → 버저닝 필요
-3. 워크플로우 변경 → 버저닝 필요
-4. 설정값 변경 → 버저닝 필요
-
-### Single Source of Truth
-
-SAX의 버전과 변경 기록은 다음 파일에서만 관리됩니다:
-
-| 파일 | 역할 | 설명 |
-|------|------|------|
-| 📌 `sax/VERSION` | 버전 번호 | 현재 버전 (예: `3.8.0`) |
-| 📋 `sax/CHANGELOG/` | 변경 기록 | 버전별 CHANGELOG 파일 디렉토리 |
-| 📋 `sax/CHANGELOG/INDEX.md` | CHANGELOG 인덱스 | 버전 목록 및 참조 방법 |
-
-> ⚠️ **중요**: 다른 모든 파일은 위 파일들을 **참조**해야 합니다. 버전 정보를 직접 하드코딩하지 마세요.
-
-### 버저닝 체크리스트
-
-버전 변경 시 **반드시** 다음 순서로 수행:
-
-1. ✅ `sax/VERSION` - 버전 번호 업데이트
-2. ✅ `sax/CHANGELOG/{version}.md` - 새 버전 CHANGELOG 작성
-3. ✅ `sax/CHANGELOG/INDEX.md` - Latest Version 및 Version History 업데이트
-4. ✅ **커밋 수행** - 형식: `📝 [SAX] vX.X.X`
-
-**커밋 메시지 예시**:
-
-```text
-📝 [SAX] v3.8.0
-```
-
-### Changelog
-
-📋 **[sax/CHANGELOG/INDEX.md](https://github.com/semicolon-devteam/docs/blob/main/sax/CHANGELOG/INDEX.md) 참조**
-
-각 버전의 상세 변경사항은 `sax/CHANGELOG/{version}.md` 파일에서 확인할 수 있습니다.
-
 ## Installation & Usage
 
 ### SAX-Meta 사용 방법
@@ -328,13 +100,13 @@ SAX-Meta는 별도 설치가 필요 없습니다. docs 레포지토리에서 직
 # SAX 패키지 개선 작업 시작
 cd semicolon-devteam/docs
 
-# "Semicolon AX" 키워드로 메타 작업 트리거
-# 예: "Semicolon AX - 새 Agent 추가해줘"
+# "[SAX]" 또는 "[Semicolon AX]" 키워드로 메타 작업 트리거
+# 예: "[SAX] 새 Agent 추가해줘"
 ```
 
 ### 다른 패키지와의 관계
 
-```
+```text
 SAX-Meta (메타 관리)
     ↓ 관리
 SAX-Core (공통 규칙)

@@ -8,193 +8,16 @@
 - **Version**: 📌 [sax/VERSION](https://github.com/semicolon-devteam/docs/blob/main/sax/VERSION) 참조
 - **Target**: cm-template, cm-\* 프로젝트 (Next.js 기반)
 - **Audience**: Frontend/Fullstack 개발자
-- **Extends**: SAX-Core (docs)
-
-## SAX란?
-
-**SAX** = **S**emicolon **A**I Transformation
-
-Semicolon 팀의 AI 기반 개발 워크플로우 자동화 프레임워크입니다.
-
-### 업데이트 시 CHANGELOG 확인 (필수)
-
-> ⚠️ **중요**: SAX 업데이트 진행 시, **반드시** CHANGELOG.md를 확인하고 변경사항을 **즉시 반영**해야 합니다.
-
-```bash
-# CHANGELOG.md 확인
-gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG.md \
-  --jq '.content' | base64 -d
-```
-
-**확인 시점**: 업데이트 작업 시작 직후
-**반영 범위**: 현재 버전 이후의 모든 변경사항
+- **Extends**: SAX-Core
 
 ## SAX Core 상속
 
 이 패키지는 SAX Core의 기본 원칙을 상속합니다.
 
-**상속 원칙**:
+@sax-core/PRINCIPLES.md
+@sax-core/MESSAGE_RULES.md
 
-- Transparency (투명성)
-- Consistency (일관성)
-- Modularity (모듈성)
-- Hierarchy (계층구조)
-
-### SAX Core 컨텍스트 우선 조회 (필수)
-
-> ⚠️ **최우선 규칙**: SAX 관련 작업 시작 전, SAX Core 문서를 **먼저 조회**하여 컨텍스트를 확보해야 합니다.
-
-**조회가 필요한 상황**:
-
-1. **SAX 메시지 규칙** 관련 작업 (Agent/Skill/Reference 메시지 출력)
-2. **Orchestrator 라우팅** 관련 질문 또는 개선
-3. **패키지 구조 변경** (Agent/Skill 추가, 삭제, 수정)
-4. **버저닝** 관련 작업
-5. **SAX 규칙 충돌** 발생 시
-
-**조회 절차**:
-
-1. **Reference 메시지 출력**:
-
-   ```markdown
-   [SAX] Reference: sax/core/{문서명} 참조
-   ```
-
-2. **SAX Core 문서 조회**:
-
-   ```bash
-   # 기본 원칙
-   gh api repos/semicolon-devteam/docs/contents/sax/core/PRINCIPLES.md \
-     --jq '.content' | base64 -d
-
-   # 메시지 규칙
-   gh api repos/semicolon-devteam/docs/contents/sax/core/MESSAGE_RULES.md \
-     --jq '.content' | base64 -d
-   ```
-
-3. **조회 결과를 컨텍스트로 보유**
-
-4. **이후 작업 진행**
-
-**중요**: SAX Core 컨텍스트 없이 SAX 관련 작업을 진행하지 마세요. 잘못된 메시지 포맷이나 규칙 위반이 발생할 수 있습니다.
-
-### SAX Core 참조 방법 (필수)
-
-> ⚠️ **Source of Truth**: SAX Core 문서는 `semicolon-devteam/docs` 레포의 `sax/core/`가 유일한 원본입니다.
-
-SAX 관련 작업 시 **반드시** 다음 명령으로 최신 Core 규칙을 참조하세요:
-
-```bash
-# MESSAGE_RULES.md 참조 (메시지 포맷)
-gh api repos/semicolon-devteam/docs/contents/sax/core/MESSAGE_RULES.md \
-  --jq '.content' | base64 -d
-
-# PRINCIPLES.md 참조 (기본 원칙)
-gh api repos/semicolon-devteam/docs/contents/sax/core/PRINCIPLES.md \
-  --jq '.content' | base64 -d
-
-# PACKAGING.md 참조 (패키지 규칙)
-gh api repos/semicolon-devteam/docs/contents/sax/core/PACKAGING.md \
-  --jq '.content' | base64 -d
-
-# TEAM_RULES.md 참조 (팀 규칙)
-gh api repos/semicolon-devteam/docs/contents/sax/core/TEAM_RULES.md \
-  --jq '.content' | base64 -d
-```
-
-### 핵심 메시지 규칙 (Quick Reference)
-
-**기본 포맷**:
-
-```markdown
-[SAX] {Type}: {name} {action}
-```
-
-**필수 요소**:
-
-- `Type`: `Orchestrator`, `Agent`, `Skill`, `Reference`
-- 각 메시지 별도 줄 출력
-- 메시지 간 빈 줄 삽입
-
-📖 **상세**: [SAX Core MESSAGE_RULES.md](https://github.com/semicolon-devteam/docs/blob/main/sax/core/MESSAGE_RULES.md)
-
-## Orchestrator-First Policy (필수)
-
-> 🚨 **강제 규칙**: SAX-Next 환경에서는 **Orchestrator 메시지 없이 그 어떤 응답도 하지 않습니다.**
-
-### 강제 체크 프로세스
-
-**Claude는 SAX-Next 패키지가 활성화된 상태에서 다음 절차를 반드시 따릅니다:**
-
-1. **요청 수신 즉시** Orchestrator 의도 분석 수행
-2. **`[SAX] Orchestrator:` 메시지를 첫 번째로 출력**
-3. 그 후에만 Agent 위임 또는 직접 응답 진행
-
-### ❌ 절대 금지
-
-- Orchestrator 메시지 없이 바로 응답
-- Orchestrator 메시지 없이 Agent 호출
-- Orchestrator 메시지 없이 Skill 실행
-- Orchestrator 메시지 없이 코드/분석 결과 제공
-
-**위반 발견 시**: 해당 응답은 무효이며, Orchestrator 메시지부터 다시 시작해야 합니다.
-
-### SAX 시스템 메시지 체이닝
-
-모든 SAX 작업은 다음 메시지 체인을 따릅니다:
-
-```markdown
-[SAX] Orchestrator: 의도 분석 완료 → {category}
-
-[SAX] Agent 위임: {agent_name} (사유: {reason})
-
-[SAX] Agent: {agent_name} 호출 - {context}
-
-[SAX] Skill: {skill_name} 사용
-
-[SAX] Reference: {resource_path} 참조
-```
-
-**필수 규칙**:
-
-- 각 메시지는 별도 줄에 출력
-- 메시지 간 빈 줄 삽입
-- **Orchestrator 메시지가 항상 첫 번째**
-
-### 올바른 예시
-
-```markdown
-User: posts 도메인 구현해줘
-
-[SAX] Orchestrator: 의도 분석 완료 → 도메인 구현 요청
-
-[SAX] Agent 위임: implementation-master (사유: posts 도메인 ADD 구현)
-
-[SAX] Agent: implementation-master 호출 - posts 도메인
-
-[이후 작업 내용...]
-```
-
-### 직접 응답 케이스 (Agent 위임 생략)
-
-다음 경우에만 Agent 위임을 생략하고 직접 응답합니다. **단, Orchestrator 메시지는 여전히 필수입니다.**
-
-- 단순 정보 질문: "이게 뭐야?", "설명해줘"
-- 일반 대화: 인사, 감사, 확인
-
-```markdown
-User: DDD가 뭐야?
-
-[SAX] Orchestrator: 의도 분석 완료 → 단순 정보 질문 (직접 응답)
-
-DDD는 Domain-Driven Design의 약자로...
-```
-
-### Agent Routing
-
-라우팅 판단은 [Orchestrator Agent](agents/orchestrator/)가 직접 수행합니다.
-
-CLAUDE.md에는 라우팅 테이블을 두지 않으며, Orchestrator가 요청의 의도를 분석하여 적절한 Agent로 위임합니다.
+> 📖 Core 문서는 `.claude/sax-core/` 디렉토리에서 자동 로드됩니다.
 
 ## Workflow: SDD + ADD
 
@@ -239,69 +62,68 @@ src/app/{domain}/
 
 ### Agents
 
-| Agent                 | 역할                  | 파일                                    |
-| --------------------- | --------------------- | --------------------------------------- |
-| orchestrator          | 요청 라우팅           | `agents/orchestrator/`                  |
-| onboarding-master     | 신규 개발자 온보딩    | `agents/onboarding-master.md`           |
-| spec-master           | SDD Phase 1-3         | `agents/spec-master.md`                 |
-| implementation-master | ADD Phase 4           | `agents/implementation-master/`         |
-| quality-master        | Phase 5 검증          | `agents/quality-master/`                |
-| spike-master          | 기술 탐색             | `agents/spike-master/`                  |
-| migration-master      | 마이그레이션          | `agents/migration-master/`              |
-| teacher               | 학습 안내             | `agents/teacher.md`                     |
-| advisor               | 조언 제공             | `agents/advisor.md`                     |
-| semicolon-reviewer    | 코드 리뷰             | `agents/semicolon-reviewer/`            |
-| ddd-architect         | DDD 아키텍처          | `agents/ddd-architect/`                 |
-| database-master       | DB 및 Supabase 통합   | `agents/database-master.md`             |
+| Agent | 역할 | 파일 |
+|-------|------|------|
+| orchestrator | 요청 라우팅 | `agents/orchestrator/` |
+| spec-master | SDD Phase 1-3 | `agents/spec-master.md` |
+| database-master | DB 및 Supabase 통합 | `agents/database-master.md` |
+| advisor | 조언 제공 | `agents/advisor.md` |
+| teacher | 학습 안내 | `agents/teacher.md` |
+| onboarding-master | 신규 개발자 온보딩 | `agents/onboarding-master.md` |
 
 ### Skills
 
-| Skill                  | 역할                      | 파일                                      |
-| ---------------------- | ------------------------- | ----------------------------------------- |
-| health-check           | 개발 환경 검증            | `skills/health-check/SKILL.md`            |
-| task-progress          | 워크플로우 진행도 확인    | `skills/task-progress/`                   |
-| spec                   | SDD 명세 워크플로우       | `skills/spec/`                            |
-| implement              | ADD 구현 워크플로우       | `skills/implement/`                       |
-| verify                 | Phase 5 종합 검증         | `skills/verify/`                          |
-| check-team-codex       | 팀 코덱스 검증            | `skills/check-team-codex/SKILL.md`        |
-| validate-architecture  | DDD 아키텍처 검증         | `skills/validate-architecture/`           |
-| scaffold-domain        | 도메인 구조 생성          | `skills/scaffold-domain/`                 |
-| fetch-supabase-example | Supabase 패턴 참조        | `skills/fetch-supabase-example/`          |
-| fetch-api-spec         | API 스펙 참조             | `skills/fetch-api-spec/`                  |
-| git-workflow           | Git 워크플로우 자동화     | `skills/git-workflow/`                    |
-| create-issues          | GitHub Issues 생성        | `skills/create-issues/`                   |
-| project-context        | 프로젝트 컨텍스트 제공    | `skills/project-context/`                 |
+| Skill | 역할 | 파일 |
+|-------|------|------|
+| health-check | 개발 환경 검증 | `skills/health-check/` |
+| task-progress | 워크플로우 진행도 확인 | `skills/task-progress/` |
+| spec | SDD 명세 워크플로우 | `skills/spec/` |
+| implement | ADD 구현 워크플로우 | `skills/implement/` |
+| verify | Phase 5 종합 검증 | `skills/verify/` |
+| check-team-codex | 팀 코덱스 검증 | `skills/check-team-codex/` |
+| validate-architecture | DDD 아키텍처 검증 | `skills/validate-architecture/` |
+| scaffold-domain | 도메인 구조 생성 | `skills/scaffold-domain/` |
+| fetch-supabase-example | Supabase 패턴 참조 | `skills/fetch-supabase-example/` |
+| git-workflow | Git 워크플로우 자동화 | `skills/git-workflow/` |
+| create-issues | GitHub Issues 생성 | `skills/create-issues/` |
+| project-kickoff | 프로젝트 시작 가이드 | `skills/project-kickoff/` |
+| migration-analyzer | 마이그레이션 분석 | `skills/migration-analyzer/` |
+| constitution | 프로젝트 헌법 | `skills/constitution/` |
 
 ### Commands
 
-| Command            | 역할                         | 파일                       |
-| ------------------ | ---------------------------- | -------------------------- |
-| /SAX:onboarding    | 신규 개발자 온보딩           | `commands/onboarding.md`   |
-| /SAX:health-check  | 개발 환경 검증               | `commands/health-check.md` |
-| /SAX:task-progress | 워크플로우 진행도 확인       | `commands/task-progress.md`|
-| /SAX:help          | 대화형 도우미                | `commands/help.md`         |
+| Command | 역할 | 파일 |
+|---------|------|------|
+| /SAX:onboarding | 신규 개발자 온보딩 | `commands/onboarding.md` |
+| /SAX:health-check | 개발 환경 검증 | `commands/health-check.md` |
+| /SAX:task-progress | 워크플로우 진행도 확인 | `commands/task-progress.md` |
+| /SAX:help | 대화형 도우미 | `commands/help.md` |
 
-## SAX Message Rules
+## PO 연동 (SAX-PO)
 
-이 패키지의 모든 Agent/Skill은 SAX 메시지 규칙을 준수합니다.
+SAX-PO에서 생성된 Epic은 다음과 같이 연동됩니다:
 
-📖 **상세**: [SAX Core MESSAGE_RULES.md](https://github.com/semicolon-devteam/docs/blob/main/sax/core/MESSAGE_RULES.md)
+1. **PO (SAX-PO)**: Epic 생성 → docs 레포에 이슈 생성
+2. **PO (SAX-PO)**: (선택) Spec 초안 생성
+3. **개발자 (SAX-Next)**: `/speckit.specify`로 spec.md 보완
+4. **개발자 (SAX-Next)**: `/speckit.plan`, `/speckit.tasks`
+5. **개발자 (SAX-Next)**: `skill:implement`로 구현
+6. **개발자 (SAX-Next)**: `skill:verify`로 검증
 
 ## Installation & Update
 
 ### 설치 방법
 
 ```bash
-# 대상 레포로 이동 (예: cm-land)
-cd semicolon-devteam/cm-land
+# docs 레포에서 deploy.sh 사용 (권장)
+cd /path/to/semicolon/docs
+./sax/scripts/deploy.sh sax-next /path/to/project
 
-# .claude 디렉토리 생성 (없으면)
-mkdir -p .claude/agents .claude/skills
-
-# SAX-Next 패키지 복사
-cp docs/sax/packages/sax-next/CLAUDE.md .claude/
-cp -r docs/sax/packages/sax-next/agents/* .claude/agents/
-cp -r docs/sax/packages/sax-next/skills/* .claude/skills/
+# 또는 수동 설치
+cd /path/to/project
+mkdir -p .claude
+cp -r /path/to/docs/sax/core .claude/sax-core
+cp -r /path/to/docs/sax/packages/sax-next/* .claude/
 ```
 
 ### 업데이트 후 커밋 규칙
@@ -314,30 +136,11 @@ cp -r docs/sax/packages/sax-next/skills/* .claude/skills/
 📝 [SAX] Sync to vX.X.X
 ```
 
-**예시**:
-
-```text
-📝 [SAX] Sync to v1.5.0
-```
-
-## PO 연동 (SAX-PO)
-
-SAX-PO에서 생성된 Epic은 다음과 같이 연동됩니다:
-
-1. **PO (SAX-PO)**: Epic 생성 → docs 레포에 이슈 생성
-2. **PO (SAX-PO)**: (선택) Spec 초안 생성
-3. **개발자 (SAX-Next)**: `/speckit.specify`로 spec.md 보완
-4. **개발자 (SAX-Next)**: `/speckit.plan`, `/speckit.tasks`
-5. **개발자 (SAX-Next)**: `implementation-master`로 구현
-6. **개발자 (SAX-Next)**: `quality-master`로 검증
-7. **개발자/PO**: `skill:sync-tasks`로 GitHub Issues 동기화
-
 ## References
 
 - [SAX Core - Principles](https://github.com/semicolon-devteam/docs/blob/main/sax/core/PRINCIPLES.md)
-- [SAX Core - Packaging](https://github.com/semicolon-devteam/docs/blob/main/sax/core/PACKAGING.md)
 - [SAX Core - Message Rules](https://github.com/semicolon-devteam/docs/blob/main/sax/core/MESSAGE_RULES.md)
-- [SAX Core - Team Rules](https://github.com/semicolon-devteam/docs/blob/main/sax/core/TEAM_RULES.md)
-- [SAX Changelog](https://github.com/semicolon-devteam/docs/blob/main/sax/CHANGELOG.md)
+- [SAX Core - Packaging](https://github.com/semicolon-devteam/docs/blob/main/sax/core/PACKAGING.md)
+- [SAX Changelog Index](https://github.com/semicolon-devteam/docs/blob/main/sax/CHANGELOG/INDEX.md)
 - [Team Codex](https://github.com/semicolon-devteam/docs/wiki/Team-Codex)
 - [Development Philosophy](https://github.com/semicolon-devteam/docs/wiki/Development-Philosophy)
