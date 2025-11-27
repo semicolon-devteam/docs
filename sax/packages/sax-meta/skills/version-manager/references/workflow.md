@@ -1,6 +1,6 @@
 # Workflow
 
-> version-manager의 6단계 버저닝 프로세스
+> version-manager의 7단계 버저닝 프로세스
 
 ## Input Schema
 
@@ -81,16 +81,37 @@ cat sax/VERSION
 echo "{new_version}" > sax/VERSION
 ```
 
+## Phase 7: 커밋
+
+```bash
+# 변경사항 스테이징
+git add sax/VERSION sax/CHANGELOG/
+
+# 버전 커밋
+git commit -m "📝 [SAX] v{new_version}"
+```
+
+**커밋 메시지 형식**: `📝 [SAX] v{new_version}`
+
+**포함 파일**:
+
+- `sax/VERSION`
+- `sax/CHANGELOG/{new_version}.md`
+- `sax/CHANGELOG/INDEX.md`
+
 ## Validation
 
 **버저닝 전**:
+
 - ✅ VERSION 파일 존재
 - ✅ CHANGELOG/ 디렉토리 존재
 - ✅ INDEX.md 파일 존재
 - ✅ changes 배열 비어있지 않음
 
 **버저닝 후**:
+
 - ✅ VERSION 파일 업데이트 확인
 - ✅ CHANGELOG/{new_version}.md 생성 확인
 - ✅ INDEX.md Latest Version 업데이트 확인
 - ✅ Keep a Changelog 형식 준수 확인
+- ✅ 커밋 완료 확인 (`git log -1`)
