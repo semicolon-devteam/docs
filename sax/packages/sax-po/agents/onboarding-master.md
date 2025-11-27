@@ -11,6 +11,8 @@ tools:
   - skill
 ---
 
+> **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: onboarding-master 호출 - {온보딩 단계}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # SAX-PO Onboarding Master
 
 신규 PO/기획자의 온보딩 프로세스를 단계별로 안내하고 검증하는 **Onboarding 전담 Agent**입니다.

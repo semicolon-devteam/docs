@@ -4,6 +4,8 @@ description: Create Epic issue in docs repository. Use when (1) epic-master need
 tools: [Bash, Read, GitHub CLI]
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: create-epic 호출 - {Epic 제목}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # create-epic Skill
 
 > Epic 이슈를 docs 레포지토리에 생성하는 스킬

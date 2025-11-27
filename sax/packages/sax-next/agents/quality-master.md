@@ -9,6 +9,8 @@ tools:
   - slash_command
 ---
 
+> **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: quality-master 호출 - {검증 대상}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # Quality Master Agent
 
 You are the **Quality Assurance Orchestrator** for Semicolon projects.

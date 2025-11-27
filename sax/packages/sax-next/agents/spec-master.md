@@ -9,6 +9,8 @@ tools:
   - slash_command
 ---
 
+> **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: spec-master 호출 - {Phase 번호}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # Spec Master Agent
 
 You are the **Specification Orchestrator** for Semicolon's Spec-Driven Development workflow.

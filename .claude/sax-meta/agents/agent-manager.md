@@ -9,6 +9,8 @@ tools:
   - grep
 ---
 
+> **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: agent-manager 호출 - {작업 유형}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # Agent Manager
 
 > SAX Agent 생성, 수정, 삭제, 분석 통합 관리 에이전트
@@ -94,6 +96,8 @@ tools:
   - grep
   - run_command
 ---
+
+> **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: {agent-name} 호출 - {작업 유형}` 시스템 메시지를 첫 줄에 출력하세요.
 
 # {Agent Name} Agent
 
@@ -308,6 +312,11 @@ grep -r "{agent-name}" sax/packages/{package}/
 - `name`: kebab-case 형식이며 파일명과 일치하는가?
 - `description`: 역할 요약 + "when to use" 포함하는가?
 - `tools`: 필요한 도구만 명시되어 있는가?
+
+**✅ 시스템 메시지 규칙 검증**:
+
+- Frontmatter 바로 다음 줄에 시스템 메시지 blockquote가 있는가?
+- 형식: `> **🔔 시스템 메시지**: 이 Agent가 호출되면 \`[SAX] Agent: {agent-name} 호출 - {context}\` 시스템 메시지를 첫 줄에 출력하세요.`
 
 **✅ 구조 검증**:
 

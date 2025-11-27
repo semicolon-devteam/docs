@@ -13,6 +13,8 @@ triggers:
   - "{이슈번호}번 이슈로 브랜치 만들어줘"
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: git-workflow 호출 - {작업 유형}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # Git Workflow Skill
 
 Git 작업을 Semicolon 팀 표준에 맞게 자동화합니다.

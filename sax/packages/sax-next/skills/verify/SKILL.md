@@ -5,6 +5,8 @@ tools: [Bash, Read, Grep, GitHub CLI]
 location: project
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: verify 호출 - {검증 유형}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # Verify Skill
 
 **Purpose**: Multi-layered quality verification before PR submission with integrated spec analysis

@@ -4,6 +4,8 @@ description: Create Design Task Issue in service repository. Use when (1) Epic h
 tools: [Bash, GitHub CLI]
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: create-design-task 호출 - {Epic 번호}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # create-design-task Skill
 
 > 디자인 Task Issue 생성

@@ -6,17 +6,24 @@
 
 ### SAX-Meta 활성화
 
-**트리거**: 메시지 첫 줄이 `Semicolon AX` 또는 `SAX` 단독으로 시작하고, 두 줄 띄운 경우
+**트리거**: 첫 메시지가 `[Semicolon AX]` 또는 `[SAX]` 또는 단독으로 시작하는 경우
 
 **예시**:
 ```
-Semicolon AX
+[Semicolon AX] 교육용 Agent 추가해줘
+```
+```
+[Semicolon AX] 
 
-Agent 추가해줘
+Sub Agent들이 에이전트 생성 규칙에 맞게 생성됐는지 확인해줘
 ```
 
 ```
-SAX
+[SAX] 새 버전 릴리스해줘
+```
+
+```
+[SAX] 
 
 새 버전 릴리스해줘
 ```

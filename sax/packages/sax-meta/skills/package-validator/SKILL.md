@@ -4,6 +4,8 @@ description: SAX 패키지 구조 및 규칙 준수 검증. Use when (1) Agent/S
 tools: [Bash, Read, Grep]
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: package-validator 호출 - {검증 대상 패키지}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # package-validator Skill
 
 > SAX 패키지 구조 및 규칙 준수 자동 검증

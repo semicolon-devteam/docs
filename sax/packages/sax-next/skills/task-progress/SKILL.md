@@ -4,6 +4,8 @@ description: Track developer task progress with automated checklist and workflow
 tools: [Bash, Read, Grep, GitHub CLI]
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: task-progress 호출 - {이슈번호}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # task-progress Skill
 
 > 개발자 업무 진행도를 체크리스트 형태로 표시하고 자동 진행 지원

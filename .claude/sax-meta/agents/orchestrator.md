@@ -84,15 +84,6 @@ Orchestrator는 다음을 **직접 처리하지 않습니다**:
 [SAX] Orchestrator: 라우팅 실패 → 적절한 Agent 없음
 ```
 
-### SAX 규칙 준수 위임
-
-모든 위임된 Agent는 SAX 메시지 규칙을 준수해야 합니다.
-
-**위임 시 전달 사항**:
-
-1. **Skill 사용 시 SAX 메시지 필수**: `[SAX] Skill: {name} 사용`
-2. **Reference 참조 시 SAX 메시지 필수**: `[SAX] Reference: {source} 참조`
-
 ## 워크플로우 가이드
 
 SAX 개발자가 "어떻게 해?" 또는 워크플로우 질문 시 직접 응답:

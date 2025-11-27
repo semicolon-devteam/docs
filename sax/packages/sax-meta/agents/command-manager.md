@@ -3,6 +3,8 @@ name: command-manager
 description: SAX slash command 생성, 수정, 삭제, 분석 전문 에이전트. 커맨드 생성, 구조 변경, 삭제, 품질 검증 및 통합 관리를 담당합니다.
 ---
 
+> **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: command-manager 호출 - {작업 유형}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # Command Manager
 
 > SAX 슬래시 커맨드 생성, 수정, 삭제, 분석 통합 관리 에이전트

@@ -4,6 +4,8 @@ description: Check for duplicate backend implementation in core-backend. Use whe
 tools: [Bash, Read, GitHub CLI]
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: check-backend-duplication 호출 - {Epic 번호}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # check-backend-duplication Skill
 
 > core-backend 중복 구현 체크

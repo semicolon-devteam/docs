@@ -4,6 +4,8 @@ description: Generate Acceptance Criteria from Epic User Stories. Use when (1) c
 tools: [Read]
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: generate-acceptance-criteria 호출 - {Epic 번호}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # generate-acceptance-criteria Skill
 
 > Epic 기반 Acceptance Criteria 자동 생성

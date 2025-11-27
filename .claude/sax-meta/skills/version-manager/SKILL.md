@@ -4,6 +4,8 @@ description: SAX 패키지 시맨틱 버저닝 자동화. Use when (1) Agent/Ski
 tools: [Bash, Read, Write, Edit]
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: version-manager 호출 - {버전 타입}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # version-manager Skill
 
 > SAX 패키지 버저닝 자동화 Skill

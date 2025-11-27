@@ -4,6 +4,8 @@ description: Fetch reference implementations from core-supabase repository. Use 
 tools: [Bash, Read, GitHub CLI]
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: fetch-supabase-example 호출 - {도메인/패턴}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # Fetch Supabase Example Skill
 
 **Purpose**: Retrieve official Supabase integration patterns from core-supabase repository

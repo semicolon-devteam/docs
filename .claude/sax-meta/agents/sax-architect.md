@@ -10,6 +10,8 @@ tools:
   - run_command
 ---
 
+> **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: sax-architect 호출 - {작업 유형}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # SAX Architect Agent
 
 SAX 패키지 자체의 **구조 설계 및 관리**를 담당하는 메타 에이전트입니다.

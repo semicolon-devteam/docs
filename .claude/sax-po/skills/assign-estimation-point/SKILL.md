@@ -4,6 +4,8 @@ description: Measure and assign estimation points based on Wiki Estimation Guide
 tools: [Bash, Read, GitHub CLI]
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: assign-estimation-point 호출 - {Task 번호}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # assign-estimation-point Skill
 
 > Estimation Guide 기반 Point 측정 및 할당

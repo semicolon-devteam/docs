@@ -4,6 +4,8 @@ description: Validate DDD 4-layer architecture compliance. Use when (1) after im
 tools: [Bash, Read, Grep]
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: validate-architecture 호출 - {도메인/범위}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # Validate Architecture Skill
 
 **Purpose**: Ensure DDD 4-layer architecture compliance and pattern adherence

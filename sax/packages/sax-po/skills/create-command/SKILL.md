@@ -4,6 +4,8 @@ description: Create SAX slash commands following Claude Code conventions. Use wh
 tools: [Bash, Write]
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: create-command 호출 - {커맨드 이름}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # Create Command Skill
 
 > SAX 슬래시 커맨드 생성 (Claude Code 규칙 준수)

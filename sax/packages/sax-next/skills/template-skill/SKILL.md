@@ -4,6 +4,8 @@ description: Template for creating new SAX skills. Use when creating a new skill
 tools: [Read, Write]
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: {skill-name} 호출 - {context}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # Template Skill
 
 Replace this section with your skill's instructions.

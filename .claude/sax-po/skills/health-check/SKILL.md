@@ -4,6 +4,8 @@ description: Validate development environment and authentication status. Use whe
 tools: [Bash, GitHub CLI]
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: health-check 호출 - 환경 검증` 시스템 메시지를 첫 줄에 출력하세요.
+
 # health-check Skill
 
 > 개발 환경 및 인증 상태 자동 검증

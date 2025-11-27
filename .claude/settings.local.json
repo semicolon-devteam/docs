@@ -9,7 +9,16 @@
       "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/sax/packages/sax-po/ )",
       "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/.claude/sax-po/)",
       "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/sax/packages/sax-meta/ )",
-      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/.claude/sax-meta/)"
+      "Bash(/Users/jeonjunyeong/Desktop/Sources/semicolon/docs/.claude/sax-meta/)",
+      "Bash(gh api:*)",
+      "Bash(rsync:*)",
+      "Bash(mv:*)",
+      "Bash(cat:*)",
+      "Bash(mkdir:*)",
+      "Bash(for skill in sax/packages/sax-po/skills/*/SKILL.md)",
+      "Bash(do echo \"=== $skill ===\" head -10 \"$skill\")",
+      "Bash(find sax/packages/sax-po/skills -name \"SKILL.md\" -exec sh -c 'echo \"\"=== {} ===\"\" && head -10 \"\"{}\"\" | grep -A1 \"\"description:\"\" && echo \"\"\"\"' ;)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []

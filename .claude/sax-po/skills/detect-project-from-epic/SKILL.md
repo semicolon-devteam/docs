@@ -4,6 +4,8 @@ description: Detect project labels from source Epic during migration. Use when (
 tools: [Bash, GitHub CLI]
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: detect-project-from-epic 호출 - {Epic 번호}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # detect-project-from-epic Skill
 
 > 이식할 Epic의 프로젝트 라벨 감지

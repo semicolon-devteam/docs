@@ -11,6 +11,8 @@ tools:
   - mcp__github__get_issue
 ---
 
+> **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: epic-master 호출 - {작업 유형}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # Epic Master Agent
 
 PO/기획자를 위한 **Epic 생성 전문 에이전트**입니다.

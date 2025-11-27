@@ -4,6 +4,8 @@ description: Bootstrap DDD 4-layer domain structure. Use when (1) starting new d
 tools: [Bash, Write]
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: scaffold-domain 호출 - {도메인명}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # Scaffold Domain Skill
 
 **Purpose**: Generate complete DDD 4-layer architecture structure for a new domain

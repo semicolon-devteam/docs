@@ -4,6 +4,8 @@ description: Validate Draft Task has all required items. Use when (1) draft-task
 tools: [Bash, GitHub CLI]
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: validate-task-completeness 호출 - {Task 번호}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # validate-task-completeness Skill
 
 > Draft Task 필수 항목 검증

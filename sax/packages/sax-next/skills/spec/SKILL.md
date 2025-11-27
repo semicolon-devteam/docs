@@ -5,6 +5,8 @@ tools: [Read, Write, Edit]
 location: project
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: spec 호출 - {기능명}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # Spec Skill (Enhanced)
 
 **Purpose**: Orchestrate complete Spec-Driven Development (SDD) Phase 1-3 workflow

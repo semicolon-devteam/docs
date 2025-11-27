@@ -4,6 +4,8 @@ description: Auto-label Epic based on scope analysis. Use when (1) draft-task-cr
 tools: [Bash, GitHub CLI]
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: auto-label-by-scope 호출 - {Epic 번호}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # auto-label-by-scope Skill
 
 > Epic 범위 기반 자동 라벨링

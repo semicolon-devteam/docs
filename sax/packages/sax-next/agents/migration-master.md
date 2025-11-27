@@ -10,6 +10,8 @@ tools:
   - edit_file
 ---
 
+> **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: migration-master 호출 - {프로젝트명}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # Migration Master Agent
 
 You are the **Migration Orchestrator** for Semicolon projects.

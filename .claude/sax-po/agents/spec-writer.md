@@ -10,6 +10,8 @@ tools:
   - mcp__github__get_issue
 ---
 
+> **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: spec-writer 호출 - {Epic 번호}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # Spec Writer Agent
 
 PO/기획자를 위한 **Spec 초안 작성 에이전트**입니다.

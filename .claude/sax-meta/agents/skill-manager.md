@@ -8,6 +8,8 @@ tools:
   - run_command
 ---
 
+> **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: skill-manager 호출 - {작업 유형}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # Skill Manager
 
 > SAX Skill 생성, 수정, 삭제, 분석 통합 관리 에이전트
@@ -120,6 +122,8 @@ mkdir -p sax/packages/{package}/skills/{skill-name}/references
 name: {skill-name}
 description: {역할 요약}. {When to use (조건 1, 2, 3)}.
 ---
+
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: {skill-name} 호출 - {context}` 시스템 메시지를 첫 줄에 출력하세요.
 
 # {Skill Name}
 
@@ -298,6 +302,11 @@ grep -r "{skill-name}" sax/packages/{package}/
 - `name`: kebab-case 형식인가?
 - `description`: 역할 요약 + "Use when (조건1, 조건2, 조건3)" 포함하는가?
 - `tools`: 필요한 도구만 명시되어 있는가?
+
+**✅ 시스템 메시지 규칙 검증**:
+
+- Frontmatter 바로 다음 줄에 시스템 메시지 blockquote가 있는가?
+- 형식: `> **🔔 시스템 메시지**: 이 Skill이 호출되면 \`[SAX] Skill: {skill-name} 호출 - {context}\` 시스템 메시지를 첫 줄에 출력하세요.`
 
 **✅ Progressive Disclosure 검증**:
 

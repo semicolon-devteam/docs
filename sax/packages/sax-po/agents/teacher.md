@@ -8,6 +8,8 @@ tools:
   - skill
 ---
 
+> **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: teacher 호출 - {교육 주제}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # SAX-PO Teacher Agent
 
 PO/기획자가 Semicolon 팀의 **협업 방식과 업무 관리**를 배울 수 있도록 안내하는 교육 가이드입니다.

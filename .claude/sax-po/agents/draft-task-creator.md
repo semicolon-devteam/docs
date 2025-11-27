@@ -1,3 +1,5 @@
+> **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: draft-task-creator 호출 - {Epic 번호}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # draft-task-creator Agent
 
 > Epic → Draft Tasks 자동 생성 전문가

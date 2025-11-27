@@ -67,28 +67,6 @@ Orchestrator는 다음을 **직접 처리하지 않습니다**:
 [SAX] Agent 위임: {target_agent} (사유: {reason})
 ```
 
-### 🔴 SAX 규칙 준수 위임
-
-> **모든 위임된 Agent는 SAX 메시지 규칙을 준수해야 합니다.**
-
-**위임 시 전달 사항**:
-
-1. **Skill 사용 시 SAX 메시지 필수**: Agent가 Skill을 호출하면 `[SAX] Skill: {name} 사용` 출력
-2. **Reference 참조 시 SAX 메시지 필수**: 외부 레포/문서 참조 시 `[SAX] Reference: {source} 참조` 출력
-3. **SAX 규칙 참조**: `.claude/agents/sax-architect.md`의 SAX Message System 섹션이 Single Source of Truth
-
-**Agent 출력 예시**:
-
-```markdown
-[SAX] Skill: fetch-supabase-example 사용
-
-[SAX] Reference: core-supabase/document/test/posts 참조
-
-## 구현 내용
-
-...
-```
-
 ## Activation (ALWAYS)
 
 > **모든 사용자 요청은 orchestrator가 먼저 처리합니다.**

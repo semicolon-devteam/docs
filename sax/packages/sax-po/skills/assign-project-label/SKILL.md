@@ -4,6 +4,8 @@ description: Assign project labels to Epics and connect to GitHub Projects #1 ('
 tools: [Bash, GitHub CLI]
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: assign-project-label 호출 - {Epic 번호}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # Assign Project Label
 
 Assign project labels and connect Epics to GitHub Projects.

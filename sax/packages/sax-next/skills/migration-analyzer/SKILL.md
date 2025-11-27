@@ -9,6 +9,8 @@ triggers:
   - 세미콜론 표준에 맞게 리팩토링
 ---
 
+> **🔔 시스템 메시지**: 이 Skill이 호출되면 `[SAX] Skill: migration-analyzer 호출 - {프로젝트명}` 시스템 메시지를 첫 줄에 출력하세요.
+
 # Migration Analyzer Skill
 
 레거시 프로젝트를 세미콜론 커뮤니티 규격(cm-template)으로 이식하기 위한 분석 도구입니다.
