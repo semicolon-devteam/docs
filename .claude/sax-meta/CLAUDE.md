@@ -19,6 +19,47 @@
 
 > 📖 Core 문서는 `.claude/sax-core/` 디렉토리에서 자동 로드됩니다.
 
+## 🔴 SAX 개발 필수 원칙
+
+### 1. 세션 컨텍스트 비의존 원칙
+
+> **SAX는 세션 컨텍스트에 의지하지 않는다.**
+
+- 꼭 필요한 원칙과 규칙은 **sax-core**, **docs 레포지토리 내 문서**를 통해 참조되어야 함
+- Agent, Skill의 **Reference Chain** 안에서 모든 필수 정보가 접근 가능해야 함
+- 세션이 종료되거나 컨텍스트가 손실되어도 동일한 결과를 보장
+
+**Reference Chain 구조**:
+
+```text
+Agent/Skill → references/ → sax-core/ → docs 레포 문서
+```
+
+### 2. 중복 체크 필수 원칙
+
+> **어떤 문서를 생성하거나 수정하든, 반드시 중복 체크를 먼저 수행한다.**
+
+**체크 범위**:
+
+- `sax/core/` - Core 규칙 문서
+- `sax/packages/{package}/agents/` - Agent 정의
+- `sax/packages/{package}/skills/` - Skill 정의
+- `docs/` 레포지토리 내 관련 문서 (wiki 포함)
+
+**체크 항목**:
+
+- 동일/유사 규칙이 이미 존재하는가?
+- 기존 문서를 수정하는 것이 더 적절한가?
+- SoT(Source of Truth) 원칙을 위반하는 중복이 발생하는가?
+
+**중복 발견 시**:
+
+1. 기존 문서 수정 우선
+2. 새 문서 생성 시 기존 문서 참조(@import)
+3. 절대로 동일 내용을 복사하지 않음
+
+---
+
 ## Package Purpose
 
 SAX-Meta는 SAX 패키지 자체를 관리하고 개발하기 위한 **메타 패키지**입니다.
