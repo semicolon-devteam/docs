@@ -41,9 +41,9 @@ Agent/Skill → references/ → sax-core/ → docs 레포 문서
 
 **체크 범위**:
 
-- `sax/core/` - Core 규칙 문서
-- `sax/packages/{package}/agents/` - Agent 정의
-- `sax/packages/{package}/skills/` - Skill 정의
+- `.claude/sax-core/` - Core 규칙 문서 (로컬 설치 경로)
+- `agents/` - Agent 정의
+- `skills/` - Skill 정의
 - `docs/` 레포지토리 내 관련 문서 (wiki 포함)
 
 **체크 항목**:

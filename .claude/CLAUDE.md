@@ -1,4 +1,4 @@
-# SAX-Meta Configuration (docs 레포 전용)
+# SAX-Meta Package Configuration
 
 > SAX 패키지 자체 관리 및 개발을 위한 메타 패키지
 
@@ -18,22 +18,6 @@
 @sax-core/MESSAGE_RULES.md
 
 > 📖 Core 문서는 `.claude/sax-core/` 디렉토리에서 자동 로드됩니다.
-
-## 패키지 구조
-
-```text
-.claude/
-├── CLAUDE.md           # 이 파일 (SAX-Meta 설정)
-├── sax-core/           # SAX Core 규칙
-│   ├── PRINCIPLES.md
-│   ├── MESSAGE_RULES.md
-│   ├── PACKAGING.md
-│   └── TEAM_RULES.md
-├── agents/             # SAX-Meta Agents
-├── skills/             # SAX-Meta Skills
-├── scripts/            # 자동화 스크립트
-└── templates/          # 템플릿 파일
-```
 
 ## 🔴 SAX 개발 필수 원칙
 
@@ -57,10 +41,16 @@ Agent/Skill → references/ → sax-core/ → docs 레포 문서
 
 **체크 범위**:
 
-- `sax/core/` - Core 규칙 문서
-- `sax/packages/{package}/agents/` - Agent 정의
-- `sax/packages/{package}/skills/` - Skill 정의
+- `.claude/sax-core/` - Core 규칙 문서 (로컬 설치 경로)
+- `agents/` - Agent 정의
+- `skills/` - Skill 정의
 - `docs/` 레포지토리 내 관련 문서 (wiki 포함)
+
+**체크 항목**:
+
+- 동일/유사 규칙이 이미 존재하는가?
+- 기존 문서를 수정하는 것이 더 적절한가?
+- SoT(Source of Truth) 원칙을 위반하는 중복이 발생하는가?
 
 **중복 발견 시**:
 
@@ -93,7 +83,57 @@ Agent/Skill → references/ → sax-core/ → docs 레포 문서
 버저닝을 진행하려면: "버저닝 해줘" 또는 "릴리스해줘"
 ```
 
+**버저닝 미실행 시 경고**:
+
+- 세션 종료 전 버저닝하지 않으면 다음 세션에서 버저닝 누락 가능
+- 반드시 작업 세션 내에서 버저닝까지 완료할 것
+
 ---
+
+## Package Purpose
+
+SAX-Meta는 SAX 패키지 자체를 관리하고 개발하기 위한 **메타 패키지**입니다.
+
+### 대상 사용자
+
+- **SAX 개발자**: SAX 프레임워크를 개선하고 확장하는 개발자
+- **패키지 관리자**: SAX 패키지 구조, 버저닝, 배포를 담당하는 관리자
+
+### 비대상 사용자
+
+- ❌ **PO/기획자**: SAX-PO 패키지 사용
+- ❌ **Next.js 개발자**: SAX-Next 패키지 사용
+- ❌ **Spring 개발자**: SAX-Spring 패키지 사용
+
+## 설치 대상
+
+이 패키지는 `semicolon-devteam/docs` 레포지토리의 `.claude/` 디렉토리에 플랫 구조로 설치됩니다.
+
+### docs 레포 한정 동기화 규칙
+
+> ⚠️ **중요**: docs 레포지토리에서 SAX 패키지 개선 작업 시, 다음 위치들을 **동시에** 업데이트해야 합니다:
+
+| 위치 | 역할 |
+|------|------|
+| `.claude/` | SAX-Meta 실제 사용 (설치된 상태, 플랫 구조) |
+| `.claude/sax-core/` | SAX Core 실제 사용 (설치된 상태) |
+| `sax/core/` | SAX Core 패키지 소스 |
+| `sax/packages/sax-meta/` | SAX-Meta 패키지 소스 (배포용) |
+
+**동기화 명령**:
+
+```bash
+# Core 동기화 (필수)
+rsync -av --delete sax/core/ .claude/sax-core/
+
+# SAX-Meta 동기화 (플랫 구조)
+rsync -av --delete \
+  --exclude='sax-core' \
+  --exclude='settings.local.json' \
+  sax/packages/sax-meta/ .claude/
+```
+
+> 📝 **참고**: SAX-PO, SAX-Next는 각각 별도 레포지토리에 배포됩니다. docs 레포에는 소스(`sax/packages/`)만 관리합니다.
 
 ## Package Components
 
@@ -116,6 +156,12 @@ Agent/Skill → references/ → sax-core/ → docs 레포 문서
 | package-sync | 패키지 소스 → .claude 동기화 | `skills/package-sync/` |
 | package-deploy | 외부 프로젝트 SAX 배포 | `skills/package-deploy/` |
 
+### Scripts
+
+| Script | 역할 | 파일 |
+|--------|------|------|
+| sync_packages.sh | 패키지 동기화 자동화 | `scripts/sync_packages.sh` |
+
 ### Templates
 
 | Template | 역할 | 파일 |
@@ -124,33 +170,11 @@ Agent/Skill → references/ → sax-core/ → docs 레포 문서
 | skill-template | Skill 디렉토리 템플릿 | `templates/skill-template/` |
 | package-template | 패키지 구조 템플릿 | `templates/package-template/` |
 
-## docs 레포 동기화 규칙
+## Installation & Usage
 
-> ⚠️ **중요**: docs 레포지토리에서 SAX 패키지 개선 작업 시, 다음 위치들을 **동시에** 업데이트해야 합니다:
+### SAX-Meta 사용 방법
 
-| 위치 | 역할 |
-|------|------|
-| `.claude/` | SAX-Meta 실제 사용 (설치된 상태) |
-| `.claude/sax-core/` | SAX Core 실제 사용 (설치된 상태) |
-| `sax/core/` | SAX Core 패키지 소스 |
-| `sax/packages/sax-meta/` | SAX-Meta 패키지 소스 (배포용) |
-
-**동기화 명령**:
-
-```bash
-# Core 동기화 (필수)
-rsync -av --delete sax/core/ .claude/sax-core/
-
-# SAX-Meta 동기화 (플랫 구조)
-rsync -av --delete \
-  --exclude='sax-core' \
-  --exclude='settings.local.json' \
-  sax/packages/sax-meta/ .claude/
-```
-
-> 📝 **참고**: SAX-PO, SAX-Next는 각각 별도 레포지토리에 배포됩니다. docs 레포에는 소스(`sax/packages/`)만 관리합니다.
-
-## SAX-Meta 사용 방법
+SAX-Meta는 별도 설치가 필요 없습니다. docs 레포지토리에서 직접 사용합니다.
 
 docs 레포지토리에서 SAX 관련 작업 요청 시 자동으로 SAX-Meta 컨텍스트가 활성화됩니다.
 
@@ -161,7 +185,7 @@ docs 레포지토리에서 SAX 관련 작업 요청 시 자동으로 SAX-Meta �
 "Skill 구조 개선해줘"
 ```
 
-## 다른 패키지와의 관계
+### 다른 패키지와의 관계
 
 ```text
 SAX-Meta (메타 관리)
