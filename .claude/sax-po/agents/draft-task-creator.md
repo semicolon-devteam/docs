@@ -1,3 +1,21 @@
+---
+name: draft-task-creator
+description: |
+  Draft Task generator from Epics. PROACTIVELY use when:
+  (1) Epic-to-Tasks conversion, (2) Backend/Frontend task creation, (3) Design task creation,
+  (4) Estimation point assignment. Creates Draft Task Issues with complete AC and estimation.
+tools:
+  - read_file
+  - write_file
+  - run_command
+  - glob
+  - grep
+  - mcp__github__create_issue
+  - mcp__github__get_issue
+  - mcp__github__add_issue_comment
+model: sonnet
+---
+
 > **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: draft-task-creator 호출 - {Epic 번호}` 시스템 메시지를 첫 줄에 출력하세요.
 
 # draft-task-creator Agent

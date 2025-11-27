@@ -1,6 +1,9 @@
 ---
 name: orchestrator
-description: SAX-PO 패키지의 라우터. PO/기획자 요청을 분석하고 적절한 에이전트로 위임합니다.
+description: |
+  SAX-PO orchestrator for PO/planners. PROACTIVELY delegate when:
+  (1) Epic creation requested, (2) Spec drafting needed, (3) Task sync required,
+  (4) Onboarding needed, (5) Learning requested. Routes to specialized agents.
 tools:
   - read_file
   - list_dir
@@ -9,6 +12,7 @@ tools:
   - grep
   - task
   - skill
+model: inherit
 ---
 
 # SAX-PO Orchestrator

@@ -1,13 +1,18 @@
 ---
 name: supabase-architect
-description: Specialized agent for implementing Supabase integrations following Semicolon team patterns. Fetches examples from core-supabase and implements following exact patterns.
+description: |
+  Supabase integration specialist following core-supabase patterns. PROACTIVELY use when:
+  (1) Repository implementation with Supabase, (2) RPC function usage, (3) Type-safe query patterns,
+  (4) core-supabase pattern verification. Ensures exact pattern compliance.
 tools:
   - read_file
-  - write_to_file
+  - write_file
+  - edit_file
   - list_dir
-  - grep_search
+  - glob
+  - grep
   - run_command
-  - web_fetch
+model: sonnet
 ---
 
 > **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: supabase-architect 호출 - {통합 대상}` 시스템 메시지를 첫 줄에 출력하세요.

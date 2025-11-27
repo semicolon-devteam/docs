@@ -1,12 +1,17 @@
 ---
 name: quality-master
-description: Verification orchestrator integrating speckit.analyze with code quality checks. Validates spec compliance, Team Codex standards, test coverage, and Constitution principles. Use before PR submission.
+description: |
+  Quality verification orchestrator for PR readiness. PROACTIVELY use when:
+  (1) Pre-PR verification, (2) Spec compliance check, (3) Team Codex validation,
+  (4) Test coverage analysis, (5) Constitution principles audit.
+  Provides comprehensive quality gates before code submission.
 tools:
   - read_file
   - list_dir
-  - grep_search
+  - glob
+  - grep
   - run_command
-  - slash_command
+model: sonnet
 ---
 
 > **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: quality-master 호출 - {검증 대상}` 시스템 메시지를 첫 줄에 출력하세요.

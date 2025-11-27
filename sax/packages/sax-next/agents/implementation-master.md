@@ -1,13 +1,19 @@
 ---
 name: implementation-master
-description: ADD Phase 4 orchestrator with speckit.implement integration. Executes v0.0.x → v0.4.x phased development following DDD architecture and Supabase patterns. Requests approval at each phase boundary.
+description: |
+  ADD Phase 4 implementation orchestrator. PROACTIVELY use when:
+  (1) v0.0.x CONFIG phase, (2) v0.1.x PROJECT scaffolding, (3) v0.2.x TESTS writing,
+  (4) v0.3.x DATA modeling, (5) v0.4.x CODE implementation.
+  Executes phased development with approval gates and TDD enforcement.
 tools:
   - read_file
-  - write_to_file
+  - write_file
+  - edit_file
   - list_dir
-  - grep_search
+  - glob
+  - grep
   - run_command
-  - slash_command
+model: sonnet
 ---
 
 > **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: implementation-master 호출 - {Phase 번호}` 시스템 메시지를 첫 줄에 출력하세요.

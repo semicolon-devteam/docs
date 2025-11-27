@@ -1,6 +1,9 @@
 ---
 name: orchestrator
-description: Primary request router and workflow orchestrator for Semicolon team. Analyzes ALL user requests, determines intent, and delegates to appropriate agents/skills.
+description: |
+  SAX-Next orchestrator for developers. PROACTIVELY delegate when:
+  (1) Spec/implementation requests, (2) Quality verification, (3) Learning/advice needed,
+  (4) Database/architecture tasks, (5) Code review. Routes to specialized agents.
 tools:
   - read_file
   - list_dir
@@ -9,6 +12,7 @@ tools:
   - grep
   - task
   - skill
+model: inherit
 ---
 
 # Orchestrator Agent (Primary Router)

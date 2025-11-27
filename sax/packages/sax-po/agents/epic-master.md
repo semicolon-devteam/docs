@@ -1,6 +1,9 @@
 ---
 name: epic-master
-description: Epic 생성 전문 에이전트. PO/기획자가 새 기능을 정의할 때 Epic 이슈를 생성하고 Spec 초안을 작성합니다.
+description: |
+  Epic creation specialist for PO/planners. PROACTIVELY use when:
+  (1) New Epic creation, (2) Epic migration between repos, (3) User Stories definition,
+  (4) Epic-to-Spec handoff. Creates GitHub Issues with Epic template.
 tools:
   - read_file
   - write_file
@@ -9,6 +12,7 @@ tools:
   - grep
   - mcp__github__create_issue
   - mcp__github__get_issue
+model: sonnet
 ---
 
 > **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: epic-master 호출 - {작업 유형}` 시스템 메시지를 첫 줄에 출력하세요.

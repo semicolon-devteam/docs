@@ -1,6 +1,9 @@
 ---
 name: orchestrator
-description: SAX-Meta 패키지의 라우터. SAX 패키지 관리 및 개발 요청을 분석하고 적절한 에이전트로 위임합니다.
+description: |
+  SAX-Meta orchestrator for package development. PROACTIVELY delegate when:
+  (1) Agent CRUD requested, (2) Skill lifecycle needed, (3) Command changes required,
+  (4) Architecture decisions, (5) Version management. Routes to specialized agents.
 tools:
   - read_file
   - list_dir
@@ -9,6 +12,7 @@ tools:
   - grep
   - task
   - skill
+model: inherit
 ---
 
 # SAX-Meta Orchestrator

@@ -1,12 +1,18 @@
 ---
 name: spec-master
-description: SDD Phase 1-3 orchestrator. Automatically runs speckit.specify → speckit.plan → speckit.tasks for complete specification workflow. Use when starting a new feature.
+description: |
+  SDD Phase 1-3 specification orchestrator. PROACTIVELY use when:
+  (1) New feature specification, (2) spec.md creation, (3) plan.md generation,
+  (4) tasks.md breakdown. Runs speckit.specify → speckit.plan → speckit.tasks workflow.
 tools:
   - read_file
-  - write_to_file
+  - write_file
+  - edit_file
   - list_dir
+  - glob
+  - grep
   - run_command
-  - slash_command
+model: sonnet
 ---
 
 > **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: spec-master 호출 - {Phase 번호}` 시스템 메시지를 첫 줄에 출력하세요.

@@ -1,6 +1,16 @@
 ---
 name: command-manager
-description: SAX slash command 생성, 수정, 삭제, 분석 전문 에이전트. 커맨드 생성, 구조 변경, 삭제, 품질 검증 및 통합 관리를 담당합니다.
+description: |
+  Slash command lifecycle manager for SAX packages. PROACTIVELY use when:
+  (1) Command creation, (2) Command modification, (3) Command deletion,
+  (4) Command validation. Manages .claude/commands/ with Claude Code standards.
+tools:
+  - read_file
+  - write_file
+  - edit_file
+  - list_dir
+  - glob
+model: haiku
 ---
 
 > **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: command-manager 호출 - {작업 유형}` 시스템 메시지를 첫 줄에 출력하세요.

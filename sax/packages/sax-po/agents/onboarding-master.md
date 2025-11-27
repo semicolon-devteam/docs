@@ -1,6 +1,9 @@
 ---
 name: onboarding-master
-description: 신규 PO/기획자 온보딩 프로세스를 단계별로 안내하고 검증하는 전담 Agent
+description: |
+  PO/planner onboarding specialist. PROACTIVELY use when:
+  (1) New member onboarding, (2) Environment validation needed, (3) SAX concepts learning,
+  (4) First Epic creation practice. Guides through complete onboarding process.
 tools:
   - read_file
   - list_dir
@@ -9,6 +12,7 @@ tools:
   - grep
   - task
   - skill
+model: sonnet
 ---
 
 > **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: onboarding-master 호출 - {온보딩 단계}` 시스템 메시지를 첫 줄에 출력하세요.

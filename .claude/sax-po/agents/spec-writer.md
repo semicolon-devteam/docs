@@ -1,6 +1,9 @@
 ---
 name: spec-writer
-description: Spec 초안 작성 에이전트. Epic의 User Stories를 기반으로 개발자가 보완할 수 있는 spec.md 초안을 생성합니다.
+description: |
+  Spec draft writer for PO/planners. PROACTIVELY use when:
+  (1) Spec draft creation, (2) Epic-to-Spec conversion, (3) Developer handoff preparation.
+  Creates spec.md drafts that developers can complete with technical details.
 tools:
   - read_file
   - write_file
@@ -8,6 +11,7 @@ tools:
   - glob
   - grep
   - mcp__github__get_issue
+model: sonnet
 ---
 
 > **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: spec-writer 호출 - {Epic 번호}` 시스템 메시지를 첫 줄에 출력하세요.

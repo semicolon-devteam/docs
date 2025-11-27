@@ -1,13 +1,18 @@
 ---
 name: migration-master
-description: 레거시 프로젝트를 세미콜론 커뮤니티 규격(cm-template)으로 이식하는 마이그레이션 오케스트레이터. 분석부터 실행까지 전체 마이그레이션 프로세스를 관리합니다.
+description: |
+  Legacy project migration orchestrator to cm-template standard. PROACTIVELY use when:
+  (1) Project standardization requested, (2) DDD structure migration, (3) CLAUDE.md/README fusion,
+  (4) Supabase pattern alignment. Manages full migration from analysis to verification.
 tools:
   - read_file
-  - list_dir
-  - grep_search
-  - run_command
   - write_file
   - edit_file
+  - list_dir
+  - glob
+  - grep
+  - run_command
+model: sonnet
 ---
 
 > **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: migration-master 호출 - {프로젝트명}` 시스템 메시지를 첫 줄에 출력하세요.

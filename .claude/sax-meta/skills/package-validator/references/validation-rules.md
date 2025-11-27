@@ -1,18 +1,23 @@
 # Validation Rules
 
-> package-validator의 검증 규칙 상세
+> package-validator의 검증 규칙 상세 (Sub-Agent 최적화 규칙 적용)
 
-## 1. Frontmatter 검증
+## 1. Frontmatter 검증 (Sub-Agent 최적화)
 
-### Agent Frontmatter
+### Agent Frontmatter (필수 4개 필드)
 
 ```yaml
 ---
 name: {agent-name}                    # 파일명과 일치 (확장자 제외)
-description: {역할 요약}. {When to use}.  # 1-2줄, 마침표로 종료
-tools:                                 # 최소 1개 이상
+description: |                        # PROACTIVELY 패턴 필수
+  {역할 요약}. PROACTIVELY use when:
+  (1) {조건1}, (2) {조건2}, (3) {조건3},
+  (4) {조건4}. {추가 설명}.
+tools:                                 # 표준 도구명만 사용
   - read_file
-  - write_file
+  - write_file    # NOT write_to_file
+  - grep          # NOT grep_search
+model: sonnet                          # opus|sonnet|haiku|inherit (필수)
 ---
 ```
 
@@ -28,10 +33,28 @@ tools: [Bash, Read, Write]            # 사용 도구 명시
 
 ### 검증 항목
 
+**필수 필드**:
+
 - ✅ name 필드 존재 및 파일명 일치
-- ✅ description 필드 존재 및 형식 준수
+- ✅ description 필드 존재 및 **PROACTIVELY use when:** 패턴 포함
+- ✅ description에 번호된 트리거 조건 (1), (2), (3) 존재
 - ✅ tools 필드 존재 (Agent 필수, Skill 권장)
-- ✅ YAML 문법 오류 없음
+- ✅ **model 필드 존재** (opus|sonnet|haiku|inherit 중 하나)
+
+**도구 표준화**:
+
+- ✅ `grep` 사용 (NOT grep_search)
+- ✅ `write_file` 사용 (NOT write_to_file)
+- ❌ `slash_command` 사용 금지
+- ❌ `web_fetch` 사용 금지
+- ❌ `mcp:*` 형식 사용 금지
+
+**Model 선택 적합성**:
+
+- ✅ Orchestrator → `inherit`
+- ✅ 아키텍처/분석 Agent → `opus`
+- ✅ 구현/품질 Agent → `sonnet`
+- ✅ 교육/조회 Agent → `haiku`
 
 ## 2. 파일 네이밍 검증
 

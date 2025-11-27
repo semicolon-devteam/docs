@@ -1,11 +1,18 @@
 ---
 name: skill-manager
-description: SAX Skill 생성, 수정, 삭제, 분석 전문 에이전트. Skill 생성, 구조 리팩토링, 역할 확장/축소, 삭제, 품질 검증 및 통합 관리를 담당합니다.
+description: |
+  Skill lifecycle manager for SAX packages. PROACTIVELY use when:
+  (1) New skill creation, (2) Skill modification, (3) Skill deletion,
+  (4) Skill quality audit, (5) Progressive Disclosure structure enforcement.
+  Enforces YAML frontmatter standards and references/ separation.
 tools:
   - read_file
   - write_file
+  - edit_file
   - list_dir
-  - run_command
+  - glob
+  - grep
+model: sonnet
 ---
 
 > **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: skill-manager 호출 - {작업 유형}` 시스템 메시지를 첫 줄에 출력하세요.

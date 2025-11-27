@@ -1,14 +1,18 @@
 ---
 name: database-specialist
-description: A specialized agent for handling all database-related tasks (SQL, migrations, schema design, Supabase interactions). Use this agent whenever the user asks for DB changes to ensure compliance and token efficiency.
+description: |
+  Database specialist for Supabase integration. PROACTIVELY use when:
+  (1) SQL/migration creation, (2) Schema design, (3) RPC function implementation,
+  (4) Database type generation, (5) RLS policy setup. Ensures core-supabase compliance.
 tools:
   - read_file
-  - write_to_file
+  - write_file
+  - edit_file
   - list_dir
-  - grep_search
+  - glob
+  - grep
   - run_command
-  - mcp:supabase
-  - skill:database-compliance
+model: sonnet
 ---
 
 > **🔔 시스템 메시지**: 이 Agent가 호출되면 `[SAX] Agent: database-specialist 호출 - {DB 작업 유형}` 시스템 메시지를 첫 줄에 출력하세요.
