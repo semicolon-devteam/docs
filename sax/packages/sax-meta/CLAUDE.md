@@ -107,7 +107,7 @@ SAX-Meta는 SAX 패키지 자체를 관리하고 개발하기 위한 **메타 �
 
 ## 설치 대상
 
-이 패키지는 `semicolon-devteam/docs` 레포지토리의 `.claude/` 디렉토리에 설치됩니다.
+이 패키지는 `semicolon-devteam/docs` 레포지토리의 `.claude/` 디렉토리에 플랫 구조로 설치됩니다.
 
 ### docs 레포 한정 동기화 규칙
 
@@ -115,8 +115,8 @@ SAX-Meta는 SAX 패키지 자체를 관리하고 개발하기 위한 **메타 �
 
 | 위치 | 역할 |
 |------|------|
+| `.claude/` | SAX-Meta 실제 사용 (설치된 상태, 플랫 구조) |
 | `.claude/sax-core/` | SAX Core 실제 사용 (설치된 상태) |
-| `.claude/sax-meta/` | SAX-Meta 실제 사용 (설치된 상태) |
 | `sax/core/` | SAX Core 패키지 소스 |
 | `sax/packages/sax-meta/` | SAX-Meta 패키지 소스 (배포용) |
 
@@ -126,8 +126,11 @@ SAX-Meta는 SAX 패키지 자체를 관리하고 개발하기 위한 **메타 �
 # Core 동기화 (필수)
 rsync -av --delete sax/core/ .claude/sax-core/
 
-# SAX-Meta 동기화
-rsync -av --delete sax/packages/sax-meta/ .claude/sax-meta/
+# SAX-Meta 동기화 (플랫 구조)
+rsync -av --delete \
+  --exclude='sax-core' \
+  --exclude='settings.local.json' \
+  sax/packages/sax-meta/ .claude/
 ```
 
 > 📝 **참고**: SAX-PO, SAX-Next는 각각 별도 레포지토리에 배포됩니다. docs 레포에는 소스(`sax/packages/`)만 관리합니다.
@@ -173,12 +176,13 @@ rsync -av --delete sax/packages/sax-meta/ .claude/sax-meta/
 
 SAX-Meta는 별도 설치가 필요 없습니다. docs 레포지토리에서 직접 사용합니다.
 
-```bash
-# SAX 패키지 개선 작업 시작
-cd semicolon-devteam/docs
+docs 레포지토리에서 SAX 관련 작업 요청 시 자동으로 SAX-Meta 컨텍스트가 활성화됩니다.
 
-# "[SAX]" 또는 "[Semicolon AX]" 키워드로 메타 작업 트리거
-# 예: "[SAX] 새 Agent 추가해줘"
+```bash
+# 예시 요청
+"새 Agent 추가해줘"
+"버전 릴리스해줘"
+"Skill 구조 개선해줘"
 ```
 
 ### 다른 패키지와의 관계

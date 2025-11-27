@@ -1,6 +1,6 @@
 # SAX-Meta Configuration (docs 레포 전용)
 
-> SAX 패키지 관리 및 개발을 위한 메타 환경
+> SAX 패키지 자체 관리 및 개발을 위한 메타 패키지
 
 ## Package Info
 
@@ -8,6 +8,7 @@
 - **Version**: 📌 [sax/VERSION](https://github.com/semicolon-devteam/docs/blob/main/sax/VERSION) 참조
 - **Target**: docs repository (SAX Source of Truth)
 - **Audience**: SAX 개발자, SAX 패키지 관리자
+- **Extends**: SAX-Core
 
 ## SAX Core 상속
 
@@ -20,19 +21,18 @@
 
 ## 패키지 구조
 
-```
+```text
 .claude/
-├── CLAUDE.md           # 이 파일 (SAX-Meta 진입점)
+├── CLAUDE.md           # 이 파일 (SAX-Meta 설정)
 ├── sax-core/           # SAX Core 규칙
 │   ├── PRINCIPLES.md
 │   ├── MESSAGE_RULES.md
 │   ├── PACKAGING.md
 │   └── TEAM_RULES.md
-└── sax-meta/           # SAX-Meta 패키지
-    ├── agents/
-    ├── skills/
-    ├── scripts/
-    └── templates/
+├── agents/             # SAX-Meta Agents
+├── skills/             # SAX-Meta Skills
+├── scripts/            # 자동화 스크립트
+└── templates/          # 템플릿 파일
 ```
 
 ## 🔴 SAX 개발 필수 원칙
@@ -68,6 +68,31 @@ Agent/Skill → references/ → sax-core/ → docs 레포 문서
 2. 새 문서 생성 시 기존 문서 참조(@import)
 3. 절대로 동일 내용을 복사하지 않음
 
+### 3. 작업 완료 후 버저닝 체크 필수 원칙
+
+> **모든 SAX 작업 완료 후 버저닝 필요 여부를 반드시 체크한다.**
+
+**버저닝이 필요한 변경**:
+
+| 변경 유형 | 버전 타입 | 예시 |
+|----------|----------|------|
+| Agent/Skill/Command 추가 | MINOR | 새 Agent 생성 |
+| Agent/Skill/Command 수정 | MINOR | Agent 역할 변경 |
+| Agent/Skill/Command 삭제 | MINOR | 사용 중단 Agent 제거 |
+| CLAUDE.md 섹션 추가/변경 | MINOR | 새 규칙 추가 |
+| 버그/오타 수정 | PATCH | 문서 오타 수정 |
+| Breaking Change | MAJOR | 워크플로우 근본 변경 |
+
+**작업 완료 후 필수 출력**:
+
+```markdown
+[SAX] 작업 완료: {component} {action}
+
+⚠️ 버저닝 필요: {version_type}
+
+버저닝을 진행하려면: "버저닝 해줘" 또는 "릴리스해줘"
+```
+
 ---
 
 ## Package Components
@@ -76,59 +101,84 @@ Agent/Skill → references/ → sax-core/ → docs 레포 문서
 
 | Agent | 역할 | 파일 |
 |-------|------|------|
-| orchestrator | 요청 라우팅 | `sax-meta/agents/orchestrator.md` |
-| agent-manager | Agent 라이프사이클 관리 | `sax-meta/agents/agent-manager/` |
-| skill-manager | Skill 라이프사이클 관리 | `sax-meta/agents/skill-manager/` |
-| command-manager | Command 라이프사이클 관리 | `sax-meta/agents/command-manager/` |
-| sax-architect | SAX 패키지 설계 | `sax-meta/agents/sax-architect.md` |
+| orchestrator | 요청 라우팅 | `agents/orchestrator.md` |
+| agent-manager | Agent 라이프사이클 관리 | `agents/agent-manager/` |
+| skill-manager | Skill 라이프사이클 관리 | `agents/skill-manager/` |
+| command-manager | Command 라이프사이클 관리 | `agents/command-manager/` |
+| sax-architect | SAX 패키지 설계 | `agents/sax-architect.md` |
 
 ### Skills
 
 | Skill | 역할 | 파일 |
 |-------|------|------|
-| package-validator | SAX 패키지 구조 검증 | `sax-meta/skills/package-validator/` |
-| version-manager | SAX 버저닝 자동화 | `sax-meta/skills/version-manager/` |
-| package-sync | 패키지 소스 → .claude 동기화 | `sax-meta/skills/package-sync/` |
-| package-deploy | 외부 프로젝트 SAX 배포 | `sax-meta/skills/package-deploy/` |
+| package-validator | SAX 패키지 구조 검증 | `skills/package-validator/` |
+| version-manager | SAX 버저닝 자동화 | `skills/version-manager/` |
+| package-sync | 패키지 소스 → .claude 동기화 | `skills/package-sync/` |
+| package-deploy | 외부 프로젝트 SAX 배포 | `skills/package-deploy/` |
 
-## 동기화 규칙
+### Templates
 
-docs 레포지토리에서 SAX 패키지 작업 시:
+| Template | 역할 | 파일 |
+|----------|------|------|
+| agent-template | Agent 파일 템플릿 | `templates/agent-template.md` |
+| skill-template | Skill 디렉토리 템플릿 | `templates/skill-template/` |
+| package-template | 패키지 구조 템플릿 | `templates/package-template/` |
 
-### Core 변경 시
+## docs 레포 동기화 규칙
+
+> ⚠️ **중요**: docs 레포지토리에서 SAX 패키지 개선 작업 시, 다음 위치들을 **동시에** 업데이트해야 합니다:
+
+| 위치 | 역할 |
+|------|------|
+| `.claude/` | SAX-Meta 실제 사용 (설치된 상태) |
+| `.claude/sax-core/` | SAX Core 실제 사용 (설치된 상태) |
+| `sax/core/` | SAX Core 패키지 소스 |
+| `sax/packages/sax-meta/` | SAX-Meta 패키지 소스 (배포용) |
+
+**동기화 명령**:
 
 ```bash
+# Core 동기화 (필수)
 rsync -av --delete sax/core/ .claude/sax-core/
+
+# SAX-Meta 동기화 (플랫 구조)
+rsync -av --delete \
+  --exclude='sax-core' \
+  --exclude='settings.local.json' \
+  sax/packages/sax-meta/ .claude/
 ```
 
-### SAX-Meta 변경 시
+> 📝 **참고**: SAX-PO, SAX-Next는 각각 별도 레포지토리에 배포됩니다. docs 레포에는 소스(`sax/packages/`)만 관리합니다.
+
+## SAX-Meta 사용 방법
+
+docs 레포지토리에서 SAX 관련 작업 요청 시 자동으로 SAX-Meta 컨텍스트가 활성화됩니다.
 
 ```bash
-rsync -av --delete sax/packages/sax-meta/ .claude/sax-meta/
+# 예시 요청
+"새 Agent 추가해줘"
+"버전 릴리스해줘"
+"Skill 구조 개선해줘"
 ```
 
-### 동기화 트리거
+## 다른 패키지와의 관계
 
-- sax/core/ 또는 sax/packages/sax-meta/ 변경 시
-- 버저닝 작업 후 (VERSION, CHANGELOG 업데이트 후)
-- 커밋 직전
-
-## PO/기획자용 패키지 (SAX-PO)
-
-> ⚠️ **SAX-PO는 별도 레포지토리에서 사용합니다.**
-
-SAX-PO는 기획자 전용 워크스페이스에 배포됩니다:
-
-```bash
-# 기획자용 레포에 배포
-./sax/scripts/deploy.sh sax-po /path/to/po-workspace
+```text
+SAX-Meta (메타 관리)
+    ↓ 관리
+SAX-Core (공통 규칙)
+    ↓ 상속
+SAX-PO, SAX-Next, SAX-Spring (도메인 패키지)
 ```
 
-**SAX-PO 소스 위치**: `sax/packages/sax-po/`
+- SAX-Meta는 다른 모든 SAX 패키지를 관리
+- SAX-PO/Next/Spring은 SAX-Meta를 직접 사용하지 않음
+- 최종 사용자(PO/개발자)는 SAX-Meta를 인지할 필요 없음
 
 ## References
 
 - [SAX Core - Principles](https://github.com/semicolon-devteam/docs/blob/main/sax/core/PRINCIPLES.md)
-- [SAX Core - Message Rules](https://github.com/semicolon-devteam/docs/blob/main/sax/core/MESSAGE_RULES.md)
 - [SAX Core - Packaging](https://github.com/semicolon-devteam/docs/blob/main/sax/core/PACKAGING.md)
+- [SAX Core - Message Rules](https://github.com/semicolon-devteam/docs/blob/main/sax/core/MESSAGE_RULES.md)
+- [SAX Core - Team Rules](https://github.com/semicolon-devteam/docs/blob/main/sax/core/TEAM_RULES.md)
 - [SAX Changelog Index](https://github.com/semicolon-devteam/docs/blob/main/sax/CHANGELOG/INDEX.md)
