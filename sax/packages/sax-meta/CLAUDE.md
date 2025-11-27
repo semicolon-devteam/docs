@@ -40,19 +40,28 @@ SAX-Meta는 SAX 패키지 자체를 관리하고 개발하기 위한 **메타 �
 
 ### docs 레포 한정 동기화 규칙
 
-> ⚠️ **중요**: docs 레포지토리에서 SAX-Meta 개선 작업 시, 다음 두 위치를 **동시에** 업데이트해야 합니다:
+> ⚠️ **중요**: docs 레포지토리에서 SAX 패키지 개선 작업 시, 다음 위치들을 **동시에** 업데이트해야 합니다:
 
 | 위치 | 역할 |
 |------|------|
+| `.claude/sax-core/` | SAX Core 실제 사용 (설치된 상태) |
 | `.claude/sax-meta/` | SAX-Meta 실제 사용 (설치된 상태) |
+| `.claude/sax-po/` | SAX-PO 실제 사용 (설치된 상태) |
+| `sax/core/` | SAX Core 패키지 소스 |
 | `sax/packages/sax-meta/` | SAX-Meta 패키지 소스 (배포용) |
+| `sax/packages/sax-po/` | SAX-PO 패키지 소스 (배포용) |
 
 **동기화 명령**:
 
 ```bash
-rsync -av --delete --exclude='.git' \
-  sax/packages/sax-meta/ \
-  .claude/sax-meta/
+# Core 동기화 (필수)
+rsync -av --delete sax/core/ .claude/sax-core/
+
+# SAX-Meta 동기화
+rsync -av --delete sax/packages/sax-meta/ .claude/sax-meta/
+
+# SAX-PO 동기화
+rsync -av --delete sax/packages/sax-po/ .claude/sax-po/
 ```
 
 ## Package Components
