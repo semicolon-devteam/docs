@@ -1,6 +1,7 @@
 ---
 name: generate-acceptance-criteria
 description: Generate Acceptance Criteria from Epic User Stories. Use when (1) creating Draft Tasks from Epic, (2) need testable completion conditions for backend/frontend/design tasks, (3) draft-task-creator requires AC section for task issues.
+tools: [Read]
 ---
 
 # generate-acceptance-criteria Skill

@@ -1,6 +1,7 @@
 ---
 name: template-skill
 description: Template for creating new SAX skills. Use when creating a new skill that extends SAX capabilities with specialized workflows or domain knowledge.
+tools: [Read, Write]
 ---
 
 # Template Skill

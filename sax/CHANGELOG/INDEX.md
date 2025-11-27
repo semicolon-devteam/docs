@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Quick Reference
 
-**Latest Version**: [3.14.0](3.14.0.md) - 2025-11-27
+**Latest Version**: [3.15.0](3.15.0.md) - 2025-11-27
 
 ## How to Read Changelog
 
@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ```bash
 # 최신 버전 확인
-cat sax/CHANGELOG/3.14.0.md
+cat sax/CHANGELOG/3.15.0.md
 
 # 특정 버전 확인
 cat sax/CHANGELOG/2.8.0.md
@@ -29,7 +29,7 @@ cat sax/CHANGELOG/2.8.0.md
 
 ```bash
 # 최신 버전 확인
-gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/3.14.0.md \
+gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/3.15.0.md \
   --jq '.content' | base64 -d
 
 # 특정 버전 확인
@@ -45,6 +45,7 @@ gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/INDEX.md \
 
 ### v3.x (2025-11-27)
 
+- [3.15.0](3.15.0.md) - Skills 표준화 완료 및 SAX-Meta Progressive Disclosure 적용 (10개 Skills)
 - [3.14.0](3.14.0.md) - Skills Progressive Disclosure 대규모 개편 (16개 Skills)
 - [3.13.0](3.13.0.md) - Manager Agents에 Phase 4: Audit 추가 (분석/검토/감사)
 - [3.12.0](3.12.0.md) - Creator Agent를 Manager Agent로 통합 (생성/수정/삭제)

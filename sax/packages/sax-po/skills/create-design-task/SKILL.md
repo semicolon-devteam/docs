@@ -1,6 +1,7 @@
 ---
 name: create-design-task
 description: Create Design Task Issue in service repository. Use when (1) Epic has "디자인 작업 필요" checked, (2) draft-task-creator detects design field in Epic, (3) need to create design task with Figma link, AC, estimation, and branch name.
+tools: [Bash, GitHub CLI]
 ---
 
 # create-design-task Skill

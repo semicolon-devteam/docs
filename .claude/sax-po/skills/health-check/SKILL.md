@@ -1,6 +1,7 @@
 ---
 name: health-check
 description: Validate development environment and authentication status. Use when (1) new team member onboarding (triggered by /SAX:health-check), (2) orchestrator auto-runs at work start (if 30 days passed), (3) checking required tools (gh CLI, Git, Node, pnpm, Supabase), (4) verifying GitHub auth and repo access.
+tools: [Bash, GitHub CLI]
 ---
 
 # health-check Skill
