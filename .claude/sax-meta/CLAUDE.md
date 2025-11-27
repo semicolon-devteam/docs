@@ -58,6 +58,36 @@ Agent/Skill → references/ → sax-core/ → docs 레포 문서
 2. 새 문서 생성 시 기존 문서 참조(@import)
 3. 절대로 동일 내용을 복사하지 않음
 
+### 3. 작업 완료 후 버저닝 체크 필수 원칙
+
+> **모든 SAX 작업 완료 후 버저닝 필요 여부를 반드시 체크한다.**
+
+**버저닝이 필요한 변경**:
+
+| 변경 유형 | 버전 타입 | 예시 |
+|----------|----------|------|
+| Agent/Skill/Command 추가 | MINOR | 새 Agent 생성 |
+| Agent/Skill/Command 수정 | MINOR | Agent 역할 변경 |
+| Agent/Skill/Command 삭제 | MINOR | 사용 중단 Agent 제거 |
+| CLAUDE.md 섹션 추가/변경 | MINOR | 새 규칙 추가 |
+| 버그/오타 수정 | PATCH | 문서 오타 수정 |
+| Breaking Change | MAJOR | 워크플로우 근본 변경 |
+
+**작업 완료 후 필수 출력**:
+
+```markdown
+[SAX] 작업 완료: {component} {action}
+
+⚠️ 버저닝 필요: {version_type}
+
+버저닝을 진행하려면: "버저닝 해줘" 또는 "릴리스해줘"
+```
+
+**버저닝 미실행 시 경고**:
+
+- 세션 종료 전 버저닝하지 않으면 다음 세션에서 버저닝 누락 가능
+- 반드시 작업 세션 내에서 버저닝까지 완료할 것
+
 ---
 
 ## Package Purpose

@@ -45,7 +45,7 @@ gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/INDEX.md \
 
 ### v3.x (2025-11-27)
 
-- [3.25.0](3.25.0.md) - docs 레포 .claude/ 리팩토링 (SAX-Meta 전용화, sax-po/sax-next 제거)
+- [3.25.0](3.25.0.md) - docs 레포 .claude/ 리팩토링 (SAX-Meta 전용화), 작업 완료 후 버저닝 체크 필수 원칙 추가
 - [3.24.0](3.24.0.md) - SAX 개발 필수 원칙 추가 (세션 컨텍스트 비의존, 중복 체크 필수)
 - [3.23.0](3.23.0.md) - SoT 원칙 강화, Core 참조 구조 리팩토링, deploy.sh Core 자동 배포
 - [3.22.0](3.22.0.md) - Orchestrator-First Policy 강화, CLAUDE.md 라우팅 테이블 제거
