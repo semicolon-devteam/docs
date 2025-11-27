@@ -25,7 +25,14 @@
       "Bash(then echo \"$f\")",
       "Bash(fi)",
       "Bash(done)",
-      "Bash(xargs -I {} sh -c 'echo \"\"\"\"\"\"\"\"; echo \"\"\"\"--- {} ---\"\"\"\"; head -15 \"\"\"\"{}\"\"\"\"')"
+      "Bash(xargs -I {} sh -c 'echo \"\"\"\"\"\"\"\"; echo \"\"\"\"--- {} ---\"\"\"\"; head -15 \"\"\"\"{}\"\"\"\"')",
+      "Skill(package-deploy)",
+      "Bash(./sax/scripts/deploy.sh:*)",
+      "Bash(git init:*)",
+      "Bash(gh repo create:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)",
+      "Bash(git submodule add:*)"
     ],
     "deny": [],
     "ask": []
