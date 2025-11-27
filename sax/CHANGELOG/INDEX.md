@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Quick Reference
 
-**Latest Version**: [3.18.0](3.18.0.md) - 2025-11-27
+**Latest Version**: [3.19.0](3.19.0.md) - 2025-11-27
 
 ## How to Read Changelog
 
@@ -45,6 +45,7 @@ gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/INDEX.md \
 
 ### v3.x (2025-11-27)
 
+- [3.19.0](3.19.0.md) - SAX-Next Agent 통폐합 (database-specialist + supabase-architect → database-master)
 - [3.18.0](3.18.0.md) - Progressive Disclosure 및 토큰 효율성 가이드라인 추가
 - [3.17.0](3.17.0.md) - 필수 메시지 체인 규칙 CRITICAL 섹션 추가 (전 패키지 적용)
 - [3.16.0](3.16.0.md) - 시스템 메시지 규칙 개별화 (Orchestrator 위임 → Agent/Skill 개별 규칙)
