@@ -1,6 +1,7 @@
 ---
 name: implement
-description: Execute ADD Phase 4 with phased development (v0.0.x → v0.4.x). Implements DDD 4-layer architecture with TDD and Supabase patterns. Used by agents when implementation is needed.
+description: Execute ADD Phase 4 with phased development (v0.0.x → v0.4.x). Use when (1) specification docs are complete, (2) user requests feature implementation, (3) implementing DDD 4-layer with TDD and Supabase patterns.
+tools: [Read, Write, Edit, Bash]
 ---
 
 # Implement Skill

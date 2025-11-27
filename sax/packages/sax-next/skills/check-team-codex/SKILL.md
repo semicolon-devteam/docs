@@ -1,6 +1,7 @@
 ---
 name: check-team-codex
-description: Validate code against Team Codex standards. Checks commit format, ESLint, TypeScript, debug code, and architecture compliance. Used by agents during verification and quality gates.
+description: Validate code against Team Codex standards. Use when (1) before creating commits, (2) during verification phase, (3) quality gate enforcement, (4) checking commit format/ESLint/TypeScript/debug code compliance.
+tools: [Bash, Read, Grep]
 ---
 
 # Check Team Codex Skill

@@ -1,6 +1,7 @@
 ---
 name: scaffold-domain
-description: Bootstrap DDD 4-layer domain structure. Creates repositories, api-clients, hooks, and components directories with __tests__ and index.ts exports. Used by agents during v0.1.x PROJECT phase.
+description: Bootstrap DDD 4-layer domain structure. Use when (1) starting new domain implementation, (2) during v0.1.x PROJECT phase, (3) need to create repositories/api-clients/hooks/components with __tests__ and index.ts exports.
+tools: [Bash, Write]
 ---
 
 # Scaffold Domain Skill

@@ -1,6 +1,7 @@
 ---
 name: fetch-team-context
-description: Fetch Semicolon team standards and processes from docs wiki. Provides context for workflow decisions, DevOps strategies, and team conventions. Used by Advisor agent.
+description: Fetch Semicolon team standards from docs wiki. Use when (1) providing workflow or process advice, (2) recommending DevOps strategies, (3) referencing team conventions for decision-making, (4) checking team standards compliance.
+tools: [Bash, Read, GitHub CLI]
 ---
 
 # Fetch Team Context Skill

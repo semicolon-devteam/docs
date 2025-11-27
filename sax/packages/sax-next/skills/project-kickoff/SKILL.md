@@ -1,6 +1,7 @@
 ---
 name: project-kickoff
-description: Interactive project creation from cm-template. Guides user through configuration questions and generates ready-to-copy project in implement-dist/ folder. Used when user requests new service creation.
+description: Interactive project creation from cm-template. Use when (1) user requests new service creation, (2) creating new cm-* project, (3) need guided wizard for project configuration, (4) generating ready-to-copy project in implement-dist/.
+tools: [Bash, Read, Write, Edit]
 ---
 
 # Project Kickoff Skill

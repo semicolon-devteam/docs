@@ -1,6 +1,7 @@
 ---
 name: spike
-description: Prototype and explore technical approaches when implementation path is unclear. Creates spike branches, implements 2-3 alternatives, measures and compares, documents findings, and recommends best approach. Used by agents when technical uncertainty exists.
+description: Prototype and explore technical approaches. Use when (1) multiple valid technical approaches exist, (2) performance characteristics unknown, (3) implementation path unclear, (4) need evidence-based technical recommendation.
+tools: [Bash, Read, Write, Edit]
 ---
 
 # Spike Skill

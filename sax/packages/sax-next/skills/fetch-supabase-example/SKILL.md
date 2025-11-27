@@ -1,6 +1,7 @@
 ---
 name: fetch-supabase-example
-description: Fetch reference implementations from core-supabase repository. Retrieves RPC function patterns, parameter structures, and type assertions for Supabase integration. Used by agents during implementation.
+description: Fetch reference implementations from core-supabase repository. Use when (1) implementing Repository layer with Supabase, (2) need RPC function usage patterns, (3) checking correct parameter structures and type assertions, (4) verifying Supabase integration patterns.
+tools: [Bash, Read, GitHub CLI]
 ---
 
 # Fetch Supabase Example Skill

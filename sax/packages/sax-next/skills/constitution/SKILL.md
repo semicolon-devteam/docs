@@ -1,6 +1,7 @@
 ---
 name: constitution
-description: Manage and update project Constitution. Detects violations, proposes amendments, and synchronizes dependent templates. Used by agents when Constitution changes are needed.
+description: Manage and update project Constitution. Use when (1) Constitution violation detected during implementation, (2) proposing new architectural principle, (3) templates need sync after Constitution update, (4) reviewing project architecture rules.
+tools: [Read, Write, Edit]
 location: project
 ---
 

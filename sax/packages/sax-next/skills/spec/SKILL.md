@@ -1,6 +1,7 @@
 ---
 name: spec
-description: Execute SDD Phase 1-3 workflow (specify → plan → tasks). Creates spec.md, plan.md, and tasks.md for a feature. Used by agents when specification is needed.
+description: Execute SDD Phase 1-3 workflow (specify → plan → tasks). Use when (1) starting new feature needing specification, (2) user requests spec creation, (3) need to create spec.md/plan.md/tasks.md before implementation.
+tools: [Read, Write, Edit]
 location: project
 ---
 

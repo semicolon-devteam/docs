@@ -1,6 +1,7 @@
 ---
 name: check-team-codex
-description: Validates code against Semicolon Team Codex rules including commit conventions, code quality standards, and development best practices. Use before commits and during code reviews.
+description: Validate code against Semicolon Team Codex rules. Use when (1) before committing code, (2) during code review process, (3) after implementation for quality gate, (4) CI/CD automated quality check, (5) onboarding new team members to team standards.
+tools: [Bash, Read, Grep]
 ---
 
 # Check Team Codex Skill
