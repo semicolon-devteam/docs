@@ -18,7 +18,8 @@
       "Bash(for skill in sax/packages/sax-po/skills/*/SKILL.md)",
       "Bash(do echo \"=== $skill ===\" head -10 \"$skill\")",
       "Bash(find sax/packages/sax-po/skills -name \"SKILL.md\" -exec sh -c 'echo \"\"=== {} ===\"\" && head -10 \"\"{}\"\" | grep -A1 \"\"description:\"\" && echo \"\"\"\"' ;)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(git checkout:*)"
     ],
     "deny": [],
     "ask": []

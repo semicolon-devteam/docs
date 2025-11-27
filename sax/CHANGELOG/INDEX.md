@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Quick Reference
 
-**Latest Version**: [3.16.0](3.16.0.md) - 2025-11-27
+**Latest Version**: [3.17.0](3.17.0.md) - 2025-11-27
 
 ## How to Read Changelog
 
@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ```bash
 # 최신 버전 확인
-cat sax/CHANGELOG/3.16.0.md
+cat sax/CHANGELOG/3.17.0.md
 
 # 특정 버전 확인
 cat sax/CHANGELOG/2.8.0.md
@@ -29,7 +29,7 @@ cat sax/CHANGELOG/2.8.0.md
 
 ```bash
 # 최신 버전 확인
-gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/3.16.0.md \
+gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/3.17.0.md \
   --jq '.content' | base64 -d
 
 # 특정 버전 확인
@@ -45,6 +45,7 @@ gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/INDEX.md \
 
 ### v3.x (2025-11-27)
 
+- [3.17.0](3.17.0.md) - 필수 메시지 체인 규칙 CRITICAL 섹션 추가 (전 패키지 적용)
 - [3.16.0](3.16.0.md) - 시스템 메시지 규칙 개별화 (Orchestrator 위임 → Agent/Skill 개별 규칙)
 - [3.15.0](3.15.0.md) - Skills 표준화 완료 및 SAX-Meta Progressive Disclosure 적용 (10개 Skills)
 - [3.14.0](3.14.0.md) - Skills Progressive Disclosure 대규모 개편 (16개 Skills)
