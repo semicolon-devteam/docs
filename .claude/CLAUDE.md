@@ -1,136 +1,134 @@
-# SAX Package Selector (docs 레포 전용)
+# SAX-Meta Configuration (docs 레포 전용)
 
-> docs 레포지토리에서 SAX 패키지를 자동 선택하는 진입점
+> SAX 패키지 관리 및 개발을 위한 메타 환경
 
-## 패키지 선택 규칙
+## Package Info
 
-### SAX-Meta 활성화
+- **Package**: SAX-Meta
+- **Version**: 📌 [sax/VERSION](https://github.com/semicolon-devteam/docs/blob/main/sax/VERSION) 참조
+- **Target**: docs repository (SAX Source of Truth)
+- **Audience**: SAX 개발자, SAX 패키지 관리자
 
-**트리거**: 첫 메시지가 `[Semicolon AX]` 또는 `[SAX]` 또는 단독으로 시작하는 경우
+## SAX Core 상속
 
-**예시**:
-```
-[Semicolon AX] 교육용 Agent 추가해줘
-```
-```
-[Semicolon AX] 
+이 패키지는 SAX Core의 기본 원칙을 상속합니다.
 
-Sub Agent들이 에이전트 생성 규칙에 맞게 생성됐는지 확인해줘
-```
+@sax-core/PRINCIPLES.md
+@sax-core/MESSAGE_RULES.md
 
-```
-[SAX] 새 버전 릴리스해줘
-```
-
-```
-[SAX] 
-
-새 버전 릴리스해줘
-```
-
-**동작**:
-```markdown
-[SAX] System: SAX-Meta 패키지 활성화
-
-[이후 SAX-Meta CLAUDE.md 컨텍스트로 동작]
-```
-
-### SAX-PO 활성화 (기본값)
-
-**트리거**: 위 조건이 아닌 모든 경우 (기존 동작 방식)
-
-**예시**:
-```
-Epic 생성해줘
-```
-
-```
-Draft Task 만들어줘
-```
-
-**동작**:
-```markdown
-[SAX] System: SAX-PO 패키지 활성화
-
-[이후 SAX-PO CLAUDE.md 컨텍스트로 동작]
-```
+> 📖 Core 문서는 `.claude/sax-core/` 디렉토리에서 자동 로드됩니다.
 
 ## 패키지 구조
 
 ```
 .claude/
-├── CLAUDE.md          # 이 파일 (패키지 선택 로직)
-├── sax-po/            # PO/기획자용 SAX 패키지
-│   ├── CLAUDE.md
-│   ├── agents/
-│   ├── skills/
-│   ├── commands/
-│   └── templates/
-└── sax-meta/          # SAX 개발자용 SAX 패키지
-    ├── CLAUDE.md
+├── CLAUDE.md           # 이 파일 (SAX-Meta 진입점)
+├── sax-core/           # SAX Core 규칙
+│   ├── PRINCIPLES.md
+│   ├── MESSAGE_RULES.md
+│   ├── PACKAGING.md
+│   └── TEAM_RULES.md
+└── sax-meta/           # SAX-Meta 패키지
     ├── agents/
-    └── skills/
+    ├── skills/
+    ├── scripts/
+    └── templates/
 ```
 
-## 구현 로직
+## 🔴 SAX 개발 필수 원칙
 
-**Claude Code는 다음과 같이 동작합니다**:
+### 1. 세션 컨텍스트 비의존 원칙
 
-1. **메시지 파싱**:
-   - 첫 줄 확인: `^(Semicolon AX|SAX)$`
-   - 두 줄 띄우기 확인: 첫 줄 이후 빈 줄 2개
+> **SAX는 세션 컨텍스트에 의지하지 않는다.**
 
-2. **패키지 선택**:
-   - 조건 충족 → `.claude/sax-meta/CLAUDE.md` 로드
-   - 조건 불충족 → `.claude/sax-po/CLAUDE.md` 로드 (기본값)
+- 꼭 필요한 원칙과 규칙은 **sax-core**, **docs 레포지토리 내 문서**를 통해 참조되어야 함
+- Agent, Skill의 **Reference Chain** 안에서 모든 필수 정보가 접근 가능해야 함
+- 세션이 종료되거나 컨텍스트가 손실되어도 동일한 결과를 보장
 
-3. **시스템 메시지 출력** (필수):
-   ```markdown
-   [SAX] System: {선택된 패키지} 패키지 활성화
-   ```
+**Reference Chain 구조**:
 
-   **출력 예시**:
-   - SAX-Meta 선택 시: `[SAX] System: SAX-Meta 패키지 활성화`
-   - SAX-PO 선택 시: `[SAX] System: SAX-PO 패키지 활성화`
+```text
+Agent/Skill → references/ → sax-core/ → docs 레포 문서
+```
 
-   > ⚠️ **중요**: 이 메시지는 **반드시 출력**해야 합니다. 사용자에게 어떤 패키지 컨텍스트로 동작하는지 명확히 알려야 합니다.
+### 2. 중복 체크 필수 원칙
 
-4. **컨텍스트 전환**:
-   - 선택된 패키지의 CLAUDE.md를 프로젝트 컨텍스트로 적용
-   - 해당 패키지의 agents/, skills/ 등 활성화
-   - Orchestrator가 모든 요청을 라우팅
+> **어떤 문서를 생성하거나 수정하든, 반드시 중복 체크를 먼저 수행한다.**
+
+**체크 범위**:
+
+- `sax/core/` - Core 규칙 문서
+- `sax/packages/{package}/agents/` - Agent 정의
+- `sax/packages/{package}/skills/` - Skill 정의
+- `docs/` 레포지토리 내 관련 문서 (wiki 포함)
+
+**중복 발견 시**:
+
+1. 기존 문서 수정 우선
+2. 새 문서 생성 시 기존 문서 참조(@import)
+3. 절대로 동일 내용을 복사하지 않음
+
+---
+
+## Package Components
+
+### Agents
+
+| Agent | 역할 | 파일 |
+|-------|------|------|
+| orchestrator | 요청 라우팅 | `sax-meta/agents/orchestrator.md` |
+| agent-manager | Agent 라이프사이클 관리 | `sax-meta/agents/agent-manager/` |
+| skill-manager | Skill 라이프사이클 관리 | `sax-meta/agents/skill-manager/` |
+| command-manager | Command 라이프사이클 관리 | `sax-meta/agents/command-manager/` |
+| sax-architect | SAX 패키지 설계 | `sax-meta/agents/sax-architect.md` |
+
+### Skills
+
+| Skill | 역할 | 파일 |
+|-------|------|------|
+| package-validator | SAX 패키지 구조 검증 | `sax-meta/skills/package-validator/` |
+| version-manager | SAX 버저닝 자동화 | `sax-meta/skills/version-manager/` |
+| package-sync | 패키지 소스 → .claude 동기화 | `sax-meta/skills/package-sync/` |
+| package-deploy | 외부 프로젝트 SAX 배포 | `sax-meta/skills/package-deploy/` |
 
 ## 동기화 규칙
 
 docs 레포지토리에서 SAX 패키지 작업 시:
 
-### SAX-PO 변경 시
+### Core 변경 시
 
 ```bash
-# SAX-PO 소스 → .claude/sax-po/ 동기화
-rsync -av --delete --exclude='.git' \
-  sax/packages/sax-po/ \
-  .claude/sax-po/
+rsync -av --delete sax/core/ .claude/sax-core/
 ```
 
 ### SAX-Meta 변경 시
 
 ```bash
-# SAX-Meta 소스 → .claude/sax-meta/ 동기화
-rsync -av --delete --exclude='.git' \
-  sax/packages/sax-meta/ \
-  .claude/sax-meta/
+rsync -av --delete sax/packages/sax-meta/ .claude/sax-meta/
 ```
 
 ### 동기화 트리거
 
-- SAX-PO 또는 SAX-Meta의 CLAUDE.md, agents/, skills/, commands/, templates/ 변경 시
+- sax/core/ 또는 sax/packages/sax-meta/ 변경 시
 - 버저닝 작업 후 (VERSION, CHANGELOG 업데이트 후)
 - 커밋 직전
 
+## PO/기획자용 패키지 (SAX-PO)
+
+> ⚠️ **SAX-PO는 별도 레포지토리에서 사용합니다.**
+
+SAX-PO는 기획자 전용 워크스페이스에 배포됩니다:
+
+```bash
+# 기획자용 레포에 배포
+./sax/scripts/deploy.sh sax-po /path/to/po-workspace
+```
+
+**SAX-PO 소스 위치**: `sax/packages/sax-po/`
+
 ## References
 
-- [SAX-PO Package](.claude/sax-po/CLAUDE.md)
-- [SAX-Meta Package](.claude/sax-meta/CLAUDE.md)
 - [SAX Core - Principles](https://github.com/semicolon-devteam/docs/blob/main/sax/core/PRINCIPLES.md)
+- [SAX Core - Message Rules](https://github.com/semicolon-devteam/docs/blob/main/sax/core/MESSAGE_RULES.md)
+- [SAX Core - Packaging](https://github.com/semicolon-devteam/docs/blob/main/sax/core/PACKAGING.md)
 - [SAX Changelog Index](https://github.com/semicolon-devteam/docs/blob/main/sax/CHANGELOG/INDEX.md)

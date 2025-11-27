@@ -87,10 +87,8 @@ SAX-Meta는 SAX 패키지 자체를 관리하고 개발하기 위한 **메타 �
 |------|------|
 | `.claude/sax-core/` | SAX Core 실제 사용 (설치된 상태) |
 | `.claude/sax-meta/` | SAX-Meta 실제 사용 (설치된 상태) |
-| `.claude/sax-po/` | SAX-PO 실제 사용 (설치된 상태) |
 | `sax/core/` | SAX Core 패키지 소스 |
 | `sax/packages/sax-meta/` | SAX-Meta 패키지 소스 (배포용) |
-| `sax/packages/sax-po/` | SAX-PO 패키지 소스 (배포용) |
 
 **동기화 명령**:
 
@@ -100,10 +98,9 @@ rsync -av --delete sax/core/ .claude/sax-core/
 
 # SAX-Meta 동기화
 rsync -av --delete sax/packages/sax-meta/ .claude/sax-meta/
-
-# SAX-PO 동기화
-rsync -av --delete sax/packages/sax-po/ .claude/sax-po/
 ```
+
+> 📝 **참고**: SAX-PO, SAX-Next는 각각 별도 레포지토리에 배포됩니다. docs 레포에는 소스(`sax/packages/`)만 관리합니다.
 
 ## Package Components
 
