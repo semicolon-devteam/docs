@@ -19,7 +19,13 @@
       "Bash(do echo \"=== $skill ===\" head -10 \"$skill\")",
       "Bash(find sax/packages/sax-po/skills -name \"SKILL.md\" -exec sh -c 'echo \"\"=== {} ===\"\" && head -10 \"\"{}\"\" | grep -A1 \"\"description:\"\" && echo \"\"\"\"' ;)",
       "Bash(find:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(for f in sax/packages/*/agents/*.md)",
+      "Bash(do if ! grep -q \"🔔 시스템 메시지\" \"$f\")",
+      "Bash(then echo \"$f\")",
+      "Bash(fi)",
+      "Bash(done)",
+      "Bash(xargs -I {} sh -c 'echo \"\"\"\"\"\"\"\"; echo \"\"\"\"--- {} ---\"\"\"\"; head -15 \"\"\"\"{}\"\"\"\"')"
     ],
     "deny": [],
     "ask": []

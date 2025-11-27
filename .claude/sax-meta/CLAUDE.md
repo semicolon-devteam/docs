@@ -157,6 +157,16 @@ gh api repos/semicolon-devteam/docs/contents/sax/core/TEAM_RULES.md \
 
 ## Package Components
 
+### Agents
+
+| Agent | 역할 | 파일 |
+|-------|------|------|
+| orchestrator | 요청 라우팅 | `agents/orchestrator.md` |
+| agent-manager | Agent 라이프사이클 관리 | `agents/agent-manager/` |
+| skill-manager | Skill 라이프사이클 관리 | `agents/skill-manager/` |
+| command-manager | Command 라이프사이클 관리 | `agents/command-manager/` |
+| sax-architect | SAX 패키지 설계 | `agents/sax-architect.md` |
+
 ### Skills
 
 | Skill | 역할 | 파일 |
