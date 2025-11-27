@@ -75,14 +75,13 @@ deploy_po() {
     # Step 2: Deploy SAX-PO
     echo -e "${BLUE}→ Deploying SAX-PO package...${NC}"
 
-    mkdir -p "$target_path/.claude/sax-po"
     mkdir -p "$target_path/.claude/agents"
     mkdir -p "$target_path/.claude/skills"
     mkdir -p "$target_path/.claude/commands"
     mkdir -p "$target_path/.claude/templates"
 
-    # Copy SAX-PO package config
-    cp "$SAX_ROOT/packages/sax-po/CLAUDE.md" "$target_path/.claude/sax-po/"
+    # Copy SAX-PO package CLAUDE.md to .claude/CLAUDE.md
+    cp "$SAX_ROOT/packages/sax-po/CLAUDE.md" "$target_path/.claude/CLAUDE.md"
 
     # Copy agents
     if [[ -d "$SAX_ROOT/packages/sax-po/agents" ]]; then
@@ -120,13 +119,12 @@ deploy_next() {
     # Step 2: Deploy SAX-Next
     echo -e "${BLUE}→ Deploying SAX-Next package...${NC}"
 
-    mkdir -p "$target_path/.claude/sax-next"
     mkdir -p "$target_path/.claude/agents"
     mkdir -p "$target_path/.claude/skills"
     mkdir -p "$target_path/.claude/commands"
 
-    # Copy SAX-Next package config
-    cp "$SAX_ROOT/packages/sax-next/CLAUDE.md" "$target_path/.claude/sax-next/"
+    # Copy SAX-Next package CLAUDE.md to .claude/CLAUDE.md
+    cp "$SAX_ROOT/packages/sax-next/CLAUDE.md" "$target_path/.claude/CLAUDE.md"
 
     # Copy agents
     if [[ -d "$SAX_ROOT/packages/sax-next/agents" ]]; then
@@ -146,9 +144,7 @@ deploy_next() {
     echo -e "${GREEN}  ✓ SAX-Next deployed successfully!${NC}"
     echo ""
     echo -e "${YELLOW}Next steps:${NC}"
-    echo -e "  1. Create/update .claude/CLAUDE.md with:"
-    echo -e "     @sax-next/CLAUDE.md"
-    echo -e "  2. Run /SAX:health-check to verify installation"
+    echo -e "  1. Run /SAX:health-check to verify installation"
 }
 
 deploy_spring() {
@@ -219,9 +215,9 @@ echo -e "SAX Version: $(cat "$SAX_ROOT/VERSION")"
 echo ""
 echo -e "Deployed structure:"
 echo -e "  .claude/"
+echo -e "  ├── CLAUDE.md      ${BLUE}(Package config)${NC}"
 echo -e "  ├── sax-core/      ${BLUE}(Core rules)${NC}"
 if [[ "$PACKAGE_NAME" != "sax-core" ]]; then
-    echo -e "  ├── $PACKAGE_NAME/  ${BLUE}(Package config)${NC}"
     echo -e "  ├── agents/"
     echo -e "  └── skills/"
 fi
