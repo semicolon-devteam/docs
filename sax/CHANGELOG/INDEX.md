@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Quick Reference
 
-**Latest Version**: [3.20.0](3.20.0.md) - 2025-11-27
+**Latest Version**: [3.22.0](3.22.0.md) - 2025-11-27
 
 ## How to Read Changelog
 
@@ -45,6 +45,8 @@ gh api repos/semicolon-devteam/docs/contents/sax/CHANGELOG/INDEX.md \
 
 ### v3.x (2025-11-27)
 
+- [3.22.0](3.22.0.md) - Orchestrator-First Policy 강화, CLAUDE.md 라우팅 테이블 제거
+- [3.21.0](3.21.0.md) - SAX-Meta 배포 자동화 Skill 추가 (package-sync, package-deploy)
 - [3.20.0](3.20.0.md) - Agents Progressive Disclosure 대규모 적용 (10개 Agent)
 - [3.19.0](3.19.0.md) - SAX-Next Agent 통폐합 (database-specialist + supabase-architect → database-master)
 - [3.18.0](3.18.0.md) - Progressive Disclosure 및 토큰 효율성 가이드라인 추가

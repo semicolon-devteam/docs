@@ -124,36 +124,83 @@ gh api repos/semicolon-devteam/docs/contents/sax/core/TEAM_RULES.md \
   --jq '.content' | base64 -d
 ```
 
-## Orchestrator-First Policy
+## Orchestrator-First Policy (필수)
 
-> ⚠️ **중요**: 모든 SAX-Meta 요청은 **Orchestrator를 먼저 통과**합니다.
+> 🚨 **강제 규칙**: SAX-Meta 환경에서는 **Orchestrator 메시지 없이 그 어떤 응답도 하지 않습니다.**
 
-사용자의 모든 요청은 `agents/orchestrator.md`가 분석하여 적절한 Agent 또는 Skill로 위임합니다.
+### 강제 체크 프로세스
 
-### 라우팅 흐름
+**Claude는 SAX-Meta 패키지가 활성화된 상태에서 다음 절차를 반드시 따릅니다:**
 
+1. **요청 수신 즉시** Orchestrator 의도 분석 수행
+2. **`[SAX] Orchestrator:` 메시지를 첫 번째로 출력**
+3. 그 후에만 Agent 위임 또는 직접 응답 진행
+
+### ❌ 절대 금지
+
+- Orchestrator 메시지 없이 바로 응답
+- Orchestrator 메시지 없이 Agent 호출
+- Orchestrator 메시지 없이 Skill 실행
+- Orchestrator 메시지 없이 코드/분석 결과 제공
+
+**위반 발견 시**: 해당 응답은 무효이며, Orchestrator 메시지부터 다시 시작해야 합니다.
+
+### SAX 시스템 메시지 체이닝
+
+모든 SAX 작업은 다음 메시지 체인을 따릅니다:
+
+```markdown
+[SAX] Orchestrator: 의도 분석 완료 → {category}
+
+[SAX] Agent 위임: {agent_name} (사유: {reason})
+
+[SAX] Agent: {agent_name} 호출 - {context}
+
+[SAX] Skill: {skill_name} 사용
+
+[SAX] Reference: {resource_path} 참조
 ```
-사용자 요청
-    ↓
-[Orchestrator] 의도 분석
-    ↓
-[Agent 위임] 또는 [Skill 실행]
-    ↓
-작업 수행
+
+**필수 규칙**:
+
+- 각 메시지는 별도 줄에 출력
+- 메시지 간 빈 줄 삽입
+- **Orchestrator 메시지가 항상 첫 번째**
+
+### 올바른 예시
+
+```markdown
+User: 새 Agent 추가해줘
+
+[SAX] Orchestrator: 의도 분석 완료 → Agent 생성 요청
+
+[SAX] Agent 위임: agent-manager (사유: 신규 Agent 생성)
+
+[SAX] Agent: agent-manager 호출 - 신규 Agent
+
+[이후 작업 내용...]
 ```
 
-### 주요 라우팅
+### 직접 응답 케이스 (Agent 위임 생략)
 
-| 요청 유형 | 위임 대상 | 키워드 |
-|----------|-----------|--------|
-| Agent 생성/수정/삭제/분석 | agent-manager | "Agent 만들어", "Agent 수정", "Agent 삭제", "Agent 검토", "Agent 분석" |
-| Skill 생성/수정/삭제/분석 | skill-manager | "Skill 만들어", "Skill 수정", "Skill 삭제", "Skill 검토", "Skill 분석" |
-| Command 생성/수정/삭제/분석 | command-manager | "Command 만들어", "Command 수정", "Command 삭제", "Command 검토", "Command 분석" |
-| 패키지 검증 | package-validator | "검증", "구조 확인" |
-| 버전 관리 | version-manager | "버전", "릴리스" |
-| 패키지 설계 | sax-architect | "구조", "설계" |
+다음 경우에만 Agent 위임을 생략하고 직접 응답합니다. **단, Orchestrator 메시지는 여전히 필수입니다.**
 
-> 📖 **상세**: [Orchestrator Agent](agents/orchestrator.md) 참조
+- 단순 정보 질문: "이게 뭐야?", "설명해줘"
+- 일반 대화: 인사, 감사, 확인
+
+```markdown
+User: SAX-Meta가 뭐야?
+
+[SAX] Orchestrator: 의도 분석 완료 → 단순 정보 질문 (직접 응답)
+
+SAX-Meta는 SAX 패키지 자체를 관리하고 개발하기 위한 메타 패키지입니다...
+```
+
+### Agent Routing
+
+라우팅 판단은 [Orchestrator Agent](agents/orchestrator.md)가 직접 수행합니다.
+
+CLAUDE.md에는 라우팅 테이블을 두지 않으며, Orchestrator가 요청의 의도를 분석하여 적절한 Agent로 위임합니다.
 
 ## Package Components
 
@@ -173,6 +220,8 @@ gh api repos/semicolon-devteam/docs/contents/sax/core/TEAM_RULES.md \
 |-------|------|------|
 | package-validator | SAX 패키지 구조 검증 | `skills/package-validator/SKILL.md` |
 | version-manager | SAX 버저닝 자동화 | `skills/version-manager/SKILL.md` |
+| package-sync | 패키지 소스 → .claude 동기화 | `skills/package-sync/SKILL.md` |
+| package-deploy | 외부 프로젝트 SAX 배포 | `skills/package-deploy/SKILL.md` |
 
 ### Scripts
 

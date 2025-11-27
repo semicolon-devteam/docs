@@ -120,39 +120,81 @@ gh api repos/semicolon-devteam/docs/contents/sax/core/TEAM_RULES.md \
 
 ## Orchestrator-First Policy (필수)
 
-> ⚠️ **핵심 규칙**: SAX-Next가 설치된 환경에서는 **모든 요청이 Orchestrator를 먼저 거쳐야 합니다.**
+> 🚨 **강제 규칙**: SAX-Next 환경에서는 **Orchestrator 메시지 없이 그 어떤 응답도 하지 않습니다.**
 
-**동작 방식**:
+### 강제 체크 프로세스
 
-1. 사용자 요청 수신
-2. `[SAX] Orchestrator: 의도 분석 완료 → {category}` 출력
-3. 적절한 Agent 위임 또는 직접 응답
+**Claude는 SAX-Next 패키지가 활성화된 상태에서 다음 절차를 반드시 따릅니다:**
 
-**중요**: Orchestrator 메시지는 **항상 출력**됩니다. 예외 사항은 "Agent 위임을 생략"하는 것이지, "Orchestrator 메시지 출력을 생략"하는 것이 아닙니다.
+1. **요청 수신 즉시** Orchestrator 의도 분석 수행
+2. **`[SAX] Orchestrator:` 메시지를 첫 번째로 출력**
+3. 그 후에만 Agent 위임 또는 직접 응답 진행
 
-**예외 사항** (Agent 위임 생략, 직접 응답):
+### ❌ 절대 금지
 
-- 단순 정보 질문: "이게 뭐야?", "이 함수 설명해줘"
-- 일반 대화: 인사, 감사 표현, 확인
-- 명시적 직접 요청: "Orchestrator 없이 바로 해줘"
+- Orchestrator 메시지 없이 바로 응답
+- Orchestrator 메시지 없이 Agent 호출
+- Orchestrator 메시지 없이 Skill 실행
+- Orchestrator 메시지 없이 코드/분석 결과 제공
 
-**올바른 예시**:
+**위반 발견 시**: 해당 응답은 무효이며, Orchestrator 메시지부터 다시 시작해야 합니다.
+
+### SAX 시스템 메시지 체이닝
+
+모든 SAX 작업은 다음 메시지 체인을 따릅니다:
 
 ```markdown
-User: "DDD가 뭐야?"
+[SAX] Orchestrator: 의도 분석 완료 → {category}
 
-[SAX] Orchestrator: 의도 분석 완료 → 단순 정보 요청 (직접 응답)
+[SAX] Agent 위임: {agent_name} (사유: {reason})
 
-[응답 내용...]
+[SAX] Agent: {agent_name} 호출 - {context}
+
+[SAX] Skill: {skill_name} 사용
+
+[SAX] Reference: {resource_path} 참조
 ```
 
-📖 **상세**: [SAX Core PRINCIPLES.md - Orchestrator-First Policy](https://github.com/semicolon-devteam/docs/blob/main/sax/core/PRINCIPLES.md#30-orchestrator-first-policy-필수)
+**필수 규칙**:
 
-## Agent Routing
+- 각 메시지는 별도 줄에 출력
+- 메시지 간 빈 줄 삽입
+- **Orchestrator 메시지가 항상 첫 번째**
 
-이 패키지의 모든 요청은 `orchestrator`를 통해 라우팅됩니다.
+### 올바른 예시
 
-**라우팅 상세**: orchestrator 에이전트 참조
+```markdown
+User: posts 도메인 구현해줘
+
+[SAX] Orchestrator: 의도 분석 완료 → 도메인 구현 요청
+
+[SAX] Agent 위임: implementation-master (사유: posts 도메인 ADD 구현)
+
+[SAX] Agent: implementation-master 호출 - posts 도메인
+
+[이후 작업 내용...]
+```
+
+### 직접 응답 케이스 (Agent 위임 생략)
+
+다음 경우에만 Agent 위임을 생략하고 직접 응답합니다. **단, Orchestrator 메시지는 여전히 필수입니다.**
+
+- 단순 정보 질문: "이게 뭐야?", "설명해줘"
+- 일반 대화: 인사, 감사, 확인
+
+```markdown
+User: DDD가 뭐야?
+
+[SAX] Orchestrator: 의도 분석 완료 → 단순 정보 질문 (직접 응답)
+
+DDD는 Domain-Driven Design의 약자로...
+```
+
+### Agent Routing
+
+라우팅 판단은 [Orchestrator Agent](agents/orchestrator/)가 직접 수행합니다.
+
+CLAUDE.md에는 라우팅 테이블을 두지 않으며, Orchestrator가 요청의 의도를 분석하여 적절한 Agent로 위임합니다.
 
 ## Workflow: SDD + ADD
 
