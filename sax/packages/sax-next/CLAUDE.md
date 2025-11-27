@@ -121,29 +121,14 @@ cd /path/to/semicolon/docs
 
 # 또는 수동 설치
 cd /path/to/project
-mkdir -p .claude/sax-core .claude/sax-next
-cp -r /path/to/docs/sax/core/* .claude/sax-core/
-cp -r /path/to/docs/sax/packages/sax-next/* .claude/sax-next/
-```
-
-### 업데이트 방법
-
-> ⚠️ **중요**: SAX 업데이트 시 **sax-core도 함께 업데이트**해야 합니다.
-
-```bash
-# deploy.sh 사용 (권장) - sax-core 자동 포함
-cd /path/to/semicolon/docs
-./sax/scripts/deploy.sh sax-next /path/to/project --update
-
-# 또는 수동 업데이트
-cd /path/to/project
-rsync -av --delete /path/to/docs/sax/core/ .claude/sax-core/
-rsync -av --delete /path/to/docs/sax/packages/sax-next/ .claude/sax-next/
+mkdir -p .claude
+cp -r /path/to/docs/sax/core .claude/sax-core
+cp -r /path/to/docs/sax/packages/sax-next/* .claude/
 ```
 
 ### 업데이트 후 커밋 규칙
 
-SAX 패키지 동기화(업데이트) 완료 후 **반드시 커밋**을 수행합니다.
+> ⚠️ **중요**: SAX 패키지 동기화(업데이트) 완료 후 **반드시 커밋**을 수행합니다.
 
 **커밋 메시지 형식**:
 

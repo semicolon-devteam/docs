@@ -102,25 +102,12 @@ docs 레포지토리에 설치:
 
 ```bash
 cd semicolon-devteam/docs
-mkdir -p .claude/sax-core .claude/sax-po
-cp -r sax/core/* .claude/sax-core/
-cp -r sax/packages/sax-po/* .claude/sax-po/
-```
-
-### 업데이트 방법
-
-> ⚠️ **중요**: SAX 업데이트 시 **sax-core도 함께 업데이트**해야 합니다.
-
-```bash
-# docs 레포 내부 동기화
-cd semicolon-devteam/docs
-rsync -av --delete sax/core/ .claude/sax-core/
-rsync -av --delete sax/packages/sax-po/ .claude/sax-po/
+cp -r sax/packages/sax-po/* .claude/
 ```
 
 ### 업데이트 후 커밋 규칙
 
-SAX 패키지 동기화(업데이트) 완료 후 **반드시 커밋**을 수행합니다.
+> ⚠️ **중요**: SAX 패키지 동기화(업데이트) 완료 후 **반드시 커밋**을 수행합니다.
 
 **커밋 메시지 형식**:
 
