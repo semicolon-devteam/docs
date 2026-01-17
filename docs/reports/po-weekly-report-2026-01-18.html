@@ -140,61 +140,7 @@
 
         <div class="section">
             <h2 class="section-title">📋 진행 중인 Epic</h2>
-            
-                <div class="epic-card">
-                    <div class="epic-header">
-                        <span class="epic-title">[command-center] [Epic] Supabase → Spring Boot 마이그레이션</span>
-                        <span class="status-badge status-backlog">작업중</span>
-                    </div>
-                    <div class="epic-meta">
-                        <span>📅 생성: Invalid Date</span>
-                        <span>👤 담당: 미할당</span>
-                    </div>
-                </div>
-
-                <div class="epic-card">
-                    <div class="epic-header">
-                        <span class="epic-title">[cm-template] [Epic] 🏗️ Foundation Setup - 기반 구조 및 아키텍처 설정</span>
-                        <span class="status-badge status-backlog">검수완료</span>
-                    </div>
-                    <div class="epic-meta">
-                        <span>📅 생성: Invalid Date</span>
-                        <span>👤 담당: 미할당</span>
-                    </div>
-                </div>
-
-                <div class="epic-card">
-                    <div class="epic-header">
-                        <span class="epic-title">[cm-template] [Epic] 🔐 Authentication System - httpOnly 쿠키 기반 인증 시스템</span>
-                        <span class="status-badge status-backlog">검수완료</span>
-                    </div>
-                    <div class="epic-meta">
-                        <span>📅 생성: Invalid Date</span>
-                        <span>👤 담당: 미할당</span>
-                    </div>
-                </div>
-
-                <div class="epic-card">
-                    <div class="epic-header">
-                        <span class="epic-title">[cm-template] [Epic] 📦 Core Services - 공통 서비스 추출 및 마이그레이션</span>
-                        <span class="status-badge status-backlog">검수완료</span>
-                    </div>
-                    <div class="epic-meta">
-                        <span>📅 생성: Invalid Date</span>
-                        <span>👤 담당: 미할당</span>
-                    </div>
-                </div>
-
-                <div class="epic-card">
-                    <div class="epic-header">
-                        <span class="epic-title">[cm-template] [Epic] 💬 Realtime Features - 실시간 채팅 및 알림 시스템</span>
-                        <span class="status-badge status-backlog">검수완료</span>
-                    </div>
-                    <div class="epic-meta">
-                        <span>📅 생성: Invalid Date</span>
-                        <span>👤 담당: 미할당</span>
-                    </div>
-                </div>
+            <p style="color: #718096;">진행 중인 Epic이 없습니다.</p>
         </div>
 
         <div class="section">
@@ -286,6 +232,40 @@
             rate: 78
         };
 
+        // 프로젝트별 우선순위 데이터
+        const priorityByProject = {"전체":{"P0(긴급)":0,"P1(높음)":0,"P2(보통)":0,"P3(낮음)":500}};
+
+        // 필터링 함수
+        function filterByProject(project) {
+            // 에픽 카드 필터링
+            document.querySelectorAll('.epic-card').forEach(card => {
+                if (project === '전체' || card.dataset.project === project) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // 버그 리포트 테이블 필터링
+            document.querySelectorAll('.data-table tbody tr[data-project]').forEach(row => {
+                if (project === '전체' || row.dataset.project === project) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            // 우선순위 통계 업데이트
+            const priorityData = priorityByProject[project] || priorityByProject['전체'];
+            const priorityCards = document.querySelectorAll('.stats-grid[style*="repeat(4"] > div');
+            if (priorityCards.length >= 4) {
+                priorityCards[0].querySelector('div[style*="font-size: 1.8rem"]').textContent = priorityData['P0(긴급)'] || 0;
+                priorityCards[1].querySelector('div[style*="font-size: 1.8rem"]').textContent = priorityData['P1(높음)'] || 0;
+                priorityCards[2].querySelector('div[style*="font-size: 1.8rem"]').textContent = priorityData['P2(보통)'] || 0;
+                priorityCards[3].querySelector('div[style*="font-size: 1.8rem"]').textContent = priorityData['P3(낮음)'] || 0;
+            }
+        }
+
         // 탭 클릭 이벤트
         document.querySelectorAll('.project-tab').forEach(tab => {
             tab.addEventListener('click', function() {
@@ -294,7 +274,7 @@
                 this.classList.add('active');
 
                 const project = this.dataset.project;
-                const statCards = document.querySelectorAll('.stat-card .stat-value');
+                const statCards = document.querySelectorAll('.stats-grid:first-of-type .stat-card .stat-value');
 
                 if (project === '전체') {
                     statCards[0].textContent = allStats.total;
@@ -309,6 +289,9 @@
                     statCards[2].textContent = '-';
                     statCards[3].textContent = '-';
                 }
+
+                // 에픽, 버그, 우선순위 이슈 필터링
+                filterByProject(project);
             });
         });
     </script>
