@@ -451,12 +451,33 @@ function aggregateReportData(
 // HTML 생성
 // ============================================
 
+// 리포트에서 제외할 프로젝트 목록
+const EXCLUDED_PROJECTS = [
+  'core-backend',
+  'command-center',
+  'core-admin',
+  'core-com-ops',
+  'cm-template',
+  'ms-media-processor',
+  'core-supabase',
+  'requirements',
+  'ms-template',
+  'ms-allocator',
+  'ms-ledger',
+  'core-central-db',
+  'ms-crawler',
+  'ms-collector',
+  'ms-notifier',
+  'docs',
+  '미분류',
+];
+
 function generatePOReport(data: ReportData): string {
   const periodStr = `${data.period.start.toLocaleDateString('ko-KR')} ~ ${data.period.end.toLocaleDateString('ko-KR')}`;
   const generatedAt = data.generatedAt.toLocaleDateString('ko-KR');
 
-  // 프로젝트 목록: tasksByProject에서 가져옴 (실제 데이터 기반)
-  const projectList = Object.keys(data.po.tasksByProject);
+  // 프로젝트 목록: tasksByProject에서 가져오고 제외 목록 필터링
+  const projectList = Object.keys(data.po.tasksByProject).filter(p => !EXCLUDED_PROJECTS.includes(p));
   const projectTabs = ['전체', ...projectList]
     .map((p, i) => `<div class="project-tab${i === 0 ? ' active' : ''}" data-project="${p}">${p}</div>`)
     .join('\n                ');
@@ -467,6 +488,7 @@ function generatePOReport(data: ReportData): string {
   const rateChangeSymbol = data.po.weeklyComparison.completionRate.change >= 0 ? '▲' : '▼';
 
   const projectProgressBars = Object.entries(data.po.tasksByProject)
+    .filter(([name]) => !EXCLUDED_PROJECTS.includes(name))
     .map(([name, stats]) => {
       const rate = stats.total > 0 ? Math.round((stats.completed / stats.total) * 100) : 0;
       return `
@@ -757,8 +779,8 @@ function generateOpsReport(data: ReportData): string {
   const periodStr = `${data.period.start.toLocaleDateString('ko-KR')} ~ ${data.period.end.toLocaleDateString('ko-KR')}`;
   const generatedAt = data.generatedAt.toLocaleDateString('ko-KR');
 
-  // 프로젝트 목록: tasksByProject에서 가져옴 (실제 데이터 기반)
-  const projectList = Object.keys(data.po.tasksByProject);
+  // 프로젝트 목록: tasksByProject에서 가져오고 제외 목록 필터링
+  const projectList = Object.keys(data.po.tasksByProject).filter(p => !EXCLUDED_PROJECTS.includes(p));
   const projectTabs = ['전체', ...projectList]
     .map((p, i) => `<div class="project-tab${i === 0 ? ' active' : ''}" data-project="${p}">${p}</div>`)
     .join('\n                ');
