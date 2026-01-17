@@ -543,19 +543,19 @@ function generatePOReport(data: ReportData): string {
   const priorityStats = `
                         <div style="text-align: center;">
                             <span class="priority-badge priority-critical">P0</span>
-                            <div style="font-size: 1.8rem; font-weight: 700; margin-top: 10px; color: #c53030;">${data.po.priorityDistribution['P0(긴급)'] || 0}</div>
+                            <div id="priority-p0" style="font-size: 1.8rem; font-weight: 700; margin-top: 10px; color: #c53030;">${data.po.priorityDistribution['P0(긴급)'] || 0}</div>
                         </div>
                         <div style="text-align: center;">
                             <span class="priority-badge priority-high">P1</span>
-                            <div style="font-size: 1.8rem; font-weight: 700; margin-top: 10px; color: #ed8936;">${data.po.priorityDistribution['P1(높음)'] || 0}</div>
+                            <div id="priority-p1" style="font-size: 1.8rem; font-weight: 700; margin-top: 10px; color: #ed8936;">${data.po.priorityDistribution['P1(높음)'] || 0}</div>
                         </div>
                         <div style="text-align: center;">
                             <span class="priority-badge priority-medium">P2</span>
-                            <div style="font-size: 1.8rem; font-weight: 700; margin-top: 10px; color: #d69e2e;">${data.po.priorityDistribution['P2(보통)'] || 0}</div>
+                            <div id="priority-p2" style="font-size: 1.8rem; font-weight: 700; margin-top: 10px; color: #d69e2e;">${data.po.priorityDistribution['P2(보통)'] || 0}</div>
                         </div>
                         <div style="text-align: center;">
                             <span class="priority-badge priority-low">P3</span>
-                            <div style="font-size: 1.8rem; font-weight: 700; margin-top: 10px; color: #48bb78;">${data.po.priorityDistribution['P3(낮음)'] || 0}</div>
+                            <div id="priority-p3" style="font-size: 1.8rem; font-weight: 700; margin-top: 10px; color: #48bb78;">${data.po.priorityDistribution['P3(낮음)'] || 0}</div>
                         </div>`;
 
   // 우선순위 이슈 행 생성 (data-project 속성 추가) - 모든 이슈 표시
@@ -662,27 +662,27 @@ function generatePOReport(data: ReportData): string {
                 ${projectTabs}
             </div>
 
-            <div class="stats-grid">
+            <div class="stats-grid" id="main-stats">
                 <div class="stat-card">
-                    <div class="stat-value">${filteredStats.total}</div>
+                    <div class="stat-value" id="stat-total">${filteredStats.total}</div>
                     <div class="stat-label">전체 태스크</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value positive">${filteredCompletionRate}%</div>
+                    <div class="stat-value positive" id="stat-rate">${filteredCompletionRate}%</div>
                     <div class="stat-label">완료율</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">${filteredStats.inProgress}</div>
+                    <div class="stat-value" id="stat-progress">${filteredStats.inProgress}</div>
                     <div class="stat-label">진행 중</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value" style="color: #d69e2e;">${filteredStats.blocked}</div>
+                    <div class="stat-value" style="color: #d69e2e;" id="stat-blocked">${filteredStats.blocked}</div>
                     <div class="stat-label">블로커</div>
                 </div>
             </div>
         </div>
 
-        <div class="section">
+        <div class="section" id="section-progress">
             <h2 class="section-title">📊 프로젝트별 진행 현황</h2>
             ${projectProgressBars || '<p style="color: #718096;">프로젝트 데이터가 없습니다.</p>'}
         </div>
@@ -804,15 +804,12 @@ function generatePOReport(data: ReportData): string {
                 }
             });
 
-            // 우선순위 통계 업데이트
+            // 우선순위 통계 업데이트 (ID로 직접 선택)
             const priorityData = priorityByProject[project] || priorityByProject['전체'];
-            const priorityCards = document.querySelectorAll('.stats-grid[style*="repeat(4"] > div');
-            if (priorityCards.length >= 4) {
-                priorityCards[0].querySelector('div[style*="font-size: 1.8rem"]').textContent = priorityData['P0(긴급)'] || 0;
-                priorityCards[1].querySelector('div[style*="font-size: 1.8rem"]').textContent = priorityData['P1(높음)'] || 0;
-                priorityCards[2].querySelector('div[style*="font-size: 1.8rem"]').textContent = priorityData['P2(보통)'] || 0;
-                priorityCards[3].querySelector('div[style*="font-size: 1.8rem"]').textContent = priorityData['P3(낮음)'] || 0;
-            }
+            document.getElementById('priority-p0').textContent = priorityData['P0(긴급)'] || 0;
+            document.getElementById('priority-p1').textContent = priorityData['P1(높음)'] || 0;
+            document.getElementById('priority-p2').textContent = priorityData['P2(보통)'] || 0;
+            document.getElementById('priority-p3').textContent = priorityData['P3(낮음)'] || 0;
         }
 
         // 탭 클릭 이벤트
@@ -823,26 +820,29 @@ function generatePOReport(data: ReportData): string {
                 this.classList.add('active');
 
                 const project = this.dataset.project;
-                const statCards = document.querySelectorAll('.stats-grid:first-of-type .stat-card .stat-value');
 
+                // 상단 통계 업데이트 (ID로 직접 선택)
                 if (project === '전체') {
-                    statCards[0].textContent = allStats.total;
-                    statCards[1].textContent = allStats.rate + '%';
-                    statCards[2].textContent = allStats.inProgress;
-                    statCards[3].textContent = allStats.blocked;
+                    document.getElementById('stat-total').textContent = allStats.total;
+                    document.getElementById('stat-rate').textContent = allStats.rate + '%';
+                    document.getElementById('stat-progress').textContent = allStats.inProgress;
+                    document.getElementById('stat-blocked').textContent = allStats.blocked;
                 } else if (projectData[project]) {
                     const p = projectData[project];
                     const rate = p.total > 0 ? Math.round((p.completed / p.total) * 100) : 0;
-                    statCards[0].textContent = p.total;
-                    statCards[1].textContent = rate + '%';
-                    statCards[2].textContent = '-';
-                    statCards[3].textContent = '-';
+                    document.getElementById('stat-total').textContent = p.total;
+                    document.getElementById('stat-rate').textContent = rate + '%';
+                    document.getElementById('stat-progress').textContent = '-';
+                    document.getElementById('stat-blocked').textContent = '-';
                 }
 
                 // 에픽, 버그, 우선순위 이슈 필터링
                 filterByProject(project);
             });
         });
+
+        // 디버그: 탭 클릭 이벤트가 연결되었는지 확인
+        console.log('탭 이벤트 연결됨:', document.querySelectorAll('.project-tab').length + '개');
     </script>
 </body>
 </html>`;
