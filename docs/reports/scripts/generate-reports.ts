@@ -144,7 +144,14 @@ function fetchProjectItems(): ProjectItem[] {
       },
       status: item.status || item['Status'] || '대기중',
       priority: item.priority || item['Priority'] || item['우선순위'] || 'P3(낮음)',
-      project: item.project || item['Project'] || item['프로젝트'] || '미분류',
+      // Repository URL에서 프로젝트명 추출 (예: https://github.com/semicolon-devteam/core-backend → core-backend)
+      project: (() => {
+        const repoUrl = item.repository || item['Repository'] || '';
+        if (typeof repoUrl === 'string' && repoUrl.includes('/')) {
+          return repoUrl.split('/').pop() || '미분류';
+        }
+        return '미분류';
+      })(),
       iteration: item.iteration || item['Iteration'] || '',
     }));
   } catch (e) {
@@ -525,6 +532,22 @@ function generatePOReport(data: ReportData): string {
     )
     .join('\n');
 
+  // 버그 리포트 행 생성
+  const bugReportRows = data.ops.criticalBugs
+    .slice(0, 10)
+    .map(
+      (bug) => `
+                    <tr>
+                        <td>#${bug.content.number}</td>
+                        <td>${bug.content.title}</td>
+                        <td>${bug.project || '전체'}</td>
+                        <td><span class="priority-badge priority-${bug.priority === 'P0(긴급)' ? 'critical' : bug.priority === 'P1(높음)' ? 'high' : 'medium'}">${bug.priority}</span></td>
+                        <td>${bug.content.assignees?.[0]?.login || '미할당'}</td>
+                        <td><span class="status-badge status-${bug.status === '진행중' || bug.status === '작업중' ? 'progress' : 'backlog'}">${bug.status}</span></td>
+                    </tr>`
+    )
+    .join('\n');
+
   return `<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -625,6 +648,39 @@ function generatePOReport(data: ReportData): string {
         <div class="section">
             <h2 class="section-title">📋 진행 중인 Epic</h2>
             ${epicCards || '<p style="color: #718096;">진행 중인 Epic이 없습니다.</p>'}
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">🐛 버그 리포트</h2>
+            <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 20px;">
+                <div class="stat-card">
+                    <div class="stat-value" style="color: #e53e3e;">${data.ops.openBugs}</div>
+                    <div class="stat-label">미해결 버그</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" style="color: #38a169;">${data.ops.resolvedBugs}</div>
+                    <div class="stat-label">이번 주 해결</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${data.ops.newBugs}</div>
+                    <div class="stat-label">이번 주 신규</div>
+                </div>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>버그</th>
+                        <th>프로젝트</th>
+                        <th>우선순위</th>
+                        <th>담당자</th>
+                        <th>상태</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${bugReportRows || '<tr><td colspan="6" style="color: #718096;">버그가 없습니다.</td></tr>'}
+                </tbody>
+            </table>
         </div>
 
         <div class="section">
