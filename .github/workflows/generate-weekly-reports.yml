@@ -30,7 +30,7 @@ jobs:
 
       - name: Generate reports
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.ORG_PROJECT_TOKEN }}
         run: |
           cd docs/reports/scripts
           npx ts-node generate-reports.ts
