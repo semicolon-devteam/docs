@@ -90,7 +90,8 @@ interface ReportData {
     openBugs: number;
     bugsBySeverity: Record<string, number>;
     bugsByProject: Record<string, number>;
-    criticalBugs: ProjectItem[];
+    allBugs: ProjectItem[];       // 모든 버그
+    criticalBugs: ProjectItem[];  // P0/P1 버그만
     feedbacks: ProjectItem[];
     feedbacksByCategory: Record<string, number>;
     deployments: { project: string; env: string; version: string; date: string; author: string }[];
@@ -341,10 +342,14 @@ function aggregateReportData(
     bugsByProject[proj] = (bugsByProject[proj] || 0) + 1;
   });
 
-  const criticalBugs = projectItems.filter(
-    (item) =>
-      item.content.labels?.some((l: any) => l.name === 'bug') &&
-      (item.priority === 'P0(긴급)' || item.priority === 'P1(높음)')
+  // 모든 버그 (라벨에 'bug'가 있는 아이템)
+  const allBugs = projectItems.filter(
+    (item) => item.content.labels?.some((l: any) => l.name === 'bug' || l.name === 'Bug')
+  );
+
+  // P0/P1 버그만
+  const criticalBugs = allBugs.filter(
+    (item) => item.priority === 'P0(긴급)' || item.priority === 'P1(높음)'
   );
 
   // 피드백 집계
@@ -436,6 +441,7 @@ function aggregateReportData(
       openBugs: openBugs.length,
       bugsBySeverity,
       bugsByProject,
+      allBugs,
       criticalBugs,
       feedbacks: feedbackItems,
       feedbacksByCategory,
@@ -574,16 +580,16 @@ function generatePOReport(data: ReportData): string {
     )
     .join('\n');
 
-  // 버그 리포트 행 생성 (data-project 속성 추가) - 모든 버그 표시 (criticalBugs 대신 전체 버그)
-  const bugReportRows = data.ops.criticalBugs
-    .slice(0, 15)
+  // 버그 리포트 행 생성 (data-project 속성 추가) - 모든 버그 표시
+  const bugReportRows = data.ops.allBugs
+    .slice(0, 20)
     .map(
       (bug) => `
                     <tr data-project="${bug.project || '전체'}">
                         <td>#${bug.content.number}</td>
                         <td>${bug.content.title}</td>
                         <td>${bug.project || '전체'}</td>
-                        <td><span class="priority-badge priority-${bug.priority === 'P0(긴급)' ? 'critical' : bug.priority === 'P1(높음)' ? 'high' : 'medium'}">${bug.priority}</span></td>
+                        <td><span class="priority-badge priority-${bug.priority === 'P0(긴급)' ? 'critical' : bug.priority === 'P1(높음)' ? 'high' : bug.priority === 'P2(보통)' ? 'medium' : 'low'}">${bug.priority}</span></td>
                         <td>${bug.content.assignees?.[0]?.login || '미할당'}</td>
                         <td><span class="status-badge status-${bug.status === '진행중' || bug.status === '작업중' ? 'progress' : 'backlog'}">${bug.status}</span></td>
                     </tr>`
@@ -696,16 +702,16 @@ function generatePOReport(data: ReportData): string {
             <h2 class="section-title">🐛 버그 리포트</h2>
             <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 20px;">
                 <div class="stat-card">
-                    <div class="stat-value" style="color: #e53e3e;">${data.ops.openBugs}</div>
-                    <div class="stat-label">미해결 버그</div>
+                    <div class="stat-value" style="color: #e53e3e;">${data.ops.allBugs.length}</div>
+                    <div class="stat-label">전체 버그</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value" style="color: #38a169;">${data.ops.resolvedBugs}</div>
-                    <div class="stat-label">이번 주 해결</div>
+                    <div class="stat-value" style="color: #c53030;">${data.ops.criticalBugs.length}</div>
+                    <div class="stat-label">P0/P1 버그</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">${data.ops.newBugs}</div>
-                    <div class="stat-label">이번 주 신규</div>
+                    <div class="stat-value" style="color: #38a169;">${data.ops.allBugs.filter((b: any) => b.status === '완료' || b.status === '안정됨' || b.status === '병합됨').length}</div>
+                    <div class="stat-label">해결됨</div>
                 </div>
             </div>
             <table class="data-table">
