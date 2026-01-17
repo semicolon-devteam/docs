@@ -504,11 +504,12 @@ function generatePOReport(data: ReportData): string {
     })
     .join('\n');
 
+  // 에픽 카드 생성 (data-project 속성 추가)
   const epicCards = data.po.epics
-    .slice(0, 5)
+    .filter((epic) => !EXCLUDED_PROJECTS.includes(epic.project))
     .map((epic) => {
       return `
-                <div class="epic-card">
+                <div class="epic-card" data-project="${epic.project || '전체'}">
                     <div class="epic-header">
                         <span class="epic-title">[${epic.project || '전체'}] ${epic.content.title}</span>
                         <span class="status-badge status-${epic.status === '진행중' ? 'progress' : epic.status === '완료' ? 'done' : 'backlog'}">${epic.status}</span>
@@ -539,11 +540,13 @@ function generatePOReport(data: ReportData): string {
                             <div style="font-size: 1.8rem; font-weight: 700; margin-top: 10px; color: #48bb78;">${data.po.priorityDistribution['P3(낮음)'] || 0}</div>
                         </div>`;
 
+  // 우선순위 이슈 행 생성 (data-project 속성 추가)
   const criticalIssueRows = data.po.criticalIssues
+    .filter((issue) => !EXCLUDED_PROJECTS.includes(issue.project))
     .slice(0, 10)
     .map(
       (issue) => `
-                    <tr>
+                    <tr data-project="${issue.project || '전체'}">
                         <td>#${issue.content.number}</td>
                         <td>${issue.content.title}</td>
                         <td>${issue.project || '전체'}</td>
@@ -554,12 +557,13 @@ function generatePOReport(data: ReportData): string {
     )
     .join('\n');
 
-  // 버그 리포트 행 생성
+  // 버그 리포트 행 생성 (data-project 속성 추가)
   const bugReportRows = data.ops.criticalBugs
+    .filter((bug) => !EXCLUDED_PROJECTS.includes(bug.project))
     .slice(0, 10)
     .map(
       (bug) => `
-                    <tr>
+                    <tr data-project="${bug.project || '전체'}">
                         <td>#${bug.content.number}</td>
                         <td>${bug.content.title}</td>
                         <td>${bug.project || '전체'}</td>
@@ -745,6 +749,56 @@ function generatePOReport(data: ReportData): string {
             rate: ${data.po.completionRate}
         };
 
+        // 프로젝트별 우선순위 데이터
+        const priorityByProject = ${JSON.stringify(
+          (() => {
+            const result: Record<string, Record<string, number>> = {};
+            // 전체 데이터
+            result['전체'] = data.po.priorityDistribution;
+            // 프로젝트별 집계
+            data.po.criticalIssues.forEach((issue: any) => {
+              const proj = issue.project || '전체';
+              if (!result[proj]) {
+                result[proj] = { 'P0(긴급)': 0, 'P1(높음)': 0, 'P2(보통)': 0, 'P3(낮음)': 0 };
+              }
+              const priority = issue.priority || 'P3(낮음)';
+              result[proj][priority] = (result[proj][priority] || 0) + 1;
+            });
+            return result;
+          })()
+        )};
+
+        // 필터링 함수
+        function filterByProject(project) {
+            // 에픽 카드 필터링
+            document.querySelectorAll('.epic-card').forEach(card => {
+                if (project === '전체' || card.dataset.project === project) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // 버그 리포트 테이블 필터링
+            document.querySelectorAll('.data-table tbody tr[data-project]').forEach(row => {
+                if (project === '전체' || row.dataset.project === project) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            // 우선순위 통계 업데이트
+            const priorityData = priorityByProject[project] || priorityByProject['전체'];
+            const priorityCards = document.querySelectorAll('.stats-grid[style*="repeat(4"] > div');
+            if (priorityCards.length >= 4) {
+                priorityCards[0].querySelector('div[style*="font-size: 1.8rem"]').textContent = priorityData['P0(긴급)'] || 0;
+                priorityCards[1].querySelector('div[style*="font-size: 1.8rem"]').textContent = priorityData['P1(높음)'] || 0;
+                priorityCards[2].querySelector('div[style*="font-size: 1.8rem"]').textContent = priorityData['P2(보통)'] || 0;
+                priorityCards[3].querySelector('div[style*="font-size: 1.8rem"]').textContent = priorityData['P3(낮음)'] || 0;
+            }
+        }
+
         // 탭 클릭 이벤트
         document.querySelectorAll('.project-tab').forEach(tab => {
             tab.addEventListener('click', function() {
@@ -753,7 +807,7 @@ function generatePOReport(data: ReportData): string {
                 this.classList.add('active');
 
                 const project = this.dataset.project;
-                const statCards = document.querySelectorAll('.stat-card .stat-value');
+                const statCards = document.querySelectorAll('.stats-grid:first-of-type .stat-card .stat-value');
 
                 if (project === '전체') {
                     statCards[0].textContent = allStats.total;
@@ -768,6 +822,9 @@ function generatePOReport(data: ReportData): string {
                     statCards[2].textContent = '-';
                     statCards[3].textContent = '-';
                 }
+
+                // 에픽, 버그, 우선순위 이슈 필터링
+                filterByProject(project);
             });
         });
     </script>
