@@ -1,0 +1,14 @@
+{
+  "name": "semo-weekly-reports",
+  "version": "1.0.0",
+  "description": "SEMO 주간 리포트 자동 생성 스크립트 (GitHub 기반)",
+  "scripts": {
+    "generate": "ts-node generate-reports.ts",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.0"
+  }
+}
