@@ -966,16 +966,20 @@ function generateOpsReport(data: ReportData): string {
 async function main() {
   console.log('[SEMO] 주간 리포트 생성 시작...\n');
 
-  // 기간 설정 (지난 주 월요일 ~ 일요일)
+  // 기간 설정 (이번 주 월요일 ~ 일요일)
   const now = new Date();
   const dayOfWeek = now.getDay();
-  const endDate = new Date(now);
-  endDate.setDate(now.getDate() - (dayOfWeek === 0 ? 0 : dayOfWeek)); // 지난 일요일
-  endDate.setHours(23, 59, 59, 999);
 
-  const startDate = new Date(endDate);
-  startDate.setDate(endDate.getDate() - 6); // 지난 월요일
+  // 이번 주 월요일 계산 (일요일이면 6일 전, 아니면 dayOfWeek-1일 전)
+  const startDate = new Date(now);
+  const daysToMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+  startDate.setDate(now.getDate() - daysToMonday);
   startDate.setHours(0, 0, 0, 0);
+
+  // 이번 주 일요일 계산 (월요일 + 6일)
+  const endDate = new Date(startDate);
+  endDate.setDate(startDate.getDate() + 6);
+  endDate.setHours(23, 59, 59, 999);
 
   console.log(`리포트 기간: ${startDate.toLocaleDateString('ko-KR')} ~ ${endDate.toLocaleDateString('ko-KR')}\n`);
 
