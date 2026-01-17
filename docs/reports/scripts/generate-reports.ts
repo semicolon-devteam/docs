@@ -482,6 +482,24 @@ function generatePOReport(data: ReportData): string {
     .map((p, i) => `<div class="project-tab${i === 0 ? ' active' : ''}" data-project="${p}">${p}</div>`)
     .join('\n                ');
 
+  // 선택된 프로젝트만의 통계 계산
+  const filteredStats = {
+    total: 0,
+    completed: 0,
+    inProgress: 0,
+    blocked: 0,
+  };
+  projectList.forEach(proj => {
+    const stats = data.po.tasksByProject[proj];
+    if (stats) {
+      filteredStats.total += stats.total;
+      filteredStats.completed += stats.completed;
+    }
+  });
+  filteredStats.inProgress = data.po.inProgressTasks; // TODO: 프로젝트별로 계산 필요
+  filteredStats.blocked = data.po.blockedTasks;
+  const filteredCompletionRate = filteredStats.total > 0 ? Math.round((filteredStats.completed / filteredStats.total) * 100) : 0;
+
   const taskChangeClass = data.po.weeklyComparison.tasks.change >= 0 ? 'up' : 'down';
   const taskChangeSymbol = data.po.weeklyComparison.tasks.change >= 0 ? '▲' : '▼';
   const rateChangeClass = data.po.weeklyComparison.completionRate.change >= 0 ? 'up' : 'down';
@@ -504,9 +522,9 @@ function generatePOReport(data: ReportData): string {
     })
     .join('\n');
 
-  // 에픽 카드 생성 (data-project 속성 추가)
+  // 에픽 카드 생성 (data-project 속성 추가) - 모든 에픽 표시, 탭 필터링으로 처리
   const epicCards = data.po.epics
-    .filter((epic) => !EXCLUDED_PROJECTS.includes(epic.project))
+    .slice(0, 10)
     .map((epic) => {
       return `
                 <div class="epic-card" data-project="${epic.project || '전체'}">
@@ -540,10 +558,9 @@ function generatePOReport(data: ReportData): string {
                             <div style="font-size: 1.8rem; font-weight: 700; margin-top: 10px; color: #48bb78;">${data.po.priorityDistribution['P3(낮음)'] || 0}</div>
                         </div>`;
 
-  // 우선순위 이슈 행 생성 (data-project 속성 추가)
+  // 우선순위 이슈 행 생성 (data-project 속성 추가) - 모든 이슈 표시
   const criticalIssueRows = data.po.criticalIssues
-    .filter((issue) => !EXCLUDED_PROJECTS.includes(issue.project))
-    .slice(0, 10)
+    .slice(0, 15)
     .map(
       (issue) => `
                     <tr data-project="${issue.project || '전체'}">
@@ -557,10 +574,9 @@ function generatePOReport(data: ReportData): string {
     )
     .join('\n');
 
-  // 버그 리포트 행 생성 (data-project 속성 추가)
+  // 버그 리포트 행 생성 (data-project 속성 추가) - 모든 버그 표시 (criticalBugs 대신 전체 버그)
   const bugReportRows = data.ops.criticalBugs
-    .filter((bug) => !EXCLUDED_PROJECTS.includes(bug.project))
-    .slice(0, 10)
+    .slice(0, 15)
     .map(
       (bug) => `
                     <tr data-project="${bug.project || '전체'}">
@@ -648,19 +664,19 @@ function generatePOReport(data: ReportData): string {
 
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-value">${data.po.totalTasks}</div>
+                    <div class="stat-value">${filteredStats.total}</div>
                     <div class="stat-label">전체 태스크</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value positive">${data.po.completionRate}%</div>
+                    <div class="stat-value positive">${filteredCompletionRate}%</div>
                     <div class="stat-label">완료율</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">${data.po.inProgressTasks}</div>
+                    <div class="stat-value">${filteredStats.inProgress}</div>
                     <div class="stat-label">진행 중</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value" style="color: #d69e2e;">${data.po.blockedTasks}</div>
+                    <div class="stat-value" style="color: #d69e2e;">${filteredStats.blocked}</div>
                     <div class="stat-label">블로커</div>
                 </div>
             </div>
@@ -742,11 +758,11 @@ function generatePOReport(data: ReportData): string {
         // 프로젝트별 데이터
         const projectData = ${JSON.stringify(data.po.tasksByProject)};
         const allStats = {
-            total: ${data.po.totalTasks},
-            completed: ${data.po.completedTasks},
-            inProgress: ${data.po.inProgressTasks},
-            blocked: ${data.po.blockedTasks},
-            rate: ${data.po.completionRate}
+            total: ${filteredStats.total},
+            completed: ${filteredStats.completed},
+            inProgress: ${filteredStats.inProgress},
+            blocked: ${filteredStats.blocked},
+            rate: ${filteredCompletionRate}
         };
 
         // 프로젝트별 우선순위 데이터
