@@ -353,7 +353,7 @@
                     
                     <div class="balance-card">
                         <div class="balance-label">보유 오피스캐시</div>
-                        <div class="balance-amount">250,000 캐시</div>
+                        <div class="balance-amount">2100,000 캐시</div>
                         <div class="balance-info">1 캐시 = 1원</div>
                     </div>
                     
@@ -362,7 +362,7 @@
                     <div class="charge-options">
                         <div class="charge-option">
                             <div class="charge-amount">50,000원</div>
-                            <div class="charge-cash">50,000 캐시</div>
+                            <div class="charge-cash">100,000 캐시</div>
                         </div>
                         <div class="charge-option selected">
                             <div class="charge-amount">100,000원</div>
@@ -448,7 +448,7 @@
                             <div class="spec-key">선택 옵션</div>
                             <div class="spec-value">
                                 <ul class="spec-list">
-                                    <li>50,000원 (50,000 캐시)</li>
+                                    <li>50,000원 (100,000 캐시)</li>
                                     <li>100,000원 (100,000 캐시)</li>
                                     <li>200,000원 (200,000 캐시)</li>
                                     <li>500,000원 (500,000 캐시)</li>
@@ -555,9 +555,11 @@
                             <div class="spec-value">
                                 <ul class="spec-list">
                                     <li>1. 유효성 검사 (금액 확인)</li>
-                                    <li>2. 결제 모달 열기 (토스페이먼츠 등)</li>
-                                    <li>3. 결제 완료 시: 잔액 갱신 + 성공 토스트</li>
-                                    <li>4. 결제 실패 시: 에러 메시지 표시</li>
+                                    <li>2. 충전 요청 API 호출 (requestId 생성)</li>
+                                    <li>3. 코인지갑 주소 (또는 계좌번호) 안내 화면 표시</li>
+                                    <li>4. 입금 대기 상태로 전환 ("입금 확인 중...")</li>
+                                    <li>5. 관리자 승인 시: 잔액 갱신 + 성공 알림</li>
+                                    <li>6. 승인 거부 시: 에러 메시지 표시</li>
                                 </ul>
                             </div>
                         </div>
@@ -605,13 +607,20 @@
    ├─ 실패 → 에러 메시지 표시 (2단계로 돌아감)
    └─ 성공 → 다음 단계
    ↓
-6. 결제 모달 열기 (토스페이먼츠 SDK)
-   ├─ 결제 수단 선택 (카드/계좌이체/간편결제)
-   └─ 결제 진행
+6. 충전 요청 API 호출
    ↓
-7. 결제 결과 처리
-   ├─ 성공: 잔액 갱신 + 성공 토스트 + 충전 내역 페이지 이동
-   └─ 실패: 에러 메시지 표시 (4단계로 돌아감)</div>
+7. 코인지갑 주소 (또는 계좌번호) 안내 화면 표시
+   ├─ 지갑 주소: 0x123...
+   ├─ 충전 금액: 100,000 캐시
+   └─ "입금 후 관리자 승인까지 시간이 소요될 수 있습니다" 안내
+   ↓
+8. 입금 대기 상태
+   ├─ 기업회원이 직접 입금
+   └─ 관리자가 입금 확인
+   ↓
+9. 관리자 승인 처리
+   ├─ 승인: 잔액 갱신 + 성공 알림 + 충전 내역 페이지 이동
+   └─ 거부: 에러 메시지 표시 + 사유 안내</div>
                 </div>
                 
                 <!-- API -->
@@ -623,21 +632,24 @@ GET /rest/v1/points/balance?type=OFFICE_CASH
 Response: { "balance": 250000, "type": "OFFICE_CASH" }
 
 <strong>2. 충전 요청</strong>
-POST /rest/v1/points/office-cash/charge
+POST /rest/v1/points/office-cash/charge-request
 Body: { 
-  "amount": 100000, 
-  "paymentMethodId": "pm_xxx" 
+  "amount": 100000
 }
 Response: { 
   "success": true, 
-  "transactionId": "tx_xxx",
-  "newBalance": 350000 
+  "requestId": "req_xxx",
+  "walletAddress": "0x123...",
+  "status": "PENDING"
 }
 
-<strong>3. 결제 검증</strong>
-POST /rest/v1/payments/verify
-Body: { "transactionId": "tx_xxx", "paymentKey": "pk_xxx" }
-Response: { "status": "SUCCESS", "paidAt": "2026-03-04T10:00:00Z" }</code>
+<strong>3. 관리자 승인 (관리자 전용)</strong>
+PATCH /admin/points/office-cash/approve/{requestId}
+Body: { "approved": true }
+Response: { 
+  "success": true, 
+  "newBalance": 350000 
+}</code>
                     </div>
                 </div>
                 
@@ -684,14 +696,19 @@ Response: { "status": "SUCCESS", "paidAt": "2026-03-04T10:00:00Z" }</code>
                                 <td>입력 필드 테두리 빨간색 + 포커스</td>
                             </tr>
                             <tr>
-                                <td>결제 취소 (사용자)</td>
-                                <td>토스트 없음 (자연스럽게 복귀)</td>
-                                <td>충전 화면으로 돌아감</td>
+                                <td>충전 요청 취소 (사용자)</td>
+                                <td>확인 모달 표시</td>
+                                <td>취소 시 요청 삭제, 충전 화면으로 돌아감</td>
                             </tr>
                             <tr>
-                                <td>결제 실패 (승인 거부)</td>
-                                <td>"결제에 실패했습니다: [사유]"</td>
+                                <td>관리자 승인 거부</td>
+                                <td>"충전 요청이 거부되었습니다: [사유]"</td>
                                 <td>재시도 버튼 표시</td>
+                            </tr>
+                            <tr>
+                                <td>입금 확인 지연</td>
+                                <td>"입금 확인 중입니다. 최대 1시간 소요될 수 있습니다"</td>
+                                <td>대기 상태 유지 (자동 갱신)</td>
                             </tr>
                             <tr>
                                 <td>네트워크 오류</td>
@@ -715,7 +732,7 @@ Response: { "status": "SUCCESS", "paidAt": "2026-03-04T10:00:00Z" }</code>
                         <li><strong>태블릿 (769px ~ 1024px)</strong>: 프리셋 2열 그리드</li>
                         <li><strong>데스크톱 (1025px ~)</strong>: 프리셋 4열 그리드</li>
                         <li><strong>키보드 탐색</strong>: Tab 키로 요소 간 이동, Enter 키로 선택</li>
-                        <li><strong>스크린 리더</strong>: 프리셋 옵션 "50,000원 충전, 50,000 캐시 획득" 등 명확한 라벨</li>
+                        <li><strong>스크린 리더</strong>: 프리셋 옵션 "50,000원 충전, 100,000 캐시 획득" 등 명확한 라벨</li>
                         <li><strong>고대비 모드</strong>: 선택 상태 명확히 구분 (테두리 두께 3px)</li>
                     </ul>
                 </div>
