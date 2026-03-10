@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화면설계서 - Phase 3: 이미지 생성</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif; line-height: 1.6; color: #333; background: #f5f7fa; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px 40px; }
+        .content { padding: 40px; }
+        .section { margin-bottom: 40px; }
+        .section h2 { font-size: 22px; margin-bottom: 20px; color: #667eea; border-bottom: 2px solid #667eea; padding-bottom: 10px; }
+        .component { background: #f8f9fa; border-left: 4px solid #667eea; padding: 20px; margin: 15px 0; border-radius: 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #e0e0e0; padding: 12px; text-align: left; }
+        th { background: #667eea; color: white; }
+        pre { background: #2d3748; color: #e2e8f0; padding: 15px; border-radius: 4px; font-size: 13px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🖼️ Phase 3: 이미지 생성 (세그먼트)</h1>
+            <div style="margin-top: 10px; opacity: 0.9;"><strong>프로젝트:</strong> proj-acaiv | <strong>이슈:</strong> #4</div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>📱 화면 구성</h2>
+                <div class="component">
+                    <strong>A. 자동 세그먼트 분할</strong><br>
+                    - AI가 음성 길이 기반으로 컷 타이밍 자동 분석<br>
+                    - 세그먼트 목록 표시 (순서, 대본 텍스트, 타이밍)<br>
+                    - 세그먼트 추가/삭제/순서 변경 가능
+                </div>
+                <div class="component">
+                    <strong>B. 이미지 프롬프트 편집</strong><br>
+                    - 각 세그먼트별 자동 생성된 이미지 프롬프트 표시<br>
+                    - 수동 편집 가능 (텍스트 입력)<br>
+                    - 스타일 일관성 프롬프트 자동 추가
+                </div>
+                <div class="component">
+                    <strong>C. 이미지 생성 & 미리보기</strong><br>
+                    - "이미지 생성" 버튼 (세그먼트별 또는 전체)<br>
+                    - 진행 상황 표시 (생성 중인 세그먼트 번호)<br>
+                    - 생성된 이미지 썸네일 표시<br>
+                    - 재생성 버튼 (개별 세그먼트)
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>🔌 API 명세</h2>
+                <pre>
+POST /api/segments/analyze
+Request: {
+  "projectId": "clx...",
+  "audioDuration": 42
+}
+Response: {
+  "segments": [
+    {
+      "order": 1,
+      "text": "환율 1,500원 시대",
+      "startTime": 0,
+      "duration": 5000,
+      "autoPrompt": "Korean won currency chart..."
+    }
+  ]
+}
+
+POST /api/generate-images
+Request: {
+  "projectId": "clx...",
+  "segments": [...]
+}
+Response: {
+  "segments": [
+    {
+      "id": "clx...",
+      "imageUrl": "https://...",
+      "creditsUsed": 100
+    }
+  ]
+}</pre>
+            </div>
+            
+            <div class="section">
+                <h2>💰 예상 크레딧</h2>
+                <table>
+                    <tr><th>세그먼트 수</th><th>크레딧/개</th><th>총 크레딧</th></tr>
+                    <tr><td>5개 (40초 영상)</td><td>100</td><td>500</td></tr>
+                    <tr><td>15개 (10분 영상)</td><td>100</td><td>1,500</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

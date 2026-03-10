@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화면설계서 - Phase 2: 음성 생성</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif; line-height: 1.6; color: #333; background: #f5f7fa; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px 40px; }
+        .content { padding: 40px; }
+        .section { margin-bottom: 40px; }
+        .section h2 { font-size: 22px; margin-bottom: 20px; color: #667eea; border-bottom: 2px solid #667eea; padding-bottom: 10px; }
+        .component { background: #f8f9fa; border-left: 4px solid #667eea; padding: 20px; margin: 15px 0; border-radius: 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #e0e0e0; padding: 12px; text-align: left; }
+        th { background: #667eea; color: white; }
+        pre { background: #2d3748; color: #e2e8f0; padding: 15px; border-radius: 4px; font-size: 13px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎙️ Phase 2: 음성 생성 (TTS)</h1>
+            <div style="margin-top: 10px; opacity: 0.9;"><strong>프로젝트:</strong> proj-acaiv | <strong>이슈:</strong> #3</div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>📱 화면 구성</h2>
+                <div class="component">
+                    <strong>A. 보이스 선택 섹션</strong><br>
+                    - 150+ AI 보이스 라이브러리 (ElevenLabs)<br>
+                    - 보이스 카드: 이름, 언어, 성별, 샘플 재생 버튼<br>
+                    - 검색/필터 (언어, 성별, 음색)
+                </div>
+                <div class="component">
+                    <strong>B. 대본 미리보기</strong><br>
+                    - Phase 1에서 작성한 대본 표시 (읽기 전용)<br>
+                    - 글자 수 & 예상 음성 길이 표시
+                </div>
+                <div class="component">
+                    <strong>C. TTS 생성 버튼</strong><br>
+                    - "음성 생성하기" 버튼 (보이스 선택 후 활성화)<br>
+                    - 진행 상황 표시 (로딩 바 + 예상 소요 시간)
+                </div>
+                <div class="component">
+                    <strong>D. 오디오 플레이어</strong><br>
+                    - 생성 완료 후 표시<br>
+                    - 재생/일시정지, 진행바, 음량 조절<br>
+                    - 다운로드 버튼 (선택)
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>🔌 API 명세</h2>
+                <pre>
+GET /api/voices
+Response: {
+  "voices": [
+    {
+      "id": "21m00Tcm4TlvDq8ikWAM",
+      "name": "Rachel",
+      "language": "en-US",
+      "gender": "female",
+      "sampleUrl": "https://..."
+    }
+  ]
+}
+
+POST /api/generate-audio
+Request: {
+  "projectId": "clx...",
+  "voiceId": "21m00Tcm4TlvDq8ikWAM",
+  "text": "환율 1,500원..."
+}
+Response: {
+  "id": "clx...",
+  "audioUrl": "https://...",
+  "duration": 42,
+  "creditsUsed": 50
+}</pre>
+            </div>
+            
+            <div class="section">
+                <h2>💰 예상 크레딧</h2>
+                <table>
+                    <tr><th>영상 길이</th><th>크레딧</th></tr>
+                    <tr><td>40초</td><td>~50</td></tr>
+                    <tr><td>10분</td><td>~300</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
